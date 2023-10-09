@@ -1,0 +1,66 @@
+# Reading pref.tcl
+# do RegisterFile_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:13 on Oct 06,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v 
+# -- Compiling module RegisterFile
+# -- Compiling module RegFile_decoder
+# -- Compiling module RegFile_regn
+# 
+# Top level modules:
+# 	RegisterFile
+# End time: 17:47:13 on Oct 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:14 on Oct 06,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v 
+# -- Compiling module RegisterFile_tb
+# 
+# Top level modules:
+# 	RegisterFile_tb
+# End time: 17:47:14 on Oct 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:47:14 on Oct 06,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v 
+# -- Compiling module RegisterFile_tb
+# 
+# Top level modules:
+# 	RegisterFile_tb
+# End time: 17:47:14 on Oct 06,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  RegisterFile_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" RegisterFile_tb 
+# Start time: 17:47:14 on Oct 06,2023
+# Loading work.RegisterFile_tb
+# Loading work.RegisterFile
+# Loading work.RegFile_decoder
+# Loading work.RegFile_regn
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+add wave -r /*
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v(92)
+#    Time: 150 ns  Iteration: 0  Instance: /RegisterFile_tb
+# Break in Module RegisterFile_tb at E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v line 92
+# End time: 17:49:21 on Oct 06,2023, Elapsed time: 0:02:07
+# Errors: 0, Warnings: 0

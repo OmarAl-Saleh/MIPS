@@ -1,0 +1,149 @@
+module RegisterFile();
+
+
+
+
+
+
+endmodule
+
+
+
+
+
+
+
+
+
+
+///////////////*******************Register File Modules *******************************************////////////
+
+//******************************** 1 - decoder 5 --> 32 bit*****************************************/////////// 
+
+module decoder(
+    input [4:0] inputs,
+    input enable,
+    output [31:0] outputs
+);
+
+reg [31:0] decoder_output;
+
+always @ (*) begin
+    if (enable) begin
+        case (inputs)
+            5'b00000: decoder_output = 32'b00000000000000000000000000000001;
+            5'b00001: decoder_output = 32'b00000000000000000000000000000010;
+            5'b00010: decoder_output = 32'b00000000000000000000000000000100;
+            5'b00011: decoder_output = 32'b00000000000000000000000000001000;
+            5'b00100: decoder_output = 32'b00000000000000000000000000010000;
+            5'b00101: decoder_output = 32'b00000000000000000000000000100000;
+            5'b00110: decoder_output = 32'b00000000000000000000000001000000;
+            5'b00111: decoder_output = 32'b00000000000000000000000010000000;
+            5'b01000: decoder_output = 32'b00000000000000000000000100000000;
+            5'b01001: decoder_output = 32'b00000000000000000000001000000000;
+            5'b01010: decoder_output = 32'b00000000000000000000010000000000;
+            5'b01011: decoder_output = 32'b00000000000000000000100000000000;
+            5'b01100: decoder_output = 32'b00000000000000000001000000000000;
+            5'b01101: decoder_output = 32'b00000000000000000010000000000000;
+            5'b01110: decoder_output = 32'b00000000000000000100000000000000;
+            5'b01111: decoder_output = 32'b00000000000000001000000000000000;
+            5'b10000: decoder_output = 32'b00000000000000010000000000000000;
+            5'b10001: decoder_output = 32'b00000000000000100000000000000000;
+            5'b10010: decoder_output = 32'b00000000000001000000000000000000;
+            5'b10011: decoder_output = 32'b00000000000010000000000000000000;
+            5'b10100: decoder_output = 32'b00000000000100000000000000000000;
+            5'b10101: decoder_output = 32'b00000000001000000000000000000000;
+            5'b10110: decoder_output = 32'b00000000010000000000000000000000;
+            5'b10111: decoder_output = 32'b00000000100000000000000000000000;
+            5'b11000: decoder_output = 32'b00000001000000000000000000000000;
+            5'b11001: decoder_output = 32'b00000010000000000000000000000000;
+            5'b11010: decoder_output = 32'b00000100000000000000000000000000;
+            5'b11011: decoder_output = 32'b00001000000000000000000000000000;
+            5'b11100: decoder_output = 32'b00010000000000000000000000000000;
+            5'b11101: decoder_output = 32'b00100000000000000000000000000000;
+            5'b11110: decoder_output = 32'b01000000000000000000000000000000;
+            5'b11111: decoder_output = 32'b10000000000000000000000000000000;
+            default: decoder_output = 32'b00000000000000000000000000000000;
+        endcase
+    end
+    else begin
+        decoder_output = 32'b00000000000000000000000000000000;
+    end
+end
+
+assign outputs = decoder_output;
+
+endmodule
+
+
+////************************************ 2- MUX 32-->1 ***************************//////////////
+
+
+module mux_32to1 (
+    input wire [31:0] data_inputs [31:0],
+    input wire [4:0] select,
+    output wire[31:0] mux_output
+);
+
+reg [31:0] mux_output_reg;
+
+always @ (select or data_inputs) begin
+    case (select)
+        5'b00000: mux_output_reg = data_inputs[0];
+        5'b00001: mux_output_reg = data_inputs[1];
+        5'b00010: mux_output_reg = data_inputs[2];
+        5'b00011: mux_output_reg = data_inputs[3];
+        5'b00100: mux_output_reg = data_inputs[4];
+        5'b00101: mux_output_reg = data_inputs[5];
+        5'b00110: mux_output_reg = data_inputs[6];
+        5'b00111: mux_output_reg = data_inputs[7];
+        5'b01000: mux_output_reg = data_inputs[8];
+        5'b01001: mux_output_reg = data_inputs[9];
+        5'b01010: mux_output_reg = data_inputs[10];
+        5'b01011: mux_output_reg = data_inputs[11];
+        5'b01100: mux_output_reg = data_inputs[12];
+        5'b01101: mux_output_reg = data_inputs[13];
+        5'b01110: mux_output_reg = data_inputs[14];
+        5'b01111: mux_output_reg = data_inputs[15];
+        5'b10000: mux_output_reg = data_inputs[16];
+        5'b10001: mux_output_reg = data_inputs[17];
+        5'b10010: mux_output_reg = data_inputs[18];
+        5'b10011: mux_output_reg = data_inputs[19];
+        5'b10100: mux_output_reg = data_inputs[20];
+        5'b10101: mux_output_reg = data_inputs[21];
+        5'b10110: mux_output_reg = data_inputs[22];
+        5'b10111: mux_output_reg = data_inputs[23];
+        5'b11000: mux_output_reg = data_inputs[24];
+        5'b11001: mux_output_reg = data_inputs[25];
+        5'b11010: mux_output_reg = data_inputs[26];
+        5'b11011: mux_output_reg = data_inputs[27];
+        5'b11100: mux_output_reg = data_inputs[28];
+        5'b11101: mux_output_reg = data_inputs[29];
+        5'b11110: mux_output_reg = data_inputs[30];
+        5'b11111: mux_output_reg = data_inputs[31];
+        default: mux_output_reg = 32'b0;
+    endcase
+end
+
+assign mux_output = mux_output_reg;
+
+endmodule
+
+/////***************************************** 3 - register 32-bit *************************************//////
+
+// don't forget to change the parameter when you do not 32 bit  register 
+module regn(R, Resetn, Rin, Clock, Q);
+    parameter n = 32;
+    input [n-1:0] R;
+    input Resetn, Rin, Clock;
+    output [n-1:0] Q;
+    reg [n-1:0] Q;
+
+    always @(posedge Clock)
+        if (!Resetn)
+            Q <= 0;
+        else if (Rin)
+            Q <= R;
+endmodule
+
+
