@@ -1,5 +1,5 @@
 Flow report for RegisterFile
-Fri Oct 06 17:36:30 2023
+Wed Oct 11 08:52:42 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Fri Oct 06 17:36:30 2023       ;
+; Flow Status                        ; Successful - Wed Oct 11 08:52:42 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; RegisterFile                                ;
 ; Top-level Entity Name              ; RegisterFile_tb                             ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/06/2023 17:36:21 ;
+; Start date & time ; 10/11/2023 08:52:32 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; RegisterFile        ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+-----------------+-----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name     ; Section Id      ;
 +--------------------------------------+----------------------------------------+---------------+-----------------+-----------------+
-; COMPILER_SIGNATURE_ID                ; 211375641069850.169660298104832        ; --            ; --              ; --              ;
+; COMPILER_SIGNATURE_ID                ; 211375641069850.169700355211136        ; --            ; --              ; --              ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --              ; RegisterFile_tb ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; RegisterFile_tb                        ; --            ; --              ; eda_simulation  ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --              ; eda_simulation  ;
@@ -105,8 +105,8 @@ https://fpgasoftware.intel.com/eula.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:10     ; 1.0                     ; 4709 MB             ; 00:00:22                           ;
-; Total                  ; 00:00:10     ; --                      ; --                  ; 00:00:22                           ;
+; Analysis & Elaboration ; 00:00:11     ; 1.0                     ; 4703 MB             ; 00:00:26                           ;
+; Total                  ; 00:00:11     ; --                      ; --                  ; 00:00:26                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

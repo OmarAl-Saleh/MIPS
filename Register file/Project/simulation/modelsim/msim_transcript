@@ -12,7 +12,7 @@
 # 
 # vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:47:13 on Oct 06,2023
+# Start time: 08:59:52 on Oct 11,2023
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v 
 # -- Compiling module RegisterFile
 # -- Compiling module RegFile_decoder
@@ -20,47 +20,54 @@
 # 
 # Top level modules:
 # 	RegisterFile
-# End time: 17:47:13 on Oct 06,2023, Elapsed time: 0:00:00
+# End time: 08:59:53 on Oct 11,2023, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:47:14 on Oct 06,2023
+# Start time: 08:59:53 on Oct 11,2023
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v 
 # -- Compiling module RegisterFile_tb
 # 
 # Top level modules:
 # 	RegisterFile_tb
-# End time: 17:47:14 on Oct 06,2023, Elapsed time: 0:00:00
+# End time: 08:59:53 on Oct 11,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Register\ file/Project {E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 17:47:14 on Oct 06,2023
+# Start time: 08:59:53 on Oct 11,2023
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project" E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v 
 # -- Compiling module RegisterFile_tb
 # 
 # Top level modules:
 # 	RegisterFile_tb
-# End time: 17:47:14 on Oct 06,2023, Elapsed time: 0:00:00
+# End time: 08:59:53 on Oct 11,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  RegisterFile_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" RegisterFile_tb 
-# Start time: 17:47:14 on Oct 06,2023
+# Start time: 08:59:53 on Oct 11,2023
 # Loading work.RegisterFile_tb
 # Loading work.RegisterFile
 # Loading work.RegFile_decoder
 # Loading work.RegFile_regn
+# Trace back: Error QStructure::sort: invalid command name ""
+#   <6:C:/mtitcl/vsim/qstructure.tc_:2478: ::QStructure::sort .main_pane.structure 0 descending
+#   <5:eval:1: ::QStructure::structsort .main_pane.structure 0 descending
+#   <4:eval:1: ::namespace inscope ::QStructure {structsort .main_pane.structure} 0 descending
+#   >3:proc:26: ::.main_pane.structure.interior.cs.body.struct sort 0 descending
+#   >2:proc:10: ::.main_pane.structure.interior.cs.body.struct _initializeSortColumn
+#   <1:eval:1: ::namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _initializeSortColumn}
+add wave -r /*
 # 
 # add wave *
 # view structure
 # .main_pane.structure.interior.cs.body.struct
 # view signals
-add wave -r /*
 # .main_pane.objects.interior.cs.body.tree
 # run -all
 # ** Note: $stop    : E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v(92)
 #    Time: 150 ns  Iteration: 0  Instance: /RegisterFile_tb
 # Break in Module RegisterFile_tb at E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v line 92
-# End time: 17:49:21 on Oct 06,2023, Elapsed time: 0:02:07
+# End time: 09:01:28 on Oct 11,2023, Elapsed time: 0:01:35
 # Errors: 0, Warnings: 0

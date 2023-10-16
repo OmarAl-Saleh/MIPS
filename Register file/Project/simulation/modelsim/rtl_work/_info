@@ -10,14 +10,14 @@ z2
 cModel Technology
 Z0 dE:/Omar/CPU Design/MIPS Processor/Register file/Project/simulation/modelsim
 vRegFile_decoder
-Z1 !s110 1696603633
+Z1 !s110 1697003993
 !i10b 1
 !s100 DkL]X5b>RFeQBBSihzinZ1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
 I_DR:Y?>CAMfV3@AzBIhnK3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z4 w1696599581
+Z4 w1696604188
 Z5 8E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v
 Z6 FE:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v
 !i122 0
@@ -26,7 +26,7 @@ Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1696603633.000000
+Z8 !s108 1697003992.000000
 Z9 !s107 E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v|
 Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project|E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile.v|
 !i113 1
@@ -37,16 +37,16 @@ n@reg@file_decoder
 vRegFile_regn
 R1
 !i10b 1
-!s100 k3=3[[UzYCdYJI0]dGXIT2
+!s100 :53ORlz9ehfh2a=^nm[KO1
 R2
-IGgeYEhJ[M0@b1NG8nJ9H;2
+I=3BaZRC:a@HN5W3m[GHlO0
 R3
 R0
 R4
 R5
 R6
 !i122 0
-L0 193 13
+L0 141 13
 R7
 r1
 !s85 0
@@ -85,7 +85,7 @@ R12
 R13
 n@register@file
 vRegisterFile_tb
-!s110 1696603634
+R1
 !i10b 1
 !s100 F2fXFeUi5z2knDGAi_1J]0
 R2
@@ -101,7 +101,7 @@ R7
 r1
 !s85 0
 31
-!s108 1696603634.000000
+!s108 1697003993.000000
 !s107 E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS Processor/Register file/Project|E:/Omar/CPU Design/MIPS Processor/Register file/Project/RegisterFile_tb.v|
 !i113 1
