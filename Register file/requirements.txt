@@ -1,3 +1,0 @@
-32 bit - register 
-5--> 32 decoder
-32 -1 mux (replace it by array ) 

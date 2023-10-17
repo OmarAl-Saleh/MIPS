@@ -15,7 +15,7 @@ RegFile_decoder dex(WriteReg,Reg_write_Control,Reg_Enable);
 // we first write then we read from register file 
 
 //write on Register file
-RegFile_regn Reg_0(WriteData, Reset, Reg_Enable[0], Clock,Registers_Read[0]);
+RegFile_regn Reg_0(WriteData, 1'b0, Reg_Enable[0], Clock,Registers_Read[0]);
 RegFile_regn Reg_1(WriteData, Reset, Reg_Enable[1], Clock,Registers_Read[1]);
 RegFile_regn Reg_2(WriteData, Reset, Reg_Enable[2], Clock,Registers_Read[2]);
 RegFile_regn Reg_3(WriteData, Reset, Reg_Enable[3], Clock,Registers_Read[3]);

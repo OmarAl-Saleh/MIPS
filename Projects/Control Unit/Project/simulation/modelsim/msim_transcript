@@ -1,0 +1,61 @@
+# Reading pref.tcl
+# do ControlUnit_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:45 on Oct 11,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v 
+# -- Compiling module ControlUnit
+# 
+# Top level modules:
+# 	ControlUnit
+# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:45 on Oct 11,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v 
+# -- Compiling module ControlUnit_tb
+# 
+# Top level modules:
+# 	ControlUnit_tb
+# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:00:45 on Oct 11,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v 
+# -- Compiling module ControlUnit_tb
+# 
+# Top level modules:
+# 	ControlUnit_tb
+# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  ControlUnit_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" ControlUnit_tb 
+# Start time: 20:00:45 on Oct 11,2023
+# Loading work.ControlUnit_tb
+# Loading work.ControlUnit
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v(60)
+#    Time: 100 ns  Iteration: 0  Instance: /ControlUnit_tb
+# Break in Module ControlUnit_tb at E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v line 60
+# End time: 20:01:11 on Oct 11,2023, Elapsed time: 0:00:26
+# Errors: 0, Warnings: 0
