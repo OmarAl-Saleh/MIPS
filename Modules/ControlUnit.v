@@ -86,7 +86,7 @@ end
 	end
 	
 		6'b001000:begin
-		//Addi instruction
+		//immediate instruction (addi)
 		 reg_ALUSrc = 1'b1;
 		 reg_RegWrite = 1'b1;
        reg_MemtoReg = 1'b0;
@@ -95,6 +95,28 @@ end
        reg_ALUOp = 2'b00;
        reg_RegDst = 1'b0;
 	end
+	
+		6'b001100:begin
+		//immediate instruction (andi)
+		reg_ALUSrc = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 1'b0;
+       reg_MemWrite = 1'b0;
+       reg_MemRead = 1'b0;
+       reg_ALUOp = 2'b01;
+       reg_RegDst = 1'b0;
+	end
+			6'b001101:begin
+		//immediate instruction (ori)
+		reg_ALUSrc = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 1'b0;
+       reg_MemWrite = 1'b0;
+       reg_MemRead = 1'b0;
+       reg_ALUOp = 2'b11;
+       reg_RegDst = 1'b0;
+	end
+		
 	
 	// we can here add two cases for branch and jump control signals 
 	
