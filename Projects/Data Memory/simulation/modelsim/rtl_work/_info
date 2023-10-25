@@ -1,0 +1,55 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/CPU/RAM2/simulation/modelsim
+vRAM
+Z1 !s110 1698183950
+!i10b 1
+!s100 2Tk^VGUFWkhCG:lcT_S4h0
+IMQYEUR4=5>A1IeRBOdSl?0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1698183829
+8D:/CPU/RAM2/RAM.v
+FD:/CPU/RAM2/RAM.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1698183950.000000
+!s107 D:/CPU/RAM2/RAM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/RAM2|D:/CPU/RAM2/RAM.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+D:/CPU/RAM2
+Z7 tCvgOpt 0
+n@r@a@m
+vram_tb
+R1
+!i10b 1
+!s100 oazD@aLWP]U`WaDHe1inl0
+I25W1h^dCRlUJJ11VK4gSH0
+R2
+R0
+w1698183349
+8D:/CPU/RAM2/ram_tb.v
+FD:/CPU/RAM2/ram_tb.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/CPU/RAM2/ram_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/RAM2|D:/CPU/RAM2/ram_tb.v|
+!i113 1
+R5
+R6
+R7

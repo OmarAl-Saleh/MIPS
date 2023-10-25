@@ -1,0 +1,17 @@
+|alu_control
+FuncField[0] => Decoder0.IN5
+FuncField[1] => Decoder0.IN4
+FuncField[2] => Decoder0.IN3
+FuncField[3] => Decoder0.IN2
+FuncField[4] => Decoder0.IN1
+FuncField[5] => Decoder0.IN0
+ALUOp[0] => Equal0.IN1
+ALUOp[0] => Equal1.IN1
+ALUOp[1] => Equal0.IN0
+ALUOp[1] => Equal1.IN0
+Operation[0] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+Operation[1] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+Operation[2] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+Operation[3] <= Operation.DB_MAX_OUTPUT_PORT_TYPE
+
+

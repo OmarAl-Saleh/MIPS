@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/CPU/alu_control/simulation/modelsim
+valu_control
+Z1 !s110 1697825077
+!i10b 1
+!s100 VH<SAn3R_PmAjUmnK<2^k1
+I1I0]AJKGM3DlI3FMozgWl3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1697825043
+8D:/CPU/alu_control/alu_control.v
+FD:/CPU/alu_control/alu_control.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1697825077.000000
+!s107 D:/CPU/alu_control/alu_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/alu_control|D:/CPU/alu_control/alu_control.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+D:/CPU/alu_control
+Z7 tCvgOpt 0
+valu_control_tb
+R1
+!i10b 1
+!s100 >8A046^T>]0W19`50I3ZZ1
+ITa]l0YGH;mU<;1G2;S@n<1
+R2
+R0
+w1697824968
+8D:/CPU/alu_control/alu_control_tb.v
+FD:/CPU/alu_control/alu_control_tb.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/CPU/alu_control/alu_control_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/alu_control|D:/CPU/alu_control/alu_control_tb.v|
+!i113 1
+R5
+R6
+R7

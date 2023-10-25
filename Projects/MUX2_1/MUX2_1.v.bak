@@ -1,0 +1,8 @@
+module MUX2_1 (
+    input wire a,
+    input wire b,
+    input wire select,
+    output wire output
+);
+    assign output = (select) ? b : a;
+endmodule

@@ -1,6 +1,6 @@
 module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite);
 input wire [5:0] opcode; 
-input Clock , Reset ;  // Reset : 0 --> on | 1--> off
+input Clock , Reset ;  // Reset : 1 --> on | 0--> off
 // wires
 output wire RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,RegWrite;
 output wire [1:0] ALUOp;
@@ -20,9 +20,9 @@ output wire [1:0] ALUOp;
 //     reset_reg    // will handle the default value if the reset is on 
 
 
-always @(posedge Clock)
+always @(*)
 begin
-	if(Reset==1'b0)
+	if(Reset==1'b1)
 	reset_opcode <=6'b111000; // this bits will call the default value and make the control unit reset
 	else
 	reset_opcode <=opcode;
@@ -32,9 +32,9 @@ end
 
 
 
-always @(posedge Clock) 
+always @(*) 
 
-	if(Reset==1'b0)begin 
+	if(Reset==1'b1)begin 
 	 // defualt value we can use it if we will implement reset or unsupported instructions
 		 reg_ALUSrc = 1'b0;
 		 reg_RegWrite = 1'b0;
@@ -73,17 +73,29 @@ end
 	
 	end
 	
-	   6'b101011:begin 
+	   6'b101011:begin
 		// store instruction 
        reg_ALUSrc = 1'b1;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b1;
+       reg_MemtoReg = 1'b0; //error (should be 0 ) i am an idiot ...*****
        reg_MemWrite = 1'b1;
        reg_MemRead = 1'b0;
        reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_RegDst = 1'b0;  //don't care
 	
 	end
+	
+		6'b001000:begin
+		//Addi instruction
+		 reg_ALUSrc = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 1'b0;
+       reg_MemWrite = 1'b0;
+       reg_MemRead = 1'b0;
+       reg_ALUOp = 2'b00;
+       reg_RegDst = 1'b0;
+	end
+	
 	// we can here add two cases for branch and jump control signals 
 	
 	default : begin 

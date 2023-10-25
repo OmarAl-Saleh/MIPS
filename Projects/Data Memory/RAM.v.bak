@@ -1,0 +1,38 @@
+module RAM (
+  input clk,
+  input [31:0] address,
+  input [31:0] data_write,
+  input write_en,
+  input read_en,
+  output reg [31:0] data_out
+);
+
+  // Declare a 32-bit wide memory array with 1024 entries (each entry is 32 bits wide).
+  reg [31:0] mem [0:1023]; //4KB
+
+  always @(posedge clk) begin
+		if (write_en) begin
+      if (address >= 1024) begin
+        // Error: Address out of bounds.
+        data_out <= 32'hEEEEEEEE; // Set to an error value or handle the error condition appropriately.
+      end 
+		else begin
+        // Write data to the memory at the word-aligned address.
+        mem[address >> 2] <= data_write;
+		 
+      end
+    end 
+	 
+	 
+		if(read_en)begin
+      if (address >= 1024) begin
+        // Error: Address out of bounds.
+        data_out <= 32'hEEEEEEEE; // Set to an error value or handle the error condition appropriately.
+      end else begin
+        // Read data from the memory at the word-aligned address.
+        data_out <= mem[address >> 2];
+      end
+    end
+  end
+
+endmodule

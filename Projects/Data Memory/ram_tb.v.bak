@@ -1,0 +1,58 @@
+module ram_tb;
+
+  reg clk;
+  reg [31:0] address;
+  reg [31:0] data_write;
+  reg write_en;
+  reg read_en;
+  wire [31:0] data_out;
+
+  // Instantiate the RAM module
+  RAM uut (
+    .clk(clk),
+    .address(address),
+    .data_write(data_write),
+    .write_en(write_en),
+    .read_en(read_en),
+    .data_out(data_out)
+  );
+
+  // Clock generation
+  always begin
+    #5 clk = ~clk;
+  end
+
+  // Initial values
+  initial begin
+    clk = 0;
+    address = 0;
+    data_write = 0;
+    write_en = 0;
+    read_en = 0;
+
+    // Perform write operations
+    address = 4; // Word-aligned address
+    data_write = 32'h12345678;
+    write_en = 1;
+    #10 write_en = 0;
+
+    // Perform read operation
+    address = 4; // Word-aligned address
+    read_en = 1;
+    #10 read_en = 0;
+
+    // Display the read data
+    $display("Read data: data_out = %h", data_out);
+
+    // Test out-of-bounds address
+    address = 4096; // Address out of bounds
+    read_en = 1;
+    #10 read_en = 0;
+
+    // Display the out-of-bounds read data
+    $display("Read data (out of bounds): data_out = %h", data_out);
+
+    // Finish simulation
+    #1000 $stop;
+  end
+endmodule

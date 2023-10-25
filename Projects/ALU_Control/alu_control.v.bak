@@ -1,0 +1,13 @@
+module ALUControlUnit (input [5:0] FuncField, input [1:0] ALUOp, output reg [2:0] Operation);
+    always @(*) begin
+        case ({ALUOp, FuncField})
+            4'b00_00: Operation = 3'b001;  // ADD
+            4'b00_01: Operation = 3'b110;  // SUB
+            4'b00_10: Operation = 3'b000;  // AND
+            4'b00_11: Operation = 3'b010;  // OR
+            4'b01_00: Operation = 3'b111;  // SLT (signed less than)
+            4'b01_01: Operation = 3'b110;  // SLTU (unsigned less than)
+            default: Operation = 3'b000;   // Default to 0 (no operation)
+        endcase
+    end
+endmodule

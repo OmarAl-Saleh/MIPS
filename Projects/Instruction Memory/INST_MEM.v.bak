@@ -1,0 +1,30 @@
+module INST_MEM(
+input clk,
+input [31:0] address ,
+output reg [31:0] inst_out,
+output [5:0] opcode,
+output [4:0] rs,
+output [4:0] rt,
+output [4:0] rd,
+output [4:0] shamt,
+output [5:0] funct,
+output [14:0] addr
+
+);
+
+reg [31:0] ints_mem[0:1024];
+
+always @(read_address) begin
+inst_out = inst_mem[address >>2];
+end
+
+assign opcode=inst_out[31:26];
+assign rs=inst_out[25:21];
+assign rt=inst_out[20:16];
+assign rd=inst_out[15:11];
+assign shamt=inst_out[10:6];
+assign funct=inst_out[5:0];
+assign addr=inst_out[15:0];
+
+endmodule
+

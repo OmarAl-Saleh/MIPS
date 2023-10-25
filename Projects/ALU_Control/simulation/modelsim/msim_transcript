@@ -1,0 +1,59 @@
+# Reading C:/intelFPGA_lite/18.0/modelsim_ase/tcl/vsim/pref.tcl
+# do alu_control_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/18.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/CPU/alu_control {D:/CPU/alu_control/alu_control.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 21:04:37 on Oct 20,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/CPU/alu_control" D:/CPU/alu_control/alu_control.v 
+# -- Compiling module alu_control
+# 
+# Top level modules:
+# 	alu_control
+# End time: 21:04:37 on Oct 20,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/CPU/alu_control {D:/CPU/alu_control/alu_control_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 21:04:37 on Oct 20,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/CPU/alu_control" D:/CPU/alu_control/alu_control_tb.v 
+# -- Compiling module alu_control_tb
+# 
+# Top level modules:
+# 	alu_control_tb
+# End time: 21:04:37 on Oct 20,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  alu_control_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" alu_control_tb 
+# Start time: 21:04:37 on Oct 20,2023
+# Loading work.alu_control_tb
+# Loading work.alu_control
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Testing ALU Control Unit
+# Input: FuncField = 000000, ALUOp = 00, Output: Operation = 0000
+# Input: FuncField = 100000, ALUOp = 10, Output: Operation = 0000
+# Input: FuncField = 100010, ALUOp = 10, Output: Operation = 0001
+# Input: FuncField = 011000, ALUOp = 10, Output: Operation = 0010
+# Input: FuncField = 011010, ALUOp = 10, Output: Operation = 0011
+# Input: FuncField = 000000, ALUOp = 00, Output: Operation = 0000
+# Input: FuncField = 000000, ALUOp = 11, Output: Operation = 1111
+# ** Note: $stop    : D:/CPU/alu_control/alu_control_tb.v(51)
+#    Time: 120 ps  Iteration: 0  Instance: /alu_control_tb
+# Break in Module alu_control_tb at D:/CPU/alu_control/alu_control_tb.v line 51
+# End time: 21:05:10 on Oct 20,2023, Elapsed time: 0:00:33
+# Errors: 0, Warnings: 0

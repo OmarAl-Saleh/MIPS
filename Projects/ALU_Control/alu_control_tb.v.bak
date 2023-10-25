@@ -1,0 +1,30 @@
+module alu_control_tb;
+
+  reg [5:0] FuncField;
+  reg [1:0] ALUOp;
+  wire [3:0] Operation;
+
+  alu_control uut (
+    .FuncField(FuncField),
+    .ALUOp(ALUOp),
+    .Operation(Operation)
+  );
+
+  initial begin
+    $display("Testing ALU Control Unit");
+
+    // Test cases
+    FuncField = 6'b000000;
+    ALUOp = 2'b00;
+    #10 $display("Input: FuncField = %b, ALUOp = %b, Output: Operation = %b", FuncField, ALUOp, Operation);
+    
+    FuncField = 6'b100000;
+    ALUOp = 2'b10;
+    #10 $display("Input: FuncField = %b, ALUOp = %b, Output: Operation = %b", FuncField, ALUOp, Operation);
+    
+    // Add more test cases as needed
+
+    $finish;
+  end
+
+endmodule

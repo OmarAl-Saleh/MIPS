@@ -3,8 +3,8 @@ input Clock , Reset;
 input [4:0] ReadReg1 , ReadReg2 , WriteReg;
 input Reg_write_Control;
 input [31:0] WriteData;
-output [31:0] ReadData1 , ReadData2;
-
+output [31:0] ReadData1;
+output [31:0] ReadData2;
 // define bus (wires)
 wire [31:0] Reg_Enable;
 wire [31:0] Registers_Read [31:0];
@@ -15,7 +15,7 @@ RegFile_decoder dex(WriteReg,Reg_write_Control,Reg_Enable);
 // we first write then we read from register file 
 
 //write on Register file
-RegFile_regn Reg_0(WriteData, 1'b0, Reg_Enable[0], Clock,Registers_Read[0]);
+RegFile_regn Reg_0(WriteData, 1'b1, Reg_Enable[0], Clock,Registers_Read[0]);
 RegFile_regn Reg_1(WriteData, Reset, Reg_Enable[1], Clock,Registers_Read[1]);
 RegFile_regn Reg_2(WriteData, Reset, Reg_Enable[2], Clock,Registers_Read[2]);
 RegFile_regn Reg_3(WriteData, Reset, Reg_Enable[3], Clock,Registers_Read[3]);
@@ -50,13 +50,17 @@ RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
 RegFile_regn Reg_31(WriteData, Reset, Reg_Enable[31], Clock,Registers_Read[31]);
 
+
+
         	   
 // Read from Register file 
 
 // MUX1: Read first operand
+//always @(posedge Clock) begin
 
 assign ReadData1= Registers_Read[ReadReg1];
 
+//end
 // MUX2: Read second operand
 
 assign ReadData2= Registers_Read[ReadReg2];
@@ -146,7 +150,7 @@ module RegFile_regn(R, Resetn, Rin, Clock, Q);
     reg [n-1:0] Q;
 
     always @(posedge Clock)
-        if (!Resetn)
+        if (Resetn)
             Q <= 0;
         else if (Rin)
             Q <= R;
