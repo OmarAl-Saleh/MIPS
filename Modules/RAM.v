@@ -1,7 +1,7 @@
 module RAM #(
   parameter size = 32,
-  parameter data_width = 32,
-  parameter once=1
+  parameter data_width = 32
+ // parameter once=1
 )(
   input clk,
   input reset,                   // Reset signal
@@ -9,19 +9,19 @@ module RAM #(
   input [data_width-1:0] data_write,
   input write_en,
   input read_en,
-  output reg [data_width-1:0] data_out
+  output wire [data_width-1:0] data_out
 
  // output reg error
 );
   reg [31:0] mem [0:31];
   reg error;
-  reg first=once;
+ // reg first=once;
   
   
   // Declare a memory array with parameterized size and data width.
  // reg [data_width-1:0] mem [0:size - 1];
   
- always @(first)begin
+initial begin
   mem[0] = 32'b00000000000000000000000000000010; // 2
   mem[1] = 32'b00000000000000000000000000000011; // 3
   mem[2] = 32'b00000000000000000000000000001000; // 8
@@ -32,33 +32,30 @@ module RAM #(
   mem[7] = 32'b00000000000000000000000000011100; // 28
   mem[8] = 32'b00000000000000000000000000100000; // 32
   mem[9] = 32'b00000000000000000000000000100100; // 36
-first=0;
+
 end
   
- 
+     //    assign data_out = mem[address >> 2];
+	  
+		//	assign data_out = (reset)?8'h00000000:mem[address >> 2];
+			 assign data_out=(read_en)? ((reset)?8'h00000000:mem[address >> 2]):32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
   
 	integer i;
 	
-  always @(*) begin
+  always @(posedge clk) begin
+  
     if (reset) begin
 
       for (i = 0; i < size; i = i + 1) begin
         mem[i] <= 32'b0;
       end
       error <= 0;
-      data_out <= 32'b0;
 			
 		end 
 	 
 	 else if (write_en) begin
           // Write data 
           mem[address >> 2] <= data_write;
-			 data_out <= data_write;
-        end
-
-     else if (read_en) begin
-          // Read data 
-          data_out <= mem[address >> 2];
         end
 
   end
