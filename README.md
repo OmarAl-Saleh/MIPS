@@ -1,5 +1,5 @@
 ## MIPS
-#Single-Cycle CPU
+# Single-Cycle CPU
 This repository contains a Verilog implementation of a single-cycle CPU based on the MIPS instruction set architecture.
 
 #Overview
