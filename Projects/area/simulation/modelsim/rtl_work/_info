@@ -1,0 +1,359 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/Report Project/area/simulation/modelsim
+vALU
+Z1 !s110 1698313584
+!i10b 1
+!s100 ;o5Y35=6H1A[_hITD:i:k1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I2Fo_<TAAbneDDQ=CRzYN30
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1698313570
+Z5 8E:/Omar/CPU Design/Report Project/area/Main.v
+Z6 FE:/Omar/CPU Design/Report Project/area/Main.v
+!i122 0
+L0 721 73
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1698313584.000000
+Z9 !s107 E:/Omar/CPU Design/Report Project/area/Main.v|
+Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Report Project/area|E:/Omar/CPU Design/Report Project/area/Main.v|
+!i113 1
+Z11 o-vlog01compat -work work
+Z12 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/Report Project/area}
+Z13 tCvgOpt 0
+n@a@l@u
+valu_control
+R1
+!i10b 1
+!s100 1[YIF<?SWP_S1nM0LcgM=2
+R2
+IcM;=S4jEg`h56U2B;QACz3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 676 43
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+vControlUnit
+R1
+!i10b 1
+!s100 V3hZiNRJGd3c3]UIc22ak2
+R2
+ICiYBfe>4j9b@42lg3nk2M3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 355 149
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@control@unit
+vINST_MEM
+R1
+!i10b 1
+!s100 lTRCd0;;cR?cU2k1M41;X2
+R2
+I5alI1mZL19FRRQ8DkAAn11
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 223 130
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@i@n@s@t_@m@e@m
+vMain
+R1
+!i10b 1
+!s100 7BFh8enbSZ`^@X:f><9<f2
+R2
+I55]WV;of^T0B1Pj;GO6f:0
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 1 188
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@main
+vMain_tb
+R1
+!i10b 1
+!s100 C@9zY^NG0f4lDAG61:56o1
+R2
+IVQUEgGa9a7SfC10Z7O?`80
+R3
+R0
+w1698311917
+8E:/Omar/CPU Design/Report Project/area/Main_tb.v
+FE:/Omar/CPU Design/Report Project/area/Main_tb.v
+!i122 2
+L0 2 49
+R7
+r1
+!s85 0
+31
+R8
+!s107 E:/Omar/CPU Design/Report Project/area/Main_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Report Project/area|E:/Omar/CPU Design/Report Project/area/Main_tb.v|
+!i113 1
+R11
+R12
+R13
+n@main_tb
+vMUX2_1
+R1
+!i10b 1
+!s100 ?O?[b[7aDiG[5Z]mOf3?V3
+R2
+I7OHf_EeN32N<k3BMOnmR<2
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 866 8
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@m@u@x2_1
+vMUX5bit
+R1
+!i10b 1
+!s100 kWYGNEhdX@`R]EeLT:ZPj2
+R2
+IfCBzDf9jGBcbT`C`h6FNz3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 875 8
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@m@u@x5bit
+vPC
+R1
+!i10b 1
+!s100 :Hbc82eHfn^7gRMn<OGCi1
+R2
+I;F[7S`>7dD8^8Jaj9^NEj1
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 192 30
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@p@c
+vRAM
+R1
+!i10b 1
+!s100 SOFgl>gTZV?hjQJ1UhoXR1
+R2
+IT=eWW1Nfm[XSSP`71YK5K3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 795 68
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@r@a@m
+vRegFile_decoder
+R1
+!i10b 1
+!s100 Co2GBR]B@U=fDFzV<P^SX0
+R2
+I>K^UUD1D]ldM=SK8Q?^Yz3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 600 54
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@reg@file_decoder
+vRegFile_regn
+R1
+!i10b 1
+!s100 ;XbQ:OaGNCX<^XY_lWk[B3
+R2
+IXXc;XkZ8a461_Q6d?;J_A1
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 660 13
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@reg@file_regn
+vRegisterFile
+R1
+!i10b 1
+!s100 ED:BD;XWQ=HT<k6fa_Gjb1
+R2
+IJ]E^fBleC]F8Gl6E9]MY30
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 505 81
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@register@file
+vsign_extend
+R1
+!i10b 1
+!s100 NoziXPe0mN4M0ff<>jADz2
+R2
+ISCeRX[W^1=dZK>CkQToV;3
+R3
+R0
+R4
+R5
+R6
+!i122 0
+L0 884 9
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
