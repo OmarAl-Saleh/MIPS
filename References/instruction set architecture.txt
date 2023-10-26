@@ -25,18 +25,32 @@
   	
 
 **********************************************************
-  //				RAM :
-  //				add     data						
-  //				0			2							 
-  //				4			3
-  //				8			8
-  //				12			12
-  //				16			6
-  //				20			20
-  //				24			24
-  //				28			28
-  //				32			32
-  //				36			36
+
+  
+  after doing this code the registers values are :
+  reg1		3
+  reg2		8
+  reg3		20 
+  reg4		12
+  reg5		14
+  reg6		11
+  reg7		-5
+  reg8		3
+  reg9		11
+  reg10		11
+  reg11		7
+  reg12		-12
+  reg13		-15
+  reg14		4
+  reg15		14
+  reg16		13
+  reg17		4
+  reg18		(2^31)-1
+  reg19		(2^31)-1
+  reg20		don't care
+  
+  
+  
 
 ***********************************************************
 	after doing this code the registers values are :

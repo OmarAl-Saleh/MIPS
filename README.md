@@ -8,8 +8,7 @@ The single-cycle CPU implemented here is designed to execute a subset of the MIP
 ## Features
 Supports basic arithmetic and logic operations such as ADD, SUB, AND, OR, etc.
 Load and Store operations for memory access.
-Branching instructions such as BEQ, BNE.
-Jump instructions.
+
 ## Directory Structure
 src/: Contains the Verilog source files for the CPU and its components.
 testbench/: Contains Verilog testbenches to simulate and validate the CPU.
