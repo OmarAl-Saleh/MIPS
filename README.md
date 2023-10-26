@@ -10,7 +10,7 @@ Supports basic arithmetic and logic operations such as ADD, SUB, AND, OR, etc.
 Load and Store operations for memory access.
 
 ## Directory Structure
-src/: Contains the Verilog source files for the CPU and its components.
+Modules/: Contains the Verilog source files for the CPU and its components.
 testbench/: Contains Verilog testbenches to simulate and validate the CPU.
 programs/: Sample assembly programs to test the CPU functionality.
 
