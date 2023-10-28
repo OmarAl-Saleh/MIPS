@@ -25,8 +25,8 @@ always @(*) begin
         4'b0011: ALUOut <= A / B; // Division (signed/unsigned)
         4'b0100: ALUOut <= A << ShiftAmount; // Logical shift left
         4'b0101: ALUOut <= A >> ShiftAmount; // Logical shift right
-    //  4'b0110: ALUOut <= {A[30:0], A[31]}; // Rotate left ERROR
-    //  4'b0111: ALUOut <= {A[0], A[31:1]}; // Rotate right ERROR
+        4'b0110: ALUOut <= A + B; // addu
+		  4'b0111: ALUOut <= A - B; // subu
         4'b1000: ALUOut <= A & B; // Logical AND
         4'b1001: ALUOut <= A | B; // Logical OR
         4'b1010: ALUOut <= A ^ B; // Logical XOR
@@ -55,6 +55,9 @@ always @(*) begin
     end else if (ALUControl == 4'b0011) begin // Division (signed/unsigned)
         Overflow <= (B == 32'b0); // Detect division by zero
         CarryOut <= 1'b0;
+	 end else if ((ALUOut < A) && (ALUOut < B) && (ALUControl == 4'b0110)) begin
+	 Overflow <= 1'b0;
+	 CarryOut <= 1'b1;
     end else begin
         Overflow <= 1'b0;
         CarryOut <= 1'b0;
@@ -63,9 +66,11 @@ end
 
 
 always @* begin
-    if (Overflow) begin
-
+		  if (Overflow && (ALUControl != 0110) && (ALUControl != 0111)) begin //signed overflow check
         ALUOut = 32'bx; 
+
+		  end else if(CarryOut && ((ALUControl == 4'b0110) || (ALUControl == 4'b0111))) begin //unsigned overflow check 
+		  ALUOut = 32'bx;
 end
 end
 

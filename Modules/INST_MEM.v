@@ -16,8 +16,7 @@ module INST_MEM #(
 );
    reg [31:0] inst_mem [0:size - 1];
 
-
-   initial begin
+   initial begin // this should be removed because it is NOT synthesizable
 	
   inst_mem[0] = 32'b10001100000000010000000000000100;		 //LW $1 , 4($0)  -> load the content of address (content of reg 0 + 4=4) in ram to reg1 =3
   inst_mem[1] = 32'b10001100001000100000000000000101;		 //LW $2 , 5($1)	-> load the content of address (content of reg 3 + 5=8) in ram to reg2 =8
@@ -40,11 +39,31 @@ module INST_MEM #(
   inst_mem[17] = 32'b10001100000011110000000000101000; 	 //lw $15,40($0) -> reg15 = m[40] = 14		
   inst_mem[18] = 32'b00110100100100000000000000000101;	 //ori	$16,$4,5 	-> or the content of reg4 (1100) with 5(0101) and sw in reg16=13
   inst_mem[19] = 32'b00110000100100010000000000000101;	 //andi  $17,$4,5		-> and the content of reg4 (1100) with 5(0101) and sw in reg17=4
-  inst_mem[20] = 32'b10001100000100100000000000101100;	 //LW		$18,44($0) -> reg18=big num
-  inst_mem[21] = 32'b10001100000100110000000000101100; 	 //LW		$19,44($0) -> reg19=big num
+  inst_mem[20] = 32'b10001100000100100000000000101100;	 //LW		$18,$44($0) -> reg18=big num
+  inst_mem[21] = 32'b10001100000100110000000000101100; 	 //LW		$19,$44($0) -> reg19=big num
   inst_mem[22] = 32'b00000010010100111010000000100000;	 //add	$20,$18,$19 -> reg20= 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  	
+  inst_mem[23] = 32'b10001100000101010000000000110100;	 //LW		$21,0($0)
+  inst_mem[24] = 32'b10001100000101100000000000111000;	 //Lw		$22,40($0)
+  inst_mem[25] = 32'b00000010101101101011100000100001;	 //addu	$23,$22,$21 	-> should do unsigned overflow !
+  inst_mem[26] = 32'b00000000111011011100000000100001;	 //addu	$24,$7,$13 -> reg24= should do unsigned overflow !
+  inst_mem[27] = 32'b00000000111011011100100000100000;	 //add	$25,$7,$13 -> reg25= -20
+  inst_mem[28] = 32'b00000000111011011101000000100011;	 //subu	$26,$7,$13 -> reg26= 10
+  inst_mem[29] = 32'b00000000111011011101100000100010;	 //sub	$27,$7,$13 -> reg27= 10
 
   
+ /*
+checking LW muliable times
+
+ inst_mem[0] = 32'b10001100000000010000000000000100; //reg1=3
+  inst_mem[1] = 32'b10001100001000100000000000000101; //reg2=8
+  inst_mem[2] = 32'b10001100001000110000000000010001; //reg3=20
+  inst_mem[3] = 32'b10001100000011110000000000101000; //reg15=14
+  inst_mem[4] = 32'b10001100000100100000000000101100; //reg18=big
+  inst_mem[5] = 32'b10001100000100110000000000101100; //reg19=big
+  inst_mem[6] = 32'b10001100000101010000000000101100; //reg21=big_num
+  inst_mem[7] = 32'b10101100000101010000000000000000;// m[0]=big_num
+  inst_mem[8] = 32'b10001100000101100000000000000000;//reg22=big*/
   end
   
  
@@ -92,6 +111,9 @@ module INST_MEM #(
   reg18		(2^31)-1
   reg19		(2^31)-1
   reg20		don't care
+  reg21		big num -overflow check-
+  reg22		big num -overflow check-
+  reg23		don't care
   
   
   */
@@ -127,4 +149,11 @@ module INST_MEM #(
   
   //$readmemh("./memfile_text.hex",mem,0,63);
   
+  
+  /*  'initial begin'  should be removed because it is NOT synthesizable
+		status register must be added
+		initialize memories after reset
+		subu overflow check !!!
+		
+  */
   endmodule 

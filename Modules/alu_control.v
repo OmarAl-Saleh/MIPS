@@ -23,6 +23,9 @@ output reg [3:0] Operation);
 				6'b100110: Operation = 4'b1010;  //xor
 				6'b100111: Operation = 4'b1011;  //nor
             6'b101010: Operation = 4'b1110;  // SLT
+				6'b100001: Operation = 4'b0110;	//addu
+				6'b100011: Operation = 4'b0111;  //subu
+				
             default: Operation <= 4'b0000;   // Default add operation
         endcase
 		  
