@@ -23,5 +23,6 @@ testbench/: Contains Verilog testbenches to simulate and validate the CPU.
 
 ## Contributions
 
-![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/80021f54-0f47-4891-960f-fc9527fb0bcb)
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/23a49b25-d37d-4a8c-b4f4-16d4ccbc9ed3)
+
 
