@@ -15,8 +15,9 @@ Modules/: Contains the Verilog source files for the CPU and its components.
 
 testbench/: Contains Verilog testbenches to simulate and validate the CPU.
 
-programs/: Sample assembly programs to test the CPU functionality.
 
+
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/ad0dab46-0e71-499a-8bd0-64a50b3d34bd)
 
 
 
