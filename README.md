@@ -12,7 +12,9 @@ will add other soon
 
 ## Directory Structure
 Modules/: Contains the Verilog source files for the CPU and its components.
+
 testbench/: Contains Verilog testbenches to simulate and validate the CPU.
+
 programs/: Sample assembly programs to test the CPU functionality.
 
 
