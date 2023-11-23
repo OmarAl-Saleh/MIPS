@@ -12,12 +12,102 @@ module INST_MEM #(
   output reg [4:0] rd,
   output reg [4:0] shamt,
   output reg [5:0] funct,
-  output reg [15:0] addr
+  output reg [15:0] addr,
+  output reg [25:0] jump
 );
    reg [31:0] inst_mem [0:size - 1];
 
    initial begin // this should be removed because it is NOT synthesizable
 	
+	
+	
+	//THIS TEST FOR BLT 
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00011100001000100000000000000001;//bLt address=16 -->4*1+12 **should work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should not work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+	*/
+	
+	
+	//THIS TEST FOR BLT not working
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00011100010000010000000000000001;//bLt address=16 -->4*1+12 **should not work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+	*/
+	
+	
+	//THIS TEST FOR BGT 
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00011000010000010000000000000001;//bgt address=16 -->4*1+12 **should work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should not work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+   */
+	
+	
+	//THIS TEST FOR BGT not working
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00011000001000100000000000000001;//bgt address=16 -->4*1+12 **should not work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+	*/
+	
+	//THIS TEST FOR BNE
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00010100001000100000000000000001;//bne address=16 -->4*1+12 **should not work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should not work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+	*/
+	
+	//THIS TEST FOR BNE not working
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100000000100000000000000100;//lw reg2=3 
+	inst_mem[2] = 32'b00010100001000100000000000000001;//bne address=16 -->4*1+12
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20 **should work**
+	inst_mem[4] = 32'b10001100010001000000000000001001;//lw reg4=12   **should work**
+	*/
+	
+	//THIS TEST FOR BEQ
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100000000100000000000000100;//lw reg2=3 
+	inst_mem[2] = 32'b00010000001000100000000000000001;//beq address=16 -->4*1+12
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20 **should not work**
+	inst_mem[4] = 32'b10001100010001000000000000001001;//lw reg4=12   **should work**
+	*/
+	
+	
+	//THIS TEST FOR BEQ not working
+	/*
+	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
+	inst_mem[1] = 32'b10001100001000100000000000000101;//lw reg2=8 
+	inst_mem[2] = 32'b00010000001000100000000000000001;//beq address=16 -->4*1+12 **should not work**
+	inst_mem[3] = 32'b10001100001000110000000000010001;//lw reg3=20   **should work**
+	inst_mem[4] = 32'b10001100010001000000000000000100;//lw reg4=12   **should work**
+	*/
+	
+	
+	/*  THIS TEST FOR JUMP INSTRUCTIONS
+	inst_mem[0] = 32'b10001100000000010000000000001100;//load 12 in reg1
+	inst_mem[1] = 32'b00001100000000000000000000000011;//jump to inst_mem[3] and save pc+1 in reg31 (jal)
+// inst_mem[1] = 32'b00000000001000000000000000001000;//jump to content of reg1 (pc=12) 
+//	inst_mem[1] = 32'b00001000000000000000000000000100;//jump to inst_mem[4] and skip inst_mem[3]
+	inst_mem[2] = 32'b10001100000000100000000000010100;//load 20 in reg2
+   inst_mem[3] = 32'b10001100000000110000000000001000;//load 8 in reg3
+	*/
+
+/*	
   inst_mem[0] = 32'b10001100000000010000000000000100;		 //LW		$1 , $4(0)  -> load the content of address (content of reg 0 + 4=4) in ram to reg1 =3
   inst_mem[1] = 32'b10001100001000100000000000000101;		 //LW 	$2 , $5(1)	-> load the content of address (content of reg 3 + 5=8) in ram to reg2 =8
   inst_mem[2] = 32'b00000000001000100101000000100000;		 //add 	$10,$1,$2   -> add  the content of reg 1 and 2 then store it in reg 10 = 11
@@ -47,7 +137,7 @@ module INST_MEM #(
   inst_mem[26] = 32'b00000000111011011100000000100001;	 //addu	$24,$7,$13 -> reg24= should do unsigned overflow !
   inst_mem[27] = 32'b00000000111011011100100000100000;	 //add	$25,$7,$13 -> reg25= -20
   inst_mem[28] = 32'b00000000111011011101000000100011;	 //subu	$26,$7,$13 -> reg26= 10
-  inst_mem[29] = 32'b00000000111011011101100000100010;	 //sub	$27,$7,$13 -> reg27= 10
+  inst_mem[29] = 32'b00000000111011011101100000100010;	 //sub	$27,$7,$13 -> reg27= 10*/
 
   
  /*
@@ -83,6 +173,7 @@ checking LW muliable times
     shamt <= inst_out[10:6];
     funct <= inst_out[5:0];
     addr <= inst_out[15:0];
+	 jump <= inst_out[25:0];
   end
   end
   
@@ -143,6 +234,8 @@ checking LW muliable times
   //				36			36
   //				40			14
   //				44			(2^31-1)
+  //				48			8'h2000000
+  //				52			8'hF000000
   
   
   //$readmemh("./memfile_text.hex",mem,0,63);

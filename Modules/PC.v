@@ -1,30 +1,39 @@
-module PC #( parameter first_address=0 ,pc_inc = 4)( //can add jump target
+module PC #(
+    parameter first_address = 0,
+    parameter pc_inc = 4
+)(
     input wire clk,
     input wire reset,
- // input wire [31:0] branch_target, // The target address for branch instructions
- // input wire [31:0] jump_target,   // The target address for jump instructions
- // input wire [31:0] pc_increment,  // The increment value for normal instruction flow
+    input wire [31:0] target,
+	 input wire pc_load,
     output reg [31:0] pc
 );
 
-
-reg [1:0] state = 2'b00; 
+reg state = 1'b0;
 
 always @(posedge clk or posedge reset) begin
+
     if (reset) begin
-        state <= 2'b00; 
-        pc <= 32'h00000000; 
-    end 
-	 
-	 else if (state == 2'b00) begin
-        state <= 2'b01; 
-        pc <= first_address;
-    end 
-	 
-	 else if (state == 2'b01) begin 
-        pc <= pc + pc_inc;
-    end 
-	 
-	 end
+        pc <= 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
+		  state=1'b0;
+		  
+    end else begin
+        case (state)
+            1'b0: begin
+                state <= 1'b1;
+                pc <= first_address;
+            end
+            1'b1: begin
+                if (pc_load) begin
+                    pc <= target;
+            end 
+            end
+            default: begin
+                state <= 1'b0;
+                pc <= 32'h00000000;
+            end
+        endcase
+    end
+end
 
 endmodule

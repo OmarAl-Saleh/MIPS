@@ -1,16 +1,18 @@
 module alu_control(
 input clk,
 input [5:0] FuncField,
-input [1:0] ALUOp,
-output reg [3:0] Operation);
+input [3:0] ALUOp,
+output reg [3:0] Operation,
+output reg [2:0] branch_type
+);
 
 
 
     always @(ALUOp , FuncField) begin
-	   if (ALUOp == 2'b00) begin
+	   if (ALUOp == 4'b0000) begin
 		Operation = 4'b0000;
 		end
-		else if(ALUOp == 2'b10) begin
+		else if(ALUOp == 4'b0010) begin
         case (FuncField)
             6'b100000: Operation = 4'b0000;  // add 
             6'b100010: Operation = 4'b0001;  // sub
@@ -31,14 +33,47 @@ output reg [3:0] Operation);
 		  
     end
 	 
-	 else if(ALUOp == 2'b01)begin
+	 else if(ALUOp == 4'b0001)begin
 		Operation = 4'b1000;  // andi
 	 end
 
-	  else if(ALUOp == 2'b11)begin
+	  else if(ALUOp == 4'b0011)begin
 		Operation = 4'b1001;  // ori
 	 end
-
+	 
+	 else if(ALUOp == 4'b0100)begin
+		Operation = 4'b0001;  // beq
+		branch_type = 3'b001;
+	 end
+	 
+	 else if(ALUOp == 4'b0101)begin
+		Operation = 4'b0001;  // bne
+		branch_type = 3'b010;
+	 end
+	 
+	 else if(ALUOp == 4'b0110)begin
+		Operation = 4'b1110;  // bgt
+		branch_type = 3'b011;
+	 end
+	 
+	 else if(ALUOp == 4'b0111)begin
+		Operation = 4'b1101;  // blt
+		branch_type = 3'b100;
+	 end
+	 
+	 else if(ALUOp == 4'b1000)begin
+		Operation = 4'b1100;  // bge
+		branch_type = 3'b101;
+	 end
+	 
+	 else if(ALUOp == 4'b1001)begin
+		Operation = 4'b1100;  // ble
+		branch_type = 3'b110;
+	 end
+	 
+	  
+	 
+	 
 	 
 	 else begin Operation = 4'b1111;
 	 end
