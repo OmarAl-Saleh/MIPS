@@ -1,5 +1,5 @@
 Analysis & Elaboration report for ControlUnit
-Wed Oct 11 19:49:38 2023
+Fri Nov 24 16:59:00 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Wed Oct 11 19:49:38 2023       ;
+; Analysis & Elaboration Status      ; Successful - Fri Nov 24 16:58:59 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; ControlUnit                                 ;
 ; Top-level Entity Name              ; ControlUnit_tb                              ;
@@ -159,25 +159,30 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "ControlUnit:UUT"                                                                            ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port         ; Type   ; Severity ; Details                                                                             ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
-; Reset        ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; opcode[1..0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; opcode[5]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; opcode[4]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; opcode[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; opcode[2]    ; Input  ; Info     ; Stuck at GND                                                                        ;
-; RegDst       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; ALUSrc       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; MemtoReg     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; MemWrite     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; MemRead      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; RegWrite     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; ALUOp        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------------+--------+----------+-------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ControlUnit:UUT"                                                                                                                                     ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                                                                                      ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Reset        ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; opcode[1..0] ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; opcode[5]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; opcode[4]    ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; opcode[3]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                 ;
+; opcode[2]    ; Input  ; Info     ; Stuck at GND                                                                                                                                 ;
+; RegDst       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; ALUSrc       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; MemtoReg     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; MemWrite     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; MemRead      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; RegWrite     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; ALUOp        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; PC_Store     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                          ;
+; Branch       ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; Jump         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; funct        ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; pc_load      ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +---------------------------------+
@@ -186,23 +191,24 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Oct 11 19:49:30 2023
+    Info: Processing started: Fri Nov 24 16:58:51 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ControlUnit -c ControlUnit --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file controlunit.v
-    Info (12023): Found entity 1: ControlUnit File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v Line: 1
+    Info (12023): Found entity 1: ControlUnit File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file controlunit_tb.v
-    Info (12023): Found entity 1: ControlUnit_tb File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v Line: 3
+    Info (12023): Found entity 1: ControlUnit_tb File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 3
 Info (12127): Elaborating entity "ControlUnit_tb" for the top level hierarchy
-Warning (10755): Verilog HDL warning at ControlUnit_tb.v(30): assignments to Clock create a combinational loop File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v Line: 30
-Warning (10175): Verilog HDL warning at ControlUnit_tb.v(59): ignoring unsupported system task File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v Line: 59
-Info (12128): Elaborating entity "ControlUnit" for hierarchy "ControlUnit:UUT" File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v Line: 26
-Warning (10036): Verilog HDL or VHDL warning at ControlUnit.v(10): object "reset_opcode" assigned a value but never read File: E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v Line: 10
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4704 megabytes
-    Info: Processing ended: Wed Oct 11 19:49:38 2023
-    Info: Elapsed time: 00:00:08
+Warning (10755): Verilog HDL warning at ControlUnit_tb.v(31): assignments to Clock create a combinational loop File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 31
+Warning (10175): Verilog HDL warning at ControlUnit_tb.v(54): ignoring unsupported system task File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 54
+Info (12128): Elaborating entity "ControlUnit" for hierarchy "ControlUnit:UUT" File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 27
+Warning (10036): Verilog HDL or VHDL warning at ControlUnit.v(20): object "reset_opcode" assigned a value but never read File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v Line: 20
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 4694 megabytes
+    Info: Processing ended: Fri Nov 24 16:59:00 2023
+    Info: Elapsed time: 00:00:09
     Info: Total CPU time (on all processors): 00:00:22
 
 

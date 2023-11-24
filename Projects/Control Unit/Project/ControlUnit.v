@@ -1,12 +1,22 @@
-module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite);
+module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct,pc_load,PC_Store);
 input wire [5:0] opcode; 
-input Clock , Reset ;  // Reset : 0 --> on | 1--> off
+input Clock , Reset ;  // Reset : 1 --> on | 0--> off
+input wire [5:0] funct;
 // wires
-output wire RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,RegWrite;
-output wire [1:0] ALUOp;
+output wire ALUSrc,MemWrite,MemRead,RegWrite,Branch,PC_Store;
+output wire [3:0] ALUOp;
+output wire [1:0] Jump;
+output wire [1:0] MemtoReg;
+output wire [1:0] RegDst;
+output wire pc_load;
 // reg type
- reg reg_RegDst,reg_ALUSrc,reg_MemtoReg,reg_MemWrite,reg_MemRead,reg_RegWrite;
- reg [1:0] reg_ALUOp;
+ reg reg_ALUSrc,reg_MemWrite,reg_MemRead,reg_RegWrite,reg_Branch,reg_PC_Store;
+ reg [3:0] reg_ALUOp;
+ reg [1:0] reg_Jump;
+ reg [1:0] reg_MemtoReg;
+ reg [1:0] reg_RegDst;
+ reg reg_pc_load;
+ 
 	reg [5:0] reset_opcode ;
 //	    opcode,  // 6-bit opcode from the instruction
 //     RegDst,      // Control signal for selecting the destination register
@@ -18,11 +28,12 @@ output wire [1:0] ALUOp;
 //     ALUOp,       // Control signal for ALU operation
 //     RegWrite     // Control signal for register write
 //     reset_reg    // will handle the default value if the reset is on 
+//		 pc_load (0->stall),(1->load)
 
 
-always @(posedge Clock)
+always @(*)
 begin
-	if(Reset==1'b0)
+	if(Reset==1'b1)
 	reset_opcode <=6'b111000; // this bits will call the default value and make the control unit reset
 	else
 	reset_opcode <=opcode;
@@ -32,17 +43,21 @@ end
 
 
 
-always @(posedge Clock) 
+always @(*) 
 
-	if(Reset==1'b0)begin 
+	if(Reset==1'b1)begin 
 	 // defualt value we can use it if we will implement reset or unsupported instructions
-		 reg_ALUSrc = 1'b0;
+		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b0;
+		 reg_PC_Store = 1'b0;
 end
 	
 	
@@ -50,55 +65,260 @@ end
 	case(opcode)
 	
 	6'b000000:begin 
+		if(funct == 6'b001000)begin 
+		//Jump Register instruction
+		 reg_ALUSrc   = 1'bx;
+		 reg_RegWrite = 1'b0;
+       reg_MemtoReg = 2'bxx;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'bx;
+       reg_ALUOp    = 4'bxxxx;
+       reg_RegDst   = 2'bxx;
+		 reg_Branch   = 1'bx;
+		 reg_Jump     = 2'b10;
+		 reg_pc_load  = 1'b1;//load
+		 reg_PC_Store = 1'b0;
+		end
+		else begin
 		// R-type instruction 
-       reg_ALUSrc = 1'b0;
+       reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b0;
-      reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b10;
-       reg_RegDst = 1'b1;
-	
+       reg_MemtoReg = 2'b00;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0010;
+       reg_RegDst   = 2'b01;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
 	end
 	
 		6'b100011:begin 
 		// load instruction 
-       reg_ALUSrc = 1'b1;
+       reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b1;
+       reg_MemtoReg = 2'b01;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b1;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b1;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
 	
 	end
 	
-	   6'b101011:begin 
+	   6'b101011:begin
 		// store instruction 
-       reg_ALUSrc = 1'b1;
+       reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b1;
+       reg_MemtoReg = 2'b00; //error (should be 0 ) i am an idiot ...*****
        reg_MemWrite = 1'b1;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
-	
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;  //don't care
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
 	end
-	// we can here add two cases for branch and jump control signals 
+	
+		6'b001000:begin
+		//immediate instruction (addi)
+		 reg_ALUSrc   = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 2'b00;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b001100:begin
+		//immediate instruction (andi)
+		 reg_ALUSrc   = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 2'b00;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0001;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+			6'b001101:begin
+		//immediate instruction (ori)
+		 reg_ALUSrc   = 1'b1;
+		 reg_RegWrite = 1'b1;
+       reg_MemtoReg = 2'b00;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0011;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+			6'b000010:begin
+		//Jump instruction (j)
+		 reg_ALUSrc   = 1'bx;
+		 reg_RegWrite = 1'b0;
+       reg_MemtoReg = 2'bxx;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'bx;
+       reg_ALUOp    = 4'bxxxx;
+       reg_RegDst   = 2'bxx;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b01;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000011:begin
+		//Jump and link instruction (jal)
+		 reg_ALUSrc 	= 1'bx;
+		 reg_RegWrite 	= 1'b1;
+       reg_MemtoReg 	= 2'b10;
+       reg_MemWrite 	= 1'b0;
+       reg_MemRead 	= 1'bx;
+       reg_ALUOp		= 4'bxxxx;
+       reg_RegDst		= 2'b10;
+		 reg_Branch		= 1'bx;
+		 reg_Jump 		= 2'b01;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b1;
+		 
+	end
+	
+		6'b000100:begin
+		//branch equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0100;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+	
+		6'b000101:begin
+		//branch not equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0101;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000110:begin
+		//branch greater than
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0110;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000111:begin
+		//branch less than
+	 	 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0111;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b001001:begin
+		//branch greater or equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b1000;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b001010:begin
+		//branch less or equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b1001;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
+	
 	
 	default : begin 
 	 // defualt value we can use it if we will implement reset or unsupported instructions
-		 reg_ALUSrc = 1'b0;
+		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 2'b00;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
 	
-	
-
-end
 
 endcase
 end
@@ -111,5 +331,9 @@ assign MemWrite = reg_MemWrite;
 assign MemRead = reg_MemRead;
 assign RegWrite = reg_RegWrite;
 assign ALUOp = reg_ALUOp;
+assign Branch= reg_Branch;
+assign Jump = reg_Jump;
+assign pc_load = reg_pc_load;
+assign PC_Store = reg_PC_Store;
 
 endmodule 

@@ -426,6 +426,7 @@ ReadData2[28] <= Mux35.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[29] <= Mux34.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[30] <= Mux33.DB_MAX_OUTPUT_PORT_TYPE
 ReadData2[31] <= Mux32.DB_MAX_OUTPUT_PORT_TYPE
+PC_Store => PC_Store.IN1
 
 
 |RegisterFile_tb|RegisterFile:uut|RegFile_decoder:dex

@@ -1,5 +1,5 @@
 Flow report for ControlUnit
-Wed Oct 11 19:49:38 2023
+Fri Nov 24 16:59:00 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Oct 11 19:49:38 2023       ;
+; Flow Status                        ; Successful - Fri Nov 24 16:58:59 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; ControlUnit                                 ;
 ; Top-level Entity Name              ; ControlUnit_tb                              ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/11/2023 19:49:30 ;
+; Start date & time ; 11/24/2023 16:58:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ControlUnit         ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+----------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name    ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+----------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 211375641069850.169704297012924        ; --            ; --             ; --             ;
+; COMPILER_SIGNATURE_ID                ; 211375641069850.170083433102140        ; --            ; --             ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --             ; ControlUnit_tb ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; ControlUnit_tb                         ; --            ; --             ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --             ; eda_simulation ;
@@ -105,7 +105,7 @@ https://fpgasoftware.intel.com/eula.
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name            ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Elaboration ; 00:00:08     ; 1.0                     ; 4704 MB             ; 00:00:22                           ;
+; Analysis & Elaboration ; 00:00:08     ; 1.0                     ; 4694 MB             ; 00:00:22                           ;
 ; Total                  ; 00:00:08     ; --                      ; --                  ; 00:00:22                           ;
 +------------------------+--------------+-------------------------+---------------------+------------------------------------+
 

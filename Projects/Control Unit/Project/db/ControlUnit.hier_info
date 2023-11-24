@@ -2,32 +2,52 @@
 
 
 |ControlUnit_tb|ControlUnit:UUT
-Clock => reg_RegDst.CLK
-Clock => reg_ALUOp[0].CLK
-Clock => reg_ALUOp[1].CLK
-Clock => reg_MemRead.CLK
-Clock => reg_MemWrite.CLK
-Clock => reg_MemtoReg.CLK
-Clock => reg_RegWrite.CLK
-Clock => reg_ALUSrc.CLK
+Clock => ~NO_FANOUT~
 Reset => reg_ALUSrc.OUTPUTSELECT
 Reset => reg_RegWrite.OUTPUTSELECT
+Reset => reg_MemtoReg.OUTPUTSELECT
+Reset => reg_MemtoReg.OUTPUTSELECT
 Reset => reg_MemWrite.OUTPUTSELECT
 Reset => reg_MemRead.OUTPUTSELECT
+Reset => reg_ALUOp.OUTPUTSELECT
+Reset => reg_ALUOp.OUTPUTSELECT
+Reset => reg_ALUOp.OUTPUTSELECT
+Reset => reg_ALUOp.OUTPUTSELECT
 Reset => reg_RegDst.OUTPUTSELECT
+Reset => reg_RegDst.OUTPUTSELECT
+Reset => reg_Branch.OUTPUTSELECT
+Reset => reg_Jump.OUTPUTSELECT
+Reset => reg_Jump.OUTPUTSELECT
+Reset => reg_PC_Store.OUTPUTSELECT
+Reset => pc_load.DATAIN
 opcode[0] => Decoder0.IN5
 opcode[1] => Decoder0.IN4
 opcode[2] => Decoder0.IN3
 opcode[3] => Decoder0.IN2
 opcode[4] => Decoder0.IN1
 opcode[5] => Decoder0.IN0
-RegDst <= reg_RegDst.DB_MAX_OUTPUT_PORT_TYPE
+RegDst[0] <= reg_RegDst.DB_MAX_OUTPUT_PORT_TYPE
+RegDst[1] <= reg_RegDst.DB_MAX_OUTPUT_PORT_TYPE
 ALUSrc <= reg_ALUSrc.DB_MAX_OUTPUT_PORT_TYPE
-MemtoReg <= reg_MemtoReg.DB_MAX_OUTPUT_PORT_TYPE
+MemtoReg[0] <= reg_MemtoReg.DB_MAX_OUTPUT_PORT_TYPE
+MemtoReg[1] <= reg_MemtoReg.DB_MAX_OUTPUT_PORT_TYPE
 MemWrite <= reg_MemWrite.DB_MAX_OUTPUT_PORT_TYPE
 MemRead <= reg_MemRead.DB_MAX_OUTPUT_PORT_TYPE
-ALUOp[0] <= reg_ALUOp[0].DB_MAX_OUTPUT_PORT_TYPE
-ALUOp[1] <= reg_ALUOp[1].DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[0] <= reg_ALUOp.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[1] <= reg_ALUOp.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[2] <= reg_ALUOp.DB_MAX_OUTPUT_PORT_TYPE
+ALUOp[3] <= reg_ALUOp.DB_MAX_OUTPUT_PORT_TYPE
 RegWrite <= reg_RegWrite.DB_MAX_OUTPUT_PORT_TYPE
+Branch <= reg_Branch.DB_MAX_OUTPUT_PORT_TYPE
+Jump[0] <= reg_Jump.DB_MAX_OUTPUT_PORT_TYPE
+Jump[1] <= reg_Jump.DB_MAX_OUTPUT_PORT_TYPE
+funct[0] => Equal0.IN5
+funct[1] => Equal0.IN4
+funct[2] => Equal0.IN3
+funct[3] => Equal0.IN0
+funct[4] => Equal0.IN2
+funct[5] => Equal0.IN1
+pc_load <= Reset.DB_MAX_OUTPUT_PORT_TYPE
+PC_Store <= reg_PC_Store.DB_MAX_OUTPUT_PORT_TYPE
 
 

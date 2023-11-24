@@ -1,5 +1,5 @@
 Analysis & Elaboration report for RegisterFile
-Tue Oct 17 19:08:37 2023
+Fri Nov 24 16:37:55 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -72,7 +72,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Tue Oct 17 19:08:37 2023       ;
+; Analysis & Elaboration Status      ; Successful - Fri Nov 24 16:37:55 2023       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; RegisterFile                                ;
 ; Top-level Entity Name              ; RegisterFile_tb                             ;
@@ -518,7 +518,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +--------+-------+----------+-------------------------------------+
 ; Port   ; Type  ; Severity ; Details                             ;
 +--------+-------+----------+-------------------------------------+
-; Resetn ; Input ; Info     ; Stuck at GND                        ;
+; Resetn ; Input ; Info     ; Stuck at VCC                        ;
 +--------+-------+----------+-------------------------------------+
 
 
@@ -527,7 +527,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port        ; Type   ; Severity ; Details                                                                             ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
-; outputs[17] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; outputs[31] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -548,25 +548,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Oct 17 19:08:28 2023
+    Info: Processing started: Fri Nov 24 16:37:47 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off RegisterFile -c RegisterFile --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 3 design units, including 3 entities, in source file registerfile.v
-    Info (12023): Found entity 1: RegisterFile File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile.v Line: 1
-    Info (12023): Found entity 2: RegFile_decoder File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile.v Line: 81
-    Info (12023): Found entity 3: RegFile_regn File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile.v Line: 141
+    Info (12023): Found entity 1: RegisterFile File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile.v Line: 1
+    Info (12023): Found entity 2: RegFile_decoder File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile.v Line: 86
+    Info (12023): Found entity 3: RegFile_regn File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile.v Line: 146
 Info (12021): Found 1 design units, including 1 entities, in source file registerfile_tb.v
-    Info (12023): Found entity 1: RegisterFile_tb File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile_tb.v Line: 3
+    Info (12023): Found entity 1: RegisterFile_tb File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile_tb.v Line: 3
 Info (12127): Elaborating entity "RegisterFile_tb" for the top level hierarchy
-Warning (10175): Verilog HDL warning at RegisterFile_tb.v(92): ignoring unsupported system task File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile_tb.v Line: 92
-Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:uut" File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile_tb.v Line: 29
-Info (12128): Elaborating entity "RegFile_decoder" for hierarchy "RegisterFile:uut|RegFile_decoder:dex" File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile.v Line: 13
-Info (12128): Elaborating entity "RegFile_regn" for hierarchy "RegisterFile:uut|RegFile_regn:Reg_0" File: E:/Omar/CPU Design/MIPS Processor/Projects/Register file/Project/RegisterFile.v Line: 18
+Warning (10175): Verilog HDL warning at RegisterFile_tb.v(98): ignoring unsupported system task File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile_tb.v Line: 98
+Info (12128): Elaborating entity "RegisterFile" for hierarchy "RegisterFile:uut" File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile_tb.v Line: 31
+Info (12128): Elaborating entity "RegFile_decoder" for hierarchy "RegisterFile:uut|RegFile_decoder:dex" File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile.v Line: 14
+Info (12128): Elaborating entity "RegFile_regn" for hierarchy "RegisterFile:uut|RegFile_regn:Reg_0" File: E:/Omar/CPU Design/MIPS/Projects/Register file/Project/RegisterFile.v Line: 19
 Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4710 megabytes
-    Info: Processing ended: Tue Oct 17 19:08:37 2023
-    Info: Elapsed time: 00:00:09
+    Info: Peak virtual memory: 4709 megabytes
+    Info: Processing ended: Fri Nov 24 16:37:55 2023
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:22
 
 

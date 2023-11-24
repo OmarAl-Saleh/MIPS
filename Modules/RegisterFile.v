@@ -1,7 +1,8 @@
-module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2);
+module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2,PC_Store);
 input Clock , Reset;
 input [4:0] ReadReg1 , ReadReg2 , WriteReg;
 input Reg_write_Control;
+input PC_Store;
 input [31:0] WriteData;
 output [31:0] ReadData1;
 output [31:0] ReadData2;
@@ -48,7 +49,7 @@ RegFile_regn Reg_27(WriteData, Reset, Reg_Enable[27], Clock,Registers_Read[27]);
 RegFile_regn Reg_28(WriteData, Reset, Reg_Enable[28], Clock,Registers_Read[28]);
 RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
-RegFile_regn Reg_31(WriteData, Reset, Reg_Enable[31], Clock,Registers_Read[31]);
+RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);
 
 
 

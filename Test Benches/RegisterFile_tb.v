@@ -5,6 +5,7 @@ module RegisterFile_tb();
   // Inputs
   reg Clock;
   reg Reset;
+  reg PC_Store;
   reg [4:0] ReadReg1;
   reg [4:0] ReadReg2;
   reg [4:0] WriteReg;
@@ -25,7 +26,8 @@ module RegisterFile_tb();
     .WriteData(WriteData),
     .Reg_write_Control(Reg_write_Control),
     .ReadData1(ReadData1),
-    .ReadData2(ReadData2)
+    .ReadData2(ReadData2),
+	 .PC_Store(PC_Store)
   );
 
   // Clock generation
@@ -41,31 +43,35 @@ module RegisterFile_tb();
 
   // Initialize inputs
   initial begin
-    Reset = 0;
+    Reset = 1;
     ReadReg1 = 0;
     ReadReg2 = 0;
     WriteReg = 0;
     WriteData = 0;
     Reg_write_Control = 0;
+	 PC_Store=0;
 
     // Apply reset
     Reset = 0;
-    #20;
-    Reset = 1;
+//    #20;
+//    Reset = 1;
 
     // Write some data to the registers
-    WriteReg = 5'b00000;
+	 ReadReg1 = 5'b11111;
+    ReadReg2 = 5'b00010;
+    WriteReg = 5'b11111;
     WriteData = 32'h12345678;
     Reg_write_Control = 1;
     #20;
-    WriteReg = 5'b00001;
+	 
+    WriteReg = 5'b00010;
     WriteData = 32'h9ABCDEF0;
     Reg_write_Control = 1;
     #20;
 
     // Read data from the registers
-    ReadReg1 = 5'b00000;
-    ReadReg2 = 5'b00001;
+    ReadReg1 = 5'b11111;
+    ReadReg2 = 5'b00010;
     Reg_write_Control = 0;
     #20;
 	 
@@ -82,7 +88,7 @@ module RegisterFile_tb();
 
     // Read data from the registers2
     ReadReg1 = 5'b0010;
-    ReadReg2 = 5'b00101;
+    ReadReg2 = 5'b11111;
     Reg_write_Control = 0;
     #20;
 

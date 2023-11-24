@@ -1,10 +1,11 @@
-module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2);
+module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2,PC_Store);
 input Clock , Reset;
 input [4:0] ReadReg1 , ReadReg2 , WriteReg;
 input Reg_write_Control;
+input PC_Store;
 input [31:0] WriteData;
-output [31:0] ReadData1 , ReadData2;
-
+output [31:0] ReadData1;
+output [31:0] ReadData2;
 // define bus (wires)
 wire [31:0] Reg_Enable;
 wire [31:0] Registers_Read [31:0];
@@ -15,7 +16,7 @@ RegFile_decoder dex(WriteReg,Reg_write_Control,Reg_Enable);
 // we first write then we read from register file 
 
 //write on Register file
-RegFile_regn Reg_0(WriteData, 1'b0, Reg_Enable[0], Clock,Registers_Read[0]);
+RegFile_regn Reg_0(WriteData, 1'b1, Reg_Enable[0], Clock,Registers_Read[0]);
 RegFile_regn Reg_1(WriteData, Reset, Reg_Enable[1], Clock,Registers_Read[1]);
 RegFile_regn Reg_2(WriteData, Reset, Reg_Enable[2], Clock,Registers_Read[2]);
 RegFile_regn Reg_3(WriteData, Reset, Reg_Enable[3], Clock,Registers_Read[3]);
@@ -33,9 +34,9 @@ RegFile_regn Reg_13(WriteData, Reset, Reg_Enable[13], Clock,Registers_Read[13]);
 RegFile_regn Reg_14(WriteData, Reset, Reg_Enable[14], Clock,Registers_Read[14]);
 RegFile_regn Reg_15(WriteData, Reset, Reg_Enable[15], Clock,Registers_Read[15]);
 RegFile_regn Reg_16(WriteData, Reset, Reg_Enable[16], Clock,Registers_Read[16]);
-RegFile_regn Reg_17(WriteData, Reset, Reg_Enable[18], Clock,Registers_Read[17]);
-RegFile_regn Reg_18(WriteData, Reset, Reg_Enable[19], Clock,Registers_Read[18]);
-RegFile_regn Reg_19(WriteData, Reset, Reg_Enable[20], Clock,Registers_Read[19]);
+RegFile_regn Reg_17(WriteData, Reset, Reg_Enable[17], Clock,Registers_Read[17]);
+RegFile_regn Reg_18(WriteData, Reset, Reg_Enable[18], Clock,Registers_Read[18]);
+RegFile_regn Reg_19(WriteData, Reset, Reg_Enable[19], Clock,Registers_Read[19]);
 
 RegFile_regn Reg_20(WriteData, Reset, Reg_Enable[20], Clock,Registers_Read[20]);
 RegFile_regn Reg_21(WriteData, Reset, Reg_Enable[21], Clock,Registers_Read[21]);
@@ -48,15 +49,19 @@ RegFile_regn Reg_27(WriteData, Reset, Reg_Enable[27], Clock,Registers_Read[27]);
 RegFile_regn Reg_28(WriteData, Reset, Reg_Enable[28], Clock,Registers_Read[28]);
 RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
-RegFile_regn Reg_31(WriteData, Reset, Reg_Enable[31], Clock,Registers_Read[31]);
+RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);
+
+
 
         	   
 // Read from Register file 
 
 // MUX1: Read first operand
+//always @(posedge Clock) begin
 
 assign ReadData1= Registers_Read[ReadReg1];
 
+//end
 // MUX2: Read second operand
 
 assign ReadData2= Registers_Read[ReadReg2];
@@ -146,7 +151,7 @@ module RegFile_regn(R, Resetn, Rin, Clock, Q);
     reg [n-1:0] Q;
 
     always @(posedge Clock)
-        if (!Resetn)
+        if (Resetn)
             Q <= 0;
         else if (Rin)
             Q <= R;

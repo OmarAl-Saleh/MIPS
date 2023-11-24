@@ -10,43 +10,55 @@
 # Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Control\ Unit/Project {E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:00:45 on Oct 11,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v 
+# Start time: 16:59:28 on Nov 24,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project" E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v 
 # -- Compiling module ControlUnit
 # 
 # Top level modules:
 # 	ControlUnit
-# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# End time: 16:59:28 on Nov 24,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Control\ Unit/Project {E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:00:45 on Oct 11,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v 
+# Start time: 16:59:28 on Nov 24,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project" E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v 
 # -- Compiling module ControlUnit_tb
 # 
 # Top level modules:
 # 	ControlUnit_tb
-# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# End time: 16:59:28 on Nov 24,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS\ Processor/Control\ Unit/Project {E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Control\ Unit/Project {E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 20:00:45 on Oct 11,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project" E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v 
+# Start time: 16:59:28 on Nov 24,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project" E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v 
 # -- Compiling module ControlUnit_tb
 # 
 # Top level modules:
 # 	ControlUnit_tb
-# End time: 20:00:45 on Oct 11,2023, Elapsed time: 0:00:00
+# End time: 16:59:28 on Nov 24,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  ControlUnit_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" ControlUnit_tb 
-# Start time: 20:00:45 on Oct 11,2023
+# Start time: 16:59:28 on Nov 24,2023
 # Loading work.ControlUnit_tb
 # Loading work.ControlUnit
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'UUT'.  Expected 15, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /ControlUnit_tb/UUT File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 15
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'RegDst'. The port definition is at: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /ControlUnit_tb/UUT File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 15
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'MemtoReg'. The port definition is at: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /ControlUnit_tb/UUT File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 15
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (2) for port 'ALUOp'. The port definition is at: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v(1).
+#    Time: 0 ps  Iteration: 0  Instance: /ControlUnit_tb/UUT File: E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v Line: 15
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v(15): [TFMPC] - Missing connection for port 'Branch'.
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v(15): [TFMPC] - Missing connection for port 'Jump'.
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v(15): [TFMPC] - Missing connection for port 'funct'.
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v(15): [TFMPC] - Missing connection for port 'pc_load'.
 # 
 # add wave *
 # view structure
@@ -54,8 +66,8 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v(60)
+# ** Note: $stop    : E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v(54)
 #    Time: 100 ns  Iteration: 0  Instance: /ControlUnit_tb
-# Break in Module ControlUnit_tb at E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v line 60
-# End time: 20:01:11 on Oct 11,2023, Elapsed time: 0:00:26
-# Errors: 0, Warnings: 0
+# Break in Module ControlUnit_tb at E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v line 54
+# End time: 17:03:00 on Nov 24,2023, Elapsed time: 0:03:32
+# Errors: 0, Warnings: 8

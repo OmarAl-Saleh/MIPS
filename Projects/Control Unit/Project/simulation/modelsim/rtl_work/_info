@@ -8,52 +8,52 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dE:/Omar/CPU Design/MIPS Processor/Control Unit/Project/simulation/modelsim
+Z0 dE:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/simulation/modelsim
 vControlUnit
-Z1 !s110 1697043645
+Z1 !s110 1700834368
 !i10b 1
-!s100 U;7@Im`M9n5k@8Pi_eh`n0
+!s100 @R86cYAaeU]M@<BT2<`fY0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Iz_NTbG9lb[aS=QI;bDX7g1
+IYGEY@mW`aVVn3h^cRkFMd0
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1697042968
-8E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v
-FE:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v
+w1700833993
+8E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v
+FE:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v
 !i122 0
-L0 1 115
+L0 1 339
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1697043645.000000
-!s107 E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project|E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit.v|
+Z5 !s108 1700834368.000000
+!s107 E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project|E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit.v|
 !i113 1
 Z6 o-vlog01compat -work work
-Z7 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project}
+Z7 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project}
 Z8 tCvgOpt 0
 n@control@unit
 vControlUnit_tb
 R1
 !i10b 1
-!s100 HSLQ@9WJ3CMj5f>3aLN200
+!s100 U?:8;Pmf4>Uf@mE7i9i0o1
 R2
-IUD<EA8><foj9KPhBXM:Jk0
+Iag8DVlNK8cQ_6lZ3YVNgo3
 R3
 R0
-w1697043635
-8E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v
-FE:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v
+w1700834327
+8E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v
+FE:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v
 !i122 2
-L0 3 60
+L0 3 54
 R4
 r1
 !s85 0
 31
 R5
-!s107 E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS Processor/Control Unit/Project|E:/Omar/CPU Design/MIPS Processor/Control Unit/Project/ControlUnit_tb.v|
+!s107 E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project|E:/Omar/CPU Design/MIPS/Projects/Control Unit/Project/ControlUnit_tb.v|
 !i113 1
 R6
 R7
