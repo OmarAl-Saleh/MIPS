@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/Hazard Detection Unit/simulation/modelsim
+vHazard_Unit
+Z1 !s110 1700911426
+!i10b 1
+!s100 lR;_?4>H]jXRz1ISM]YE^0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IUCf02kIb9z@LI]S4>^4;O1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1700911228
+8E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v
+FE:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v
+!i122 2
+L0 1 82
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1700911426.000000
+!s107 E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Hazard Detection Unit|E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v|
+!i113 1
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/Hazard Detection Unit}
+Z8 tCvgOpt 0
+n@hazard_@unit
+vHazard_Unit_tb
+R1
+!i10b 1
+!s100 1]b;^e9MXoIlQkNUR?k]G1
+R2
+I2DJ:]i5Bl9:`FGYfT`NB11
+R3
+R0
+w1700911404
+8E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v
+FE:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v
+!i122 1
+L0 3 58
+R4
+r1
+!s85 0
+31
+R5
+!s107 E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Hazard Detection Unit|E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v|
+!i113 1
+R6
+R7
+R8
+n@hazard_@unit_tb

@@ -1,0 +1,61 @@
+# Reading pref.tcl
+# do Hazard_Unit_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Hazard\ Detection\ Unit {E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:23:46 on Nov 25,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Hazard Detection Unit" E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v 
+# -- Compiling module Hazard_Unit
+# 
+# Top level modules:
+# 	Hazard_Unit
+# End time: 14:23:46 on Nov 25,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Hazard\ Detection\ Unit {E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:23:46 on Nov 25,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Hazard Detection Unit" E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v 
+# -- Compiling module Hazard_Unit_tb
+# 
+# Top level modules:
+# 	Hazard_Unit_tb
+# End time: 14:23:46 on Nov 25,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Hazard\ Detection\ Unit {E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 14:23:46 on Nov 25,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Hazard Detection Unit" E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit.v 
+# -- Compiling module Hazard_Unit
+# 
+# Top level modules:
+# 	Hazard_Unit
+# End time: 14:23:46 on Nov 25,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  Hazard_Unit_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" Hazard_Unit_tb 
+# Start time: 14:23:46 on Nov 25,2023
+# Loading work.Hazard_Unit_tb
+# Loading work.Hazard_Unit
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v(58)
+#    Time: 100 ns  Iteration: 0  Instance: /Hazard_Unit_tb
+# Break in Module Hazard_Unit_tb at E:/Omar/CPU Design/Hazard Detection Unit/Hazard_Unit_tb.v line 58
+# End time: 14:26:12 on Nov 25,2023, Elapsed time: 0:02:26
+# Errors: 0, Warnings: 0

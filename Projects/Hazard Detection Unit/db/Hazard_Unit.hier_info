@@ -1,0 +1,55 @@
+|Hazard_Unit_tb
+
+
+|Hazard_Unit_tb|Hazard_Unit:uut
+D_rs[0] => Equal0.IN4
+D_rs[0] => Equal2.IN4
+D_rs[1] => Equal0.IN3
+D_rs[1] => Equal2.IN3
+D_rs[2] => Equal0.IN2
+D_rs[2] => Equal2.IN2
+D_rs[3] => Equal0.IN1
+D_rs[3] => Equal2.IN1
+D_rs[4] => Equal0.IN0
+D_rs[4] => Equal2.IN0
+D_rt[0] => Equal1.IN4
+D_rt[0] => Equal3.IN4
+D_rt[1] => Equal1.IN3
+D_rt[1] => Equal3.IN3
+D_rt[2] => Equal1.IN2
+D_rt[2] => Equal3.IN2
+D_rt[3] => Equal1.IN1
+D_rt[3] => Equal3.IN1
+D_rt[4] => Equal1.IN0
+D_rt[4] => Equal3.IN0
+EX_rt[0] => Equal0.IN9
+EX_rt[0] => Equal1.IN9
+EX_rt[1] => Equal0.IN8
+EX_rt[1] => Equal1.IN8
+EX_rt[2] => Equal0.IN7
+EX_rt[2] => Equal1.IN7
+EX_rt[3] => Equal0.IN6
+EX_rt[3] => Equal1.IN6
+EX_rt[4] => Equal0.IN5
+EX_rt[4] => Equal1.IN5
+EX_MemRead => always0.IN0
+ID_EX_FLUSH <= reg_ID_EX_FLUSH.DB_MAX_OUTPUT_PORT_TYPE
+IF_ID_write <= reg_IF_ID_write.DB_MAX_OUTPUT_PORT_TYPE
+PC_write <= reg_PC_write.DB_MAX_OUTPUT_PORT_TYPE
+ID_Branch => reg_ID_EX_FLUSH.DATAA
+ID_Branch => always0.IN1
+ID_Branch => reg_ID_EX_FLUSH.IN1
+ID_Branch => reg_IF_ID_write.DATAA
+MEM_rt[0] => Equal2.IN9
+MEM_rt[0] => Equal3.IN9
+MEM_rt[1] => Equal2.IN8
+MEM_rt[1] => Equal3.IN8
+MEM_rt[2] => Equal2.IN7
+MEM_rt[2] => Equal3.IN7
+MEM_rt[3] => Equal2.IN6
+MEM_rt[3] => Equal3.IN6
+MEM_rt[4] => Equal2.IN5
+MEM_rt[4] => Equal3.IN5
+MEM_MemRead => always0.IN1
+
+
