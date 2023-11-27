@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/ID_EX_Register/simulation/modelsim
+vID_EX_Register
+!s110 1701088741
+!i10b 1
+!s100 MI2?miciSKP2e[K?>EMGW2
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+INdQ=Sn1X7Jn83h3lC9z<<2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1701088363
+8E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register.v
+FE:/Omar/CPU Design/ID_EX_Register/ID_EX_Register.v
+!i122 0
+L0 1 110
+Z3 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1701088741.000000
+!s107 E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/ID_EX_Register|E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register.v|
+!i113 1
+Z4 o-vlog01compat -work work
+Z5 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/ID_EX_Register}
+Z6 tCvgOpt 0
+n@i@d_@e@x_@register
+vID_EX_Register_tb
+!s110 1701088742
+!i10b 1
+!s100 PLQ<X[@1`e;=bVLUli6dg1
+R1
+IoWM1?L;TI;baFUO0Mj?N]3
+R2
+R0
+w1701088727
+8E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register_tb.v
+FE:/Omar/CPU Design/ID_EX_Register/ID_EX_Register_tb.v
+!i122 1
+L0 3 106
+R3
+r1
+!s85 0
+31
+!s108 1701088742.000000
+!s107 E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/ID_EX_Register|E:/Omar/CPU Design/ID_EX_Register/ID_EX_Register_tb.v|
+!i113 1
+R4
+R5
+R6
+n@i@d_@e@x_@register_tb
