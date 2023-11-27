@@ -1,0 +1,79 @@
+`timescale 1ns/1ps
+
+module IF_ID_Register_tb;
+
+  // Inputs
+  reg clk;
+  reg reset;
+  reg enable;
+  reg [31:0] Instruction_in;
+  reg [31:0] PC_in;
+  reg Branch_Control;
+
+  // Outputs
+  wire [31:0] Instruction_out;
+  wire [31:0] PC_out;
+
+  // Instantiate the module
+  IF_ID_Register uut (
+    .clk(clk),
+    .reset(reset),
+    .enable(enable),
+    .Instruction_in(Instruction_in),
+    .PC_in(PC_in),
+    .Branch_Control(Branch_Control),
+    .Instruction_out(Instruction_out),
+    .PC_out(PC_out)
+  );
+
+  // Clock generation
+  initial begin
+    clk = 0;
+    forever #5 clk = ~clk;
+  end
+
+  // Stimulus
+  initial begin
+    // Initialize inputs
+    reset = 0;
+    enable = 0;
+    Instruction_in = 32'hAABBCCDD;
+    PC_in = 32'h12345678;
+    Branch_Control = 0;
+
+    // Apply reset
+    #10 reset = 1;
+
+    // Enable the register and provide input values
+    #10 enable = 1;
+    Instruction_in = 32'h11223344;
+    PC_in = 32'h87654321;
+    Branch_Control = 0;
+
+    // Wait for a few clock cycles
+    #20;
+
+    // Disable the register
+    enable = 0;
+
+    // Wait for a few clock cycles
+    #20;
+
+    // Enable the register with a reset and branch control
+    reset = 1;
+    Branch_Control = 1;
+
+    // Wait for a few clock cycles
+    #20;
+
+    // Disable the register
+    enable = 0;
+    reset = 0;
+    Branch_Control = 0;
+
+    // Add more test cases as needed
+
+    #10 $finish; // End simulation after some time
+  end
+
+endmodule
