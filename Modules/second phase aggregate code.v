@@ -7,12 +7,20 @@ output wire [31:0] Writedata
 );
 
 //PC
- wire [31:0] pc_out;
+ wire [31:0] pc_final;//input
+ wire [31:0] pc_out;//output
+ wire [31:0] next_pc;//pc+4
+ wire [31:0] pc_inc;//4
+ assign pc_inc = 32'b00000000000000000000000000000100;
+ wire pc_load;//control
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
     .clk(clk),
     .reset(reset),
+	 .target(pc_final),
+	 .pc_load(pc_load),
+//	 .branch_condition(Branch&zero),
     .pc(pc_out)
   );
 //end of PC
@@ -26,6 +34,7 @@ wire [4:0] rd;
 wire [4:0] shamt;
 wire [5:0] funct;
 wire [15:0] addrs;
+wire [25:0] jump_offset;
 
 INST_MEM #(.size(32),.data_width(32) )
 inst_mem (
@@ -39,14 +48,32 @@ inst_mem (
     .rd(rd),
     .shamt(shamt),
     .funct(funct),
-    .addr(addrs)
+    .addr(addrs),
+	 .jump(jump_offset)
   );
 //end of inst_mem
 //------------------------------------
+//sign extend
 
+wire [31:0] immediate_value;
+
+sign_extend extender (
+    .extend(addrs),
+    .extended(immediate_value)
+);
+
+//end of sign extend
+
+	
+	
+//------------------------------------
 //ControlUnit
-  wire RegDst, ALUSrc, MemtoReg, MemWrite, MemRead, RegWrite;
-  wire [1:0] ALUOp;
+  wire ALUSrc, MemWrite, MemRead, RegWrite,Branch;
+  wire [3:0] ALUOp;
+  wire [1:0] RegDst;
+  wire [1:0] MemtoReg;
+  wire [1:0] Jump_signal;
+
 
 ControlUnit control_inst (
     .Clock(clk),
@@ -58,7 +85,11 @@ ControlUnit control_inst (
     .MemWrite(MemWrite),
     .MemRead(MemRead),
     .RegWrite(RegWrite),
-    .ALUOp(ALUOp)
+    .ALUOp(ALUOp),
+	 .Branch(Branch),
+	 .Jump(Jump_signal),
+	 .funct(funct),
+	 .pc_load(pc_load)
   );
 //end of ControlUnit
 //------------------------------------
@@ -104,26 +135,17 @@ ControlUnit control_inst (
 //alu_cntrl
 
 wire [3:0] Operation;
-
+wire [2:0] branch_type;
 alu_control alu_ctrl (
 	 .clk(clk),
     .FuncField(funct),
     .ALUOp(ALUOp),
-    .Operation(Operation)
+    .Operation(Operation),
+	 .branch_type(branch_type)
 );
 
 //end of alu_cntrl
-//------------------------------------
-//sign extend
 
-wire [31:0] immediate_value;
-
-sign_extend extender (
-    .extend(addrs),
-    .extended(immediate_value)
-);
-
-//end of sign extend
 //------------------------------------
 // MUX2_1 alu_sec_input
 
@@ -147,6 +169,7 @@ ALU alu (
     .B(alu_second_input),
     .ALUControl(Operation),
     .ShiftAmount(shamt),
+	 .branch_type(branch_type),
     .ALUOut(alu_output),
     .Zero(zero)
 );
@@ -176,14 +199,57 @@ RAM #(
 //end of DATA_MEM
 //------------------------------------
 //Write back
-MUX2_1 Write_back (
+MUX4_1 Write_back (
         .a(alu_output),        
-        .b(Read_data),         
+        .b(Read_data), 
+		  .c(next_pc),
         .select(MemtoReg), 
         .out(Writedata)   
     );
 	 
-endmodule 
+//------------------------------------
+//handling jump instruction
+
+
+	
+	adder add(
+	.a(pc_inc),
+	.b(pc_out),
+	.c(next_pc)
+	);
+	
+	wire [31:0] jump_target;
+assign jump_target = {next_pc[31:28], jump_offset, 2'b00};
+//---------------------------------
+	//branch
+	wire [31:0] branch;
+	
+	branch_control branch_main(
+	.extended_address(immediate_value),
+	.next_pc(next_pc),
+	.branch(branch)
+	);
+	
+//--------------------------------
+wire [31:0] pc_branch;
+
+
+MUX2_1 pc_target(
+.a(next_pc),
+.b(branch),
+.select((Branch & zero)),
+.out(pc_branch)
+);	
+
+MUX4_1 pc_final_main(
+.a(pc_branch),
+.b(jump_target),
+.c(ReadData1),
+.select(Jump_signal),
+.out(pc_final)
+);
+	 
+endmodule  
 
 //****************************************************** SUB MODULES *************************************************************************
 
@@ -396,15 +462,25 @@ endmodule
 
 //*********************************** Control Unit *******************************************************
 
-module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite);
+module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct,pc_load,PC_Store);
 input wire [5:0] opcode; 
 input Clock , Reset ;  // Reset : 1 --> on | 0--> off
+input wire [5:0] funct;
 // wires
-output wire RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,RegWrite;
-output wire [1:0] ALUOp;
+output wire ALUSrc,MemWrite,MemRead,RegWrite,Branch,PC_Store;
+output wire [3:0] ALUOp;
+output wire [1:0] Jump;
+output wire [1:0] MemtoReg;
+output wire [1:0] RegDst;
+output wire pc_load;
 // reg type
- reg reg_RegDst,reg_ALUSrc,reg_MemtoReg,reg_MemWrite,reg_MemRead,reg_RegWrite;
- reg [1:0] reg_ALUOp;
+ reg reg_ALUSrc,reg_MemWrite,reg_MemRead,reg_RegWrite,reg_Branch,reg_PC_Store;
+ reg [3:0] reg_ALUOp;
+ reg [1:0] reg_Jump;
+ reg [1:0] reg_MemtoReg;
+ reg [1:0] reg_RegDst;
+ reg reg_pc_load;
+ 
 	reg [5:0] reset_opcode ;
 //	    opcode,  // 6-bit opcode from the instruction
 //     RegDst,      // Control signal for selecting the destination register
@@ -416,6 +492,7 @@ output wire [1:0] ALUOp;
 //     ALUOp,       // Control signal for ALU operation
 //     RegWrite     // Control signal for register write
 //     reset_reg    // will handle the default value if the reset is on 
+//		 pc_load (0->stall),(1->load)
 
 
 always @(*)
@@ -434,13 +511,17 @@ always @(*)
 
 	if(Reset==1'b1)begin 
 	 // defualt value we can use it if we will implement reset or unsupported instructions
-		 reg_ALUSrc = 1'b0;
+		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b0;
+		 reg_PC_Store = 1'b0;
 end
 	
 	
@@ -448,89 +529,260 @@ end
 	case(opcode)
 	
 	6'b000000:begin 
+		if(funct == 6'b001000)begin 
+		//Jump Register instruction
+		 reg_ALUSrc   = 1'bx;
+		 reg_RegWrite = 1'b0;
+       reg_MemtoReg = 2'bxx;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'bx;
+       reg_ALUOp    = 4'bxxxx;
+       reg_RegDst   = 2'bxx;
+		 reg_Branch   = 1'bx;
+		 reg_Jump     = 2'b10;
+		 reg_pc_load  = 1'b1;//load
+		 reg_PC_Store = 1'b0;
+		end
+		else begin
 		// R-type instruction 
-       reg_ALUSrc = 1'b0;
+       reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b0;
-      reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b10;
-       reg_RegDst = 1'b1;
-	
+       reg_MemtoReg = 2'b00;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0010;
+       reg_RegDst   = 2'b01;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
 	end
 	
 		6'b100011:begin 
 		// load instruction 
-       reg_ALUSrc = 1'b1;
+       reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b1;
+       reg_MemtoReg = 2'b01;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b1;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b1;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
 	
 	end
 	
 	   6'b101011:begin
 		// store instruction 
-       reg_ALUSrc = 1'b1;
+       reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b0; //error (should be 0 ) i am an idiot ...*****
+       reg_MemtoReg = 2'b00; //error (should be 0 ) i am an idiot ...*****
        reg_MemWrite = 1'b1;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;  //don't care
-	
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;  //don't care
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
 	end
 	
 		6'b001000:begin
 		//immediate instruction (addi)
-		 reg_ALUSrc = 1'b1;
+		 reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
 	end
 	
 		6'b001100:begin
 		//immediate instruction (andi)
-		reg_ALUSrc = 1'b1;
+		 reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b01;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0001;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
 	end
 			6'b001101:begin
 		//immediate instruction (ori)
-		reg_ALUSrc = 1'b1;
+		 reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b1;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b11;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0011;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
 	end
-		
 	
-	// we can here add two cases for branch and jump control signals 
+			6'b000010:begin
+		//Jump instruction (j)
+		 reg_ALUSrc   = 1'bx;
+		 reg_RegWrite = 1'b0;
+       reg_MemtoReg = 2'bxx;
+       reg_MemWrite = 1'b0;
+       reg_MemRead  = 1'bx;
+       reg_ALUOp    = 4'bxxxx;
+       reg_RegDst   = 2'bxx;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b01;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000011:begin
+		//Jump and link instruction (jal)
+		 reg_ALUSrc 	= 1'bx;
+		 reg_RegWrite 	= 1'b1;
+       reg_MemtoReg 	= 2'b10;
+       reg_MemWrite 	= 1'b0;
+       reg_MemRead 	= 1'bx;
+       reg_ALUOp		= 4'bxxxx;
+       reg_RegDst		= 2'b10;
+		 reg_Branch		= 1'bx;
+		 reg_Jump 		= 2'b01;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b1;
+		 
+	end
+	
+		6'b000100:begin
+		//branch equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0100;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+	
+		6'b000101:begin
+		//branch not equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0101;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000110:begin
+		//branch greater than
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0110;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b000111:begin
+		//branch less than
+	 	 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b0111;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b001001:begin
+		//branch greater or equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b1000;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+		 
+	end
+	
+		6'b001010:begin
+		//branch less or equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'bxx;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'bx;
+       reg_ALUOp		= 4'b1001;
+       reg_RegDst		= 2'bxx;
+		 reg_Branch		= 1'b1;
+		 reg_Jump		= 2'b00;
+		 reg_pc_load   = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
+	
 	
 	default : begin 
 	 // defualt value we can use it if we will implement reset or unsupported instructions
-		 reg_ALUSrc = 1'b0;
+		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 1'b0;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead = 1'b0;
-       reg_ALUOp = 2'b00;
-       reg_RegDst = 1'b0;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 2'b00;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
+		 reg_Jump     = 2'b00;
+		 reg_pc_load  = 1'b1;
+		 reg_PC_Store = 1'b0;
+	end
 	
-	
-
-end
 
 endcase
 end
@@ -543,6 +795,10 @@ assign MemWrite = reg_MemWrite;
 assign MemRead = reg_MemRead;
 assign RegWrite = reg_RegWrite;
 assign ALUOp = reg_ALUOp;
+assign Branch= reg_Branch;
+assign Jump = reg_Jump;
+assign pc_load = reg_pc_load;
+assign PC_Store = reg_PC_Store;
 
 endmodule 
 
@@ -570,8 +826,99 @@ module INST_MEM #(
 
    initial begin // this should be removed because it is NOT synthesizable
 	
+	//-------------------------------------------------------------
+	
+	//testcase 6
+	/*
+	inst_mem[0] = 32'b00000000000000000000100000100000; //ADD R1, R0, R0 
+	inst_mem[1] = 32'b00000000000000000001000000100000; //ADD R2, R0, R0
+	inst_mem[2] = 32'b00100000000010010000000001100100; //ADDI R9, R0, 100
+	inst_mem[3] = 32'b00010000001010010000000000000010; //BEQ R1, R9, EXIT //START
+	inst_mem[4] = 32'b00100000001000010000000000000001; //ADDI R1, R1, 1
+	inst_mem[5] = 32'b00001000000000000000000000000011; //JUMP START
+	inst_mem[6] = 32'b00000000001000100001100000100000; //ADD R3, R0, R0 //EXIT
+	*/
+	
+	//testcase 5 (wrong code so i changed it)
+	/*
+	//a=2
+	inst_mem[0] = 32'b00100000000000010000000000000010; //ADDI R1, R0, 2 (a)
+	inst_mem[1] = 32'b00100000000000100000000000000010; //ADDI R2, R0, 2 (b)
+	inst_mem[2] = 32'b00100000010000110000000000000011; //ADDI R3, R2, 3 (b+3)
+	inst_mem[3] = 32'b00100100001000110000000000000010; //BGE  R1, R3, THEN
+	inst_mem[4] = 32'b00100000001000010000000000000001; //ADDI R1, R1, 1
+	inst_mem[5] = 32'b00001000000000000000000000000111; //JUMP END
+	inst_mem[6] = 32'b00100000001000010000000000000010; //ADDI R1, R1, 2 //THEN 
+	inst_mem[7] = 32'b00000000010000010001000000100000; //ADD R2, R2, R1 //END
+	*/
+	//a=6
+	/*
+	inst_mem[0] = 32'b00100000000000010000000000000110; //ADDI R1, R0, 6 (a)
+	inst_mem[1] = 32'b00100000000000100000000000000010; //ADDI R2, R0, 2 (b)
+	inst_mem[2] = 32'b00100000010000110000000000000011; //ADDI R3, R2, 3 (b+3)
+	inst_mem[3] = 32'b00100100001000110000000000000010; //BGE  R1, R3, THEN
+	inst_mem[4] = 32'b00100000001000010000000000000001; //ADDI R1, R1, 1
+	inst_mem[5] = 32'b00001000000000000000000000000111; //JUMP END
+	inst_mem[6] = 32'b00100000001000010000000000000010; //ADDI R1, R1, 2 //THEN 
+	inst_mem[7] = 32'b00000000010000010001000000100000; //ADD R2, R2, R1 //END
+	*/
+	
+	//-------------------------------------------------------------
+	//testcase 4
+	
+	/*
+	
+	inst_mem[0] = 32'b00000000000000000100000000100000; //ADD R8, R8, R0
+	inst_mem[1] = 32'b00100000000010010000000000001010; //ADDI R9, R9, 10
+	inst_mem[2] = 32'b00000001000010010101000000100010; //SUB R10, R8, R9 //Loop
+	inst_mem[3] = 32'b00100000000011000000000000000001; //ADDI R12, R0, 1
+	inst_mem[4] = 32'b00011001000010010000000000000010; //BGT R8, R9, DONE
+	inst_mem[5] = 32'b00100001000010000000000000000001; //ADDI R8, R8, 1
+	inst_mem[6] = 32'b00001000000000000000000000000010; //JUMP LOOP
+	inst_mem[7] = 32'b00000001001000000110100000100000; //ADD R13, R9, R0 //DONE
+	inst_mem[8] = 32'b00100000000011100000000000011011; //ADDI R14, R0, 1B(27)
+	inst_mem[9] = 32'b00110001110011100000000000010111; //ANDI R14, R14, 17(23)
+	*/
+	
+	//-------------------------------------------------------------
+	//testcase 3
+	/*
+	inst_mem[0] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)
+	inst_mem[1] = 32'b10001111100010000000000000000000; //LW R8, 0(R28)
+	inst_mem[2] = 32'b10001111100010010000000000000100; //LW R9, 4(R28)
+	inst_mem[3] = 32'b00000001000010010100000000100000; //ADD R8, R8, R9
+	inst_mem[4] = 32'b10001111100010100000000000001000; //LW R10, 8(R28)
+	inst_mem[5] = 32'b00000001010010100101000000100000; //ADD R10, R10, R10
+	inst_mem[6] = 32'b00000001000010100100000000100010; //SUB R8, R8, R10
+	inst_mem[7] = 32'b00100001000010000000000000000001; //ADDI R8, R8, 1
+	inst_mem[8] = 32'b00000000000010000100000000100010; //SUB R8, R0, R8
+	*/
 	
 	
+	//-------------------------------------------------------------
+	
+	
+	//testcase 2	
+/*
+   inst_mem[0] = 32'b10001100000000010000000000001000; //LW R1, 8(R0)
+	inst_mem[1] = 32'b00000000001000000000100010000000; //SLL R1, R1, 2 
+	inst_mem[2] = 32'b10101100000000010000000000000100; //SW R1, 4(R0) 
+	inst_mem[3] = 32'b10001100000000100000000000000100; //LW R2, 4(R0)
+	inst_mem[4] = 32'b10001100000000110000000000010000; //LW R3, 16(R0)
+	inst_mem[5] = 32'b00000000010000000001100001000000; //SLL R3, R2, 1
+	inst_mem[6] = 32'b10101100000000110000000000001100; //SW R3, 12(R0)
+	inst_mem[7] = 32'b10001100000001000000000000001100; //LW R4, 12(R0)
+	*/
+	//-------------------------------------------------------------
+	
+	//testcase 1
+	/*
+	inst_mem[0] = 32'b10001100000010000000000000000000; //LW R8, 0(R0)
+	inst_mem[1] = 32'b10001100000010010000000000100000; //LW R9, 0x20(R0)
+	inst_mem[2] = 32'b10001100000010100000000001010000; //LW R10, 0x50(R0)
+	inst_mem[3] = 32'b10001100000010110000000000001000; //LW R11, 0x8(R0)
+	*/
+	//-------------------------------------------------------------
 	//THIS TEST FOR BLT 
 	/*
 	inst_mem[0] = 32'b10001100000000010000000000000100;//lw reg1=3 
@@ -658,7 +1005,7 @@ module INST_MEM #(
    inst_mem[3] = 32'b10001100000000110000000000001000;//load 8 in reg3
 	*/
 
-	
+/*	
   inst_mem[0] = 32'b10001100000000010000000000000100;		 //LW		$1 , $4(0)  -> load the content of address (content of reg 0 + 4=4) in ram to reg1 =3
   inst_mem[1] = 32'b10001100001000100000000000000101;		 //LW 	$2 , $5(1)	-> load the content of address (content of reg 3 + 5=8) in ram to reg2 =8
   inst_mem[2] = 32'b00000000001000100101000000100000;		 //add 	$10,$1,$2   -> add  the content of reg 1 and 2 then store it in reg 10 = 11
@@ -691,18 +1038,18 @@ module INST_MEM #(
   inst_mem[29] = 32'b00000000111011011101100000100010;	 //sub	$27,$7,$13 -> reg27= 10*/
 
   
- 
-//checking LW muliable times
-//
-// inst_mem[0] = 32'b10001100000000010000000000000100; //reg1=3
-//  inst_mem[1] = 32'b10001100001000100000000000000101; //reg2=8
-//  inst_mem[2] = 32'b10001100001000110000000000010001; //reg3=20
-//  inst_mem[3] = 32'b10001100000011110000000000101000; //reg15=14
-//  inst_mem[4] = 32'b10001100000100100000000000101100; //reg18=big
-//  inst_mem[5] = 32'b10001100000100110000000000101100; //reg19=big
-//  inst_mem[6] = 32'b10001100000101010000000000101100; //reg21=big_num
-//  inst_mem[7] = 32'b10101100000101010000000000000000;// m[0]=big_num
-//  inst_mem[8] = 32'b10001100000101100000000000000000;//reg22=big*/
+ /*
+checking LW muliable times
+
+ inst_mem[0] = 32'b10001100000000010000000000000100; //reg1=3
+  inst_mem[1] = 32'b10001100001000100000000000000101; //reg2=8
+  inst_mem[2] = 32'b10001100001000110000000000010001; //reg3=20
+  inst_mem[3] = 32'b10001100000011110000000000101000; //reg15=14
+  inst_mem[4] = 32'b10001100000100100000000000101100; //reg18=big
+  inst_mem[5] = 32'b10001100000100110000000000101100; //reg19=big
+  inst_mem[6] = 32'b10001100000101010000000000101100; //reg21=big_num
+  inst_mem[7] = 32'b10101100000101010000000000000000;// m[0]=big_num
+  inst_mem[8] = 32'b10001100000101100000000000000000;//reg22=big*/
   end
   
  
@@ -799,7 +1146,6 @@ module INST_MEM #(
 		
   */
   endmodule 
-
 
 //******************************************* MUX 2-1 *******************************************************************************
 
@@ -914,8 +1260,56 @@ module RAM #(
  // reg [data_width-1:0] mem [0:size - 1];
   
 initial begin
-  mem[0] = 32'b00000000000000000000000000000010; // 2
+	
+	
+	
+	//testcase 1
+	/* mem[0] = 32'h00000003;
+	 mem[1] = 32'h00000008;
+	 mem[2] = 32'h00000005;
+	 mem[3] = 32'h00000002;
+	 mem[4] = 32'h00000032;
+	 mem[5] = 32'h00000032;	
+	 mem[6] = 32'h00000032;
+	 mem[7] = 32'h00000032;
+	 mem[8] = 32'h00000032;
+	 mem[9] = 32'h00000032;
+	 mem[10] = 32'h00000032;
+	 mem[11] = 32'h00000032;
+	 mem[12] = 32'h00000032;
+	 mem[13] = 32'h00000032;
+	 mem[14] = 32'h00000032;
+	 mem[15] = 32'h00000032;
+	 mem[16] = 32'h00000032;
+	 mem[17] = 32'h00000068;
+	 mem[18] = 32'h00000065;
+	 mem[19] = 32'h0000006C;
+	 mem[20] = 32'h0000006C;
+	 mem[21] = 32'h0000006F;
+	 mem[22] = 32'h00000000;*/
+	
+	//testcase 4 & 6
+  //no need for RAM
+  
+	//testcase 3
+	/*
+  mem[0] = 32'h00000023; // 0x23 (35)
+  mem[1] = 32'h0000002F; // 0x2F (47)
+  mem[2] = 32'h0000001A; // 0x1A (26)
+  */
+  
+/*
+	//testcaase 2
+  mem[0] = 32'b00000000000000000000000000000011; // 3
   mem[1] = 32'b00000000000000000000000000000011; // 3
+  mem[2] = 32'b00000000000000000000000000000011; // 3
+  mem[3] = 32'b00000000000000000000000000000011; // 3
+  mem[4] = 32'b00000000000000000000000000000011; // 3*/
+/*
+
+
+  mem[0] = 32'b00000000000000000000000000000011; // 3
+  mem[1] = 32'b00000000000000000000000000000101; // 5
   mem[2] = 32'b00000000000000000000000000001000; // 8
   mem[3] = 32'b00000000000000000000000000001100; // 12
   mem[4] = 32'b00000000000000000000000000000110; // 6
@@ -929,8 +1323,8 @@ initial begin
   mem[12]= 32'b00000000000000000000000000000111; // 7
   mem[13]= 32'b00100000000000000000000000000000; // big number -for overflow check-
   mem[14]= 32'b11110000000000000000000000000000; // big number -for overflow check-
-
-
+*/
+//$readmemh("data_memory_initialization", mem );
 end
   
      //    assign data_out = mem[address >> 2];
@@ -963,26 +1357,22 @@ end
   
 endmodule
 
-
-/* if (address >= 1024) begin
-          // Error: Address out of bounds.
-          data_out <= 32'hFFFFFFFF;
-          error <= 1;
-        end 
-        else begin*/
-		  
-		  /* if (address >= 1024) begin
-          // Error: Address out of bounds.
-          data_out <= 32'hEEEEEEEE; 
-          error <= 1;
-        end else begin*/
 		  
 //************************************************** Register File *******************************************************************
 
-module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2);
+
+
+
+
+
+
+
+
+module RegisterFile(Clock,Reset,ReadReg1,ReadReg2,WriteReg,WriteData,Reg_write_Control,ReadData1,ReadData2,PC_Store);
 input Clock , Reset;
 input [4:0] ReadReg1 , ReadReg2 , WriteReg;
 input Reg_write_Control;
+input PC_Store;
 input [31:0] WriteData;
 output [31:0] ReadData1;
 output [31:0] ReadData2;
@@ -1029,7 +1419,7 @@ RegFile_regn Reg_27(WriteData, Reset, Reg_Enable[27], Clock,Registers_Read[27]);
 RegFile_regn Reg_28(WriteData, Reset, Reg_Enable[28], Clock,Registers_Read[28]);
 RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
-RegFile_regn Reg_31(WriteData, Reset, Reg_Enable[31], Clock,Registers_Read[31]);
+RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);
 
 
 
@@ -1136,6 +1526,8 @@ module RegFile_regn(R, Resetn, Rin, Clock, Q);
         else if (Rin)
             Q <= R;
 endmodule
+
+
 
 
 

@@ -4,7 +4,7 @@ module Main_tb;
   reg clk;      // Clock signal
   reg reset;    // Reset signal
   wire [31:0] ReadData1;
-wire [31:0] ReadData2;
+  wire [31:0] ReadData2;
   wire [31:0] Writedata;
 
   // Instantiate the Main module
@@ -23,7 +23,7 @@ wire [31:0] ReadData2;
 
   initial begin
     // Initialize signals
-    clk = 0;
+	clk = 0;
     reset = 0;
 
     // Apply reset
