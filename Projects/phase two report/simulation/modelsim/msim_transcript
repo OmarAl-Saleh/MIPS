@@ -1,0 +1,223 @@
+# Reading pref.tcl
+# do Main_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/sign_extend.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:54 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/sign_extend.v 
+# -- Compiling module sign_extend
+# 
+# Top level modules:
+# 	sign_extend
+# End time: 11:39:54 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/RegisterFile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:54 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/RegisterFile.v 
+# -- Compiling module RegisterFile
+# -- Compiling module RegFile_decoder
+# -- Compiling module RegFile_regn
+# 
+# Top level modules:
+# 	RegisterFile
+# End time: 11:39:54 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/RAM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:54 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/RAM.v 
+# -- Compiling module RAM
+# ** Warning: E:/Omar/CPU Design/MIPS/Modules/RAM.v(96): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# 
+# Top level modules:
+# 	RAM
+# End time: 11:39:54 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/PC.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:54 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/PC.v 
+# -- Compiling module PC
+# 
+# Top level modules:
+# 	PC
+# End time: 11:39:54 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/MUX5bit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/MUX5bit.v 
+# -- Compiling module MUX5bit
+# 
+# Top level modules:
+# 	MUX5bit
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/MUX4_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/MUX4_1.v 
+# -- Compiling module MUX4_1
+# 
+# Top level modules:
+# 	MUX4_1
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/MUX2_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/MUX2_1.v 
+# -- Compiling module MUX2_1
+# 
+# Top level modules:
+# 	MUX2_1
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/Main.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/Main.v 
+# -- Compiling module Main
+# 
+# Top level modules:
+# 	Main
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/INST_MEM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/INST_MEM.v 
+# -- Compiling module INST_MEM
+# 
+# Top level modules:
+# 	INST_MEM
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/ControlUnit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/ControlUnit.v 
+# -- Compiling module ControlUnit
+# 
+# Top level modules:
+# 	ControlUnit
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/branch_control.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/branch_control.v 
+# -- Compiling module branch_control
+# 
+# Top level modules:
+# 	branch_control
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/alu_control.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/alu_control.v 
+# -- Compiling module alu_control
+# 
+# Top level modules:
+# 	alu_control
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/ALU.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/ALU.v 
+# -- Compiling module ALU
+# 
+# Top level modules:
+# 	ALU
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Modules {E:/Omar/CPU Design/MIPS/Modules/adder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:55 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Modules" E:/Omar/CPU Design/MIPS/Modules/adder.v 
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	adder
+# End time: 11:39:55 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/phase\ two\ report {E:/Omar/CPU Design/phase two report/Main_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:56 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/phase two report" E:/Omar/CPU Design/phase two report/Main_tb.v 
+# -- Compiling module Main_tb
+# 
+# Top level modules:
+# 	Main_tb
+# End time: 11:39:56 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/phase\ two\ report {E:/Omar/CPU Design/phase two report/Main_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 11:39:56 on Dec 04,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/phase two report" E:/Omar/CPU Design/phase two report/Main_tb.v 
+# -- Compiling module Main_tb
+# 
+# Top level modules:
+# 	Main_tb
+# End time: 11:39:56 on Dec 04,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  Main_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" Main_tb 
+# Start time: 11:39:56 on Dec 04,2023
+# Loading work.Main_tb
+# Loading work.Main
+# Loading work.PC
+# Loading work.INST_MEM
+# Loading work.sign_extend
+# Loading work.ControlUnit
+# Loading work.MUX5bit
+# Loading work.RegisterFile
+# Loading work.RegFile_decoder
+# Loading work.RegFile_regn
+# Loading work.alu_control
+# Loading work.MUX2_1
+# Loading work.ALU
+# Loading work.RAM
+# Loading work.MUX4_1
+# Loading work.adder
+# Loading work.branch_control
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'control_inst'.  Expected 15, found 14.
+#    Time: 0 ps  Iteration: 0  Instance: /Main_tb/main_inst/control_inst File: E:/Omar/CPU Design/MIPS/Modules/Main.v Line: 78
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Modules/Main.v(78): [TFMPC] - Missing connection for port 'PC_Store'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'reg_file_inst'.  Expected 10, found 9.
+#    Time: 0 ps  Iteration: 0  Instance: /Main_tb/main_inst/reg_file_inst File: E:/Omar/CPU Design/MIPS/Modules/Main.v Line: 115
+# ** Warning: (vsim-3722) E:/Omar/CPU Design/MIPS/Modules/Main.v(115): [TFMPC] - Missing connection for port 'PC_Store'.
+# Trace back: Error QStructure::sort: invalid command name ""
+#   <6:C:/mtitcl/vsim/qstructure.tc_:2478: ::QStructure::sort .main_pane.structure 0 descending
+#   <5:eval:1: ::QStructure::structsort .main_pane.structure 0 descending
+#   <4:eval:1: ::namespace inscope ::QStructure {structsort .main_pane.structure} 0 descending
+#   >3:proc:26: ::.main_pane.structure.interior.cs.body.struct sort 0 descending
+#   >2:proc:10: ::.main_pane.structure.interior.cs.body.struct _initializeSortColumn
+#   <1:eval:1: ::namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _initializeSortColumn}
+add wave -r /*
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : E:/Omar/CPU Design/phase two report/Main_tb.v(39)
+#    Time: 350 ns  Iteration: 0  Instance: /Main_tb
+# Break in Module Main_tb at E:/Omar/CPU Design/phase two report/Main_tb.v line 39
+# End time: 12:24:49 on Dec 04,2023, Elapsed time: 0:44:53
+# Errors: 0, Warnings: 4

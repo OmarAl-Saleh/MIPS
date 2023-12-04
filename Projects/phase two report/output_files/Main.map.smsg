@@ -1,0 +1,3 @@
+Warning (10268): Verilog HDL information at PC.v(14): always construct contains both blocking and non-blocking assignments File: E:/Omar/CPU Design/MIPS/Modules/PC.v Line: 14
+Info (10281): Verilog HDL Declaration information at Main.v(71): object "Branch" differs only in case from object "branch" in the same scope File: E:/Omar/CPU Design/MIPS/Modules/Main.v Line: 71
+Warning (10268): Verilog HDL information at alu_control.v(11): always construct contains both blocking and non-blocking assignments File: E:/Omar/CPU Design/MIPS/Modules/alu_control.v Line: 11
