@@ -187,6 +187,7 @@ end
 		 reg_Jump     = 2'b01;
 		 reg_pc_load  = 1'b1;
 		 reg_PC_Store = 1'b0;
+		 reg_PC_Store = 1'b0;
 		 
 	end
 	

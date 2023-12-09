@@ -8,7 +8,7 @@ module ID_EX_Register (
 	Out_offset,Out_Rs,Out_Rt,Out_Rd,
 	// control unit input signals
 	// EX signals
-	In_ALUSrc, In_ALUOp ,In_RegDst,In_func, In_shamt,
+	In_ALUSrc, In_ALUOp ,In_RegDst,
 	
 	// MEM signals
 	In_MemWrite,In_MemRead,
@@ -18,7 +18,7 @@ module ID_EX_Register (
 	
 	// control unit output signals
 	// EX signals
-	Out_ALUSrc, Out_ALUOp ,Out_RegDst,Out_func, Out_shamt,
+	Out_ALUSrc, Out_ALUOp ,Out_RegDst,
 	
 	// MEM signals
 	Out_MemWrite,Out_MemRead,
@@ -40,9 +40,6 @@ input [3:0] In_ALUOp;
 input [1:0] In_MemtoReg;
 input [1:0] In_RegDst;
 
-input [5:0] In_func;
-
-input [4:0] In_shamt;
 
 output reg [31:0]  Out_Reg_File_Data1, Out_Reg_File_Data2, Out_offset ;
 
@@ -53,10 +50,6 @@ output reg Out_ALUSrc,Out_MemWrite,Out_MemRead,Out_RegWrite;
 output reg [3:0] Out_ALUOp;
 output reg [1:0] Out_MemtoReg;
 output reg [1:0] Out_RegDst;
-
-output reg [5:0] Out_func;
-
-output reg [5:0] Out_shamt;
 						 
 						 
 always @(posedge clk)
@@ -82,9 +75,6 @@ always @(posedge clk)
 			Out_MemtoReg<=2'b0;
 			Out_RegDst<=2'b0;
 			
-			Out_func<=6'b000000;
-			Out_shamt<=5'b00000;
-			
 			
 			end
 			
@@ -107,9 +97,6 @@ always @(posedge clk)
 			Out_ALUOp<=In_ALUOp;
 			Out_MemtoReg<=In_MemtoReg;
 			Out_RegDst<=In_RegDst;
-			
-			Out_func<=In_func;
-			Out_shamt<=In_shamt;
 			
 			end
 			

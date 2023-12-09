@@ -150,7 +150,7 @@ module RegFile_regn(R, Resetn, Rin, Clock, Q);
     output [n-1:0] Q;
     reg [n-1:0] Q;
 
-    always @(negedge Clock)// we made it negative for pipeline implementation
+    always @(posedge Clock)
         if (Resetn)
             Q <= 0;
         else if (Rin)
