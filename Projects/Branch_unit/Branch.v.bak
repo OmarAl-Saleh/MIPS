@@ -1,0 +1,11 @@
+module Branch(
+input Branch_Flag,
+input [31:0] Data1,
+input [31:0] Data2,
+input [15:0] Target,
+output [31:0] Branch_address,
+output zero
+);
+
+
+endmodule 
