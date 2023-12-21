@@ -1,7 +1,7 @@
-Analysis & Elaboration Status : Successful - Sat Dec 09 22:26:26 2023
-Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+Analysis & Elaboration Status : Successful - Thu Dec 21 07:10:27 2023
+Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : Branch
-Top-level Entity Name : Branch
+Top-level Entity Name : Branch_tb
 Family : MAX 10
 Total logic elements : N/A until Partition Merge
     Total combinational functions : N/A until Partition Merge

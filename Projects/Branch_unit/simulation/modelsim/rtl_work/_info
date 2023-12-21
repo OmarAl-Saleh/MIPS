@@ -1,56 +1,61 @@
 m255
 K4
 z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
 13
 !s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dD:/CPU/Branch_unit/simulation/modelsim
+Z0 dE:/Omar/CPU Design/MIPS/Projects/Branch_unit/simulation/modelsim
 vBranch
-Z1 !s110 1702150103
+!s110 1703132100
 !i10b 1
-!s100 JZGnnXHF]iWK<jz>ohgCE1
-I<^ZA1LkEI<BW>GKJz:@mF2
+!s100 YoYKIzzDm_?M2KKoKW9M00
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Ic>[FNL2D_R6>B;MHlmG>L0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1702147498
-8D:/CPU/Branch_unit/Branch.v
-FD:/CPU/Branch_unit/Branch.v
-L0 1
-Z3 OV;L;10.5b;63
+w1703132086
+8E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v
+FE:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v
+!i122 0
+L0 1 72
+Z3 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z4 !s108 1702150103.000000
-!s107 D:/CPU/Branch_unit/Branch.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/Branch_unit|D:/CPU/Branch_unit/Branch.v|
+!s108 1703132100.000000
+!s107 E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit|E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v|
 !i113 1
-Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work +incdir+D:/CPU/Branch_unit
-Z7 tCvgOpt 0
+Z4 o-vlog01compat -work work
+Z5 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit}
+Z6 tCvgOpt 0
 n@branch
 vBranch_tb
-R1
+!s110 1703132101
 !i10b 1
-!s100 o6KE2Yad18@EUYKCF3<m91
-I<hKN]5Lb1ezdLHz<R=10U3
+!s100 niYUjXZDiXZM<j>MVAl[B3
+R1
+I:Qd9_c9H<h8^_TeYalejG3
 R2
 R0
-w1702150095
-8D:/CPU/Branch_unit/Branch_tb.v
-FD:/CPU/Branch_unit/Branch_tb.v
-L0 1
+w1703129372
+8E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v
+FE:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v
+!i122 2
+L0 1 60
 R3
 r1
 !s85 0
 31
-R4
-!s107 D:/CPU/Branch_unit/Branch_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/CPU/Branch_unit|D:/CPU/Branch_unit/Branch_tb.v|
+!s108 1703132101.000000
+!s107 E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit|E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v|
 !i113 1
+R4
 R5
 R6
-R7
 n@branch_tb

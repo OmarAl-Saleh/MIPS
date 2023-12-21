@@ -5,12 +5,13 @@ module ForwardingUnit (
     input [4:0] rd_MEM_WB,
     input RegWrite_EX_MEM,
     input RegWrite_MEM_WB,
-    output reg [1:0] forwardA,
+    output reg [1:0] forwardA, 
     output reg [1:0] forwardB
 );
 
 // Forwarding logic for ALU inputs
-always @* begin
+always@(*)
+begin
     // Default: No forwarding
     forwardA = 2'b00;
     forwardB = 2'b00;
@@ -30,4 +31,4 @@ always @* begin
     end
 end
 
-endmodule
+endmodule 

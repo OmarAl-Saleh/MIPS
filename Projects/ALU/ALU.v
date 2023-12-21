@@ -5,7 +5,7 @@ module ALU(
     input [3:0] ALUControl, // 4-bit ALU control
     input [4:0] ShiftAmount, // 5-bit input for shift amount
     output reg [31:0] ALUOut, // 32-bit output
-    output reg Zero // Zero flag
+    //output reg Zero // Zero flag (omar edit)
    // output reg Overflow, // Overflow flag
    // output reg CarryOut // Carry-out flag
 );

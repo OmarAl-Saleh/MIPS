@@ -1,40 +1,50 @@
-# Reading C:/intelFPGA_lite/18.0/modelsim_ase/tcl/vsim/pref.tcl
+# Reading pref.tcl
 # do Branch_run_msim_rtl_verilog.do
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
 # }
 # vlib rtl_work
 # vmap work rtl_work
-# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
 # vmap work rtl_work 
-# Copying C:/intelFPGA_lite/18.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+D:/CPU/Branch_unit {D:/CPU/Branch_unit/Branch.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:28:23 on Dec 09,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/CPU/Branch_unit" D:/CPU/Branch_unit/Branch.v 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Branch_unit {E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 07:15:00 on Dec 21,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit" E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v 
 # -- Compiling module Branch
 # 
 # Top level modules:
 # 	Branch
-# End time: 22:28:23 on Dec 09,2023, Elapsed time: 0:00:00
+# End time: 07:15:00 on Dec 21,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# 
-# vlog -vlog01compat -work work +incdir+D:/CPU/Branch_unit {D:/CPU/Branch_unit/Branch_tb.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:28:23 on Dec 09,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/CPU/Branch_unit" D:/CPU/Branch_unit/Branch_tb.v 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Branch_unit {E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 07:15:01 on Dec 21,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit" E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v 
 # -- Compiling module Branch_tb
 # 
 # Top level modules:
 # 	Branch_tb
-# End time: 22:28:23 on Dec 09,2023, Elapsed time: 0:00:00
+# End time: 07:15:01 on Dec 21,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/Branch_unit {E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 07:15:01 on Dec 21,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/Branch_unit" E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v 
+# -- Compiling module Branch_tb
+# 
+# Top level modules:
+# 	Branch_tb
+# End time: 07:15:01 on Dec 21,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  Branch_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" Branch_tb 
-# Start time: 22:28:23 on Dec 09,2023
+# Start time: 07:15:01 on Dec 21,2023
 # Loading work.Branch_tb
 # Loading work.Branch
 # 
@@ -44,8 +54,8 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : D:/CPU/Branch_unit/Branch_tb.v(54)
+# ** Note: $stop    : E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v(54)
 #    Time: 130 ps  Iteration: 0  Instance: /Branch_tb
-# Break in Module Branch_tb at D:/CPU/Branch_unit/Branch_tb.v line 54
-# End time: 22:29:48 on Dec 09,2023, Elapsed time: 0:01:25
+# Break in Module Branch_tb at E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v line 54
+# End time: 07:15:45 on Dec 21,2023, Elapsed time: 0:00:44
 # Errors: 0, Warnings: 0

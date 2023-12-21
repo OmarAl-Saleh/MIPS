@@ -1,4 +1,7 @@
-|Branch
+|Branch_tb
+
+
+|Branch_tb|Branch:uut
 Branch_Flag => zero.OUTPUTSELECT
 ALUOp[0] => Equal0.IN3
 ALUOp[0] => Equal1.IN1

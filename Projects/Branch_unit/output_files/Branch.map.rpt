@@ -1,6 +1,6 @@
 Analysis & Elaboration report for Branch
-Sat Dec 09 22:26:26 2023
-Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+Thu Dec 21 07:10:27 2023
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
 ---------------------
@@ -9,17 +9,19 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Analysis & Elaboration Settings
-  5. Analysis & Elaboration Messages
+  4. Parameter Settings for User Entity Instance: Top-level Entity: |Branch_tb
+  5. Analysis & Elaboration Settings
+  6. Port Connectivity Checks: "Branch:uut"
+  7. Analysis & Elaboration Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2018  Intel Corporation. All rights reserved.
+Copyright (C) 2020  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -29,17 +31,18 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
 
 
 
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Successful - Sat Dec 09 22:26:26 2023       ;
-; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Analysis & Elaboration Status      ; Successful - Thu Dec 21 07:10:27 2023       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Branch                                      ;
-; Top-level Entity Name              ; Branch                                      ;
+; Top-level Entity Name              ; Branch_tb                                   ;
 ; Family                             ; MAX 10                                      ;
 ; Total logic elements               ; N/A until Partition Merge                   ;
 ;     Total combinational functions  ; N/A until Partition Merge                   ;
@@ -71,13 +74,23 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Branch_tb ;
++----------------+-------+--------------------------------------------------+
+; Parameter Name ; Value ; Type                                             ;
++----------------+-------+--------------------------------------------------+
+; CLK_PERIOD     ; 10    ; Signed Integer                                   ;
++----------------+-------+--------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------------------------------------------------------+
 ; Analysis & Elaboration Settings                                                                            ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; 10M40DAF256C7G     ;                    ;
-; Top-level entity name                                            ; Branch             ; Branch             ;
+; Top-level entity name                                            ; Branch_tb          ; Branch             ;
 ; Family name                                                      ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -157,25 +170,38 @@ refer to the applicable agreement for further details.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Branch:uut"                                                                                   ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Branch_address ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; zero           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +---------------------------------+
 ; Analysis & Elaboration Messages ;
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
-    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Sat Dec 09 22:26:16 2023
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Thu Dec 21 07:10:18 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Branch -c Branch --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file branch.v
-    Info (12023): Found entity 1: Branch File: D:/CPU/Branch_unit/Branch.v Line: 1
+    Info (12023): Found entity 1: Branch File: E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file branch_tb.v
-    Info (12023): Found entity 1: Branch_tb File: D:/CPU/Branch_unit/Branch_tb.v Line: 1
-Info (12127): Elaborating entity "Branch" for the top level hierarchy
-Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4702 megabytes
-    Info: Processing ended: Sat Dec 09 22:26:26 2023
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (12023): Found entity 1: Branch_tb File: E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v Line: 1
+Info (12127): Elaborating entity "Branch_tb" for the top level hierarchy
+Warning (10755): Verilog HDL warning at Branch_tb.v(31): assignments to clk create a combinational loop File: E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v Line: 31
+Warning (10175): Verilog HDL warning at Branch_tb.v(54): ignoring unsupported system task File: E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v Line: 54
+Info (12128): Elaborating entity "Branch" for hierarchy "Branch:uut" File: E:/Omar/CPU Design/MIPS/Projects/Branch_unit/Branch_tb.v Line: 27
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4704 megabytes
+    Info: Processing ended: Thu Dec 21 07:10:27 2023
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:20
 
 

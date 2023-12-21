@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 module ForwardingUnit_tb;
 
@@ -51,8 +51,21 @@ module ForwardingUnit_tb;
         rd_MEM_WB = 0; // No forwarding
         RegWrite_EX_MEM = 0;
         RegWrite_MEM_WB = 0;
+		  
+		   #10; // Wait for 10ns
+			// double data hazards
+        rs1_ID_EX = 5;
+        rs2_ID_EX = 6;
+        rd_EX_MEM = 5; // Forwarding condition for rs1 from EX/MEM
+        rd_MEM_WB = 5; // Forwarding condition for rs2 from MEM/WB
+        RegWrite_EX_MEM = 1;
+        RegWrite_MEM_WB = 1;
+
 
         // Continue with other scenarios...
+		  
     end
+	 
+	 initial #100 $stop;
 
 endmodule

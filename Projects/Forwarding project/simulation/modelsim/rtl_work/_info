@@ -1,0 +1,61 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/Forwarding project/simulation/modelsim
+vForwardingUnit
+Z1 !s110 1703130941
+!i10b 1
+!s100 ;GmR1Dmhd^K>OhU=K=FjV0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IihfV]91g5e;e=6Y9S?g<L0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1703130578
+8E:/Omar/CPU Design/Forwarding project/ForwardingUnit.v
+FE:/Omar/CPU Design/Forwarding project/ForwardingUnit.v
+!i122 0
+L0 1 34
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1703130940.000000
+!s107 E:/Omar/CPU Design/Forwarding project/ForwardingUnit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Forwarding project|E:/Omar/CPU Design/Forwarding project/ForwardingUnit.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/Forwarding project}
+Z7 tCvgOpt 0
+n@forwarding@unit
+vForwardingUnit_tb
+R1
+!i10b 1
+!s100 ]6L2gj4Li4N5CJ;UIKO?U3
+R2
+I1i<k32_oUD7A6>M3]WhXN2
+R3
+R0
+w1703130852
+8E:/Omar/CPU Design/Forwarding project/ForwardingUnit_tb.v
+FE:/Omar/CPU Design/Forwarding project/ForwardingUnit_tb.v
+!i122 1
+L0 3 69
+R4
+r1
+!s85 0
+31
+!s108 1703130941.000000
+!s107 E:/Omar/CPU Design/Forwarding project/ForwardingUnit_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Forwarding project|E:/Omar/CPU Design/Forwarding project/ForwardingUnit_tb.v|
+!i113 1
+R5
+R6
+R7
+n@forwarding@unit_tb
