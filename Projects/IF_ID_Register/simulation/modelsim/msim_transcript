@@ -10,41 +10,41 @@
 # Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/IF_ID {E:/Omar/CPU Design/IF_ID/IF_ID_Register.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/IF_ID_Register {E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:33:09 on Nov 27,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/IF_ID" E:/Omar/CPU Design/IF_ID/IF_ID_Register.v 
+# Start time: 15:37:03 on Dec 30,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register" E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register.v 
 # -- Compiling module IF_ID_Register
 # 
 # Top level modules:
 # 	IF_ID_Register
-# End time: 10:33:09 on Nov 27,2023, Elapsed time: 0:00:00
+# End time: 15:37:03 on Dec 30,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/IF_ID {E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/IF_ID_Register {E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:33:09 on Nov 27,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/IF_ID" E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v 
+# Start time: 15:37:03 on Dec 30,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register" E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v 
 # -- Compiling module IF_ID_Register_tb
 # 
 # Top level modules:
 # 	IF_ID_Register_tb
-# End time: 10:33:09 on Nov 27,2023, Elapsed time: 0:00:00
+# End time: 15:37:03 on Dec 30,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/IF_ID {E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v}
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/MIPS/Projects/IF_ID_Register {E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 10:33:09 on Nov 27,2023
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/IF_ID" E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v 
+# Start time: 15:37:03 on Dec 30,2023
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register" E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v 
 # -- Compiling module IF_ID_Register_tb
 # 
 # Top level modules:
 # 	IF_ID_Register_tb
-# End time: 10:33:09 on Nov 27,2023, Elapsed time: 0:00:00
+# End time: 15:37:03 on Dec 30,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  IF_ID_Register_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" IF_ID_Register_tb 
-# Start time: 10:33:09 on Nov 27,2023
+# Start time: 15:37:03 on Dec 30,2023
 # Loading work.IF_ID_Register_tb
 # Loading work.IF_ID_Register
 # 
@@ -54,8 +54,8 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v(82)
+# ** Note: $stop    : E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v(82)
 #    Time: 150 ns  Iteration: 0  Instance: /IF_ID_Register_tb
-# Break in Module IF_ID_Register_tb at E:/Omar/CPU Design/IF_ID/IF_ID_Register_tb.v line 82
-# End time: 10:36:17 on Nov 27,2023, Elapsed time: 0:03:08
+# Break in Module IF_ID_Register_tb at E:/Omar/CPU Design/MIPS/Projects/IF_ID_Register/IF_ID_Register_tb.v line 82
+# End time: 15:37:40 on Dec 30,2023, Elapsed time: 0:00:37
 # Errors: 0, Warnings: 0

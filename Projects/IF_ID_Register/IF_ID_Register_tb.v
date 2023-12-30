@@ -51,8 +51,8 @@ module IF_ID_Register_tb;
 	 
 	 reset = 0;
     enable = 0;// hazard signal
-    Instruction_in = 32'hFFFFFFFF;
-    PC_in = 32'h00000001;
+    Instruction_in = 32'h55555555;
+    PC_in = 32'h00000002;
     Branch_Control = 0;
 	 
 	 	 #20;

@@ -7,21 +7,24 @@ input reset
 );
 
 // **************************************** Fetch Stage **************************************************************************
+
+ wire Branch_Zero_Signal ; // we will use it in pc load
 //PC
- //wire [31:0] pc_final;//input
+ wire [31:0] pc_final;//input
  wire [31:0] pc_out;//output
  wire [31:0] next_pc;//pc+4
  wire [31:0] pc_inc;//4
  assign pc_inc = 32'b00000000000000000000000000000100;
- //wire pc_load;//control
+ wire PC_write;//control
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
     .clk(clk),
     .reset(reset),
-	 .target(next_pc),
-	 //.pc_load(pc_load), second edition
-	 .pc_load(1),
+	// .target(next_pc),
+	.target(pc_final),
+	 .pc_load(PC_write), //second edition come from hazard detection unit
+	// .pc_load(1),
     .pc(pc_out)
   );
 //end of PC
@@ -88,16 +91,16 @@ wire [5:0] IF_ID_funct;
 wire [15:0] IF_ID_addrs;
 wire [25:0] IF_ID_jump_offset;
 
+wire IF_ID_write ,Branch ; // the enable signal that come from hazard unit and branch signal from control Unit
 
 IF_ID_Register IF_ID_R (
     .clk(clk),
     .reset(reset),
-	 // .enable(enable), second edition
-    .enable(1),
+    .enable(~(IF_ID_write)),// I make it negative because the case of first instruction when no instruction is in ID stage 
     .Instruction_in(inst_out), // the output instruction from Instruction Memory
     .PC_in(next_pc),
 //    .Branch_Control(Branch_Control), second edition
-    .Branch_Control(0),
+    .Branch_Control(Branch & Branch_Zero_Signal), // if we catch branch depandancy
     .Instruction_out(IF_ID_Instruction_out),
     .PC_out(IF_ID_PC_out),// Maybe I must implement the pc in every register but know I will not do it 
 	 .opcode(IF_ID_opcode),
@@ -106,7 +109,7 @@ IF_ID_Register IF_ID_R (
     .rd(IF_ID_rd),
     .shamt(IF_ID_shamt),
     .funct(IF_ID_funct),
-    .addr(IF_ID_addrs),
+    .addr(IF_ID_addrs),// use for calculate the branch target address
 	 .jump(IF_ID_jump_offset)
   );
 	
@@ -130,7 +133,7 @@ sign_extend extender (
 
 //------------------------------------
 //ControlUnit
-  wire ALUSrc, MemWrite, MemRead, RegWrite,Branch;
+  wire ALUSrc, MemWrite, MemRead, RegWrite;
   wire [3:0] ALUOp;
   wire [1:0] RegDst;
   wire [1:0] MemtoReg;
@@ -160,7 +163,7 @@ ControlUnit control_inst (
 
 // Reg_File
 
-    wire [4:0] write_reg_input; 
+    wire [4:0] write_reg_input;
    
     wire [31:0] WB_Writedata; // we use it to hold the data from wb to register file to write it
 	 wire [4:0] MEM_WB_rd;
@@ -168,6 +171,8 @@ ControlUnit control_inst (
 	 
 	 wire [31:0] ReadData1;
     wire [31:0] ReadData2;
+	
+	
 	
 
 	  RegisterFile reg_file_inst (
@@ -183,6 +188,116 @@ ControlUnit control_inst (
 		  .PC_Store(PC_Store)
       
     );
+	 wire [31:0] Branch_address;
+	 /////////////////////////////////////////second edition/////////////////////////////////////////////////////////////
+	 
+	 // implement the branch forwarding Unit
+	 
+	 wire [4:0] EX_MEM_rd,ID_EX_rd; // we need to use the rd in branch forwarding;
+	 wire ID_EX_RegWrite , EX_MEM_RegWrite;
+	 wire [1:0] Branch_Select_Forward_A ,Branch_Select_Forward_B;
+	 wire [31:0] EX_MEM_ALU_Result ;
+	 wire [31:0] MEM_WB_RAM_Data;
+	  
+	 wire [31:0] Final_Branch_ReadData1;
+    wire [31:0] Final_Branch_ReadData2;// the output of forwarding MUXES
+	 
+	  ForwardingUnit Forwarding_Branch (
+        .rs1_ID_EX(IF_ID_rs),
+        .rs2_ID_EX(IF_ID_rt),
+        .rd_EX_MEM(EX_MEM_rd),
+        .rd_MEM_WB(MEM_WB_rd),
+        .RegWrite_EX_MEM(EX_MEM_RegWrite),
+        .RegWrite_MEM_WB(MEM_WB_RegWrite),
+        .forwardA(Branch_Select_Forward_A),
+        .forwardB(Branch_Select_Forward_B)
+    );
+	 
+MUX4_1 Branch_Forwarding_A_MUX(
+.a(ReadData1),
+.b(MEM_WB_RAM_Data),// MEM_WB 
+.c(EX_MEM_ALU_Result),// EX_MEM
+.select(Branch_Select_Forward_A),
+.out(Final_Branch_ReadData1)
+);
+
+MUX4_1 Branch_Forwarding_B_MUX(
+.a(ReadData2),
+.b(MEM_WB_RAM_Data),// I don't know where is he 
+.c(EX_MEM_ALU_Result),
+.select(Branch_Select_Forward_B),
+.out(Final_Branch_ReadData2)
+);
+	  
+	 
+	 // implement branch and jump unit with PC MUXES
+	 
+	 Branch Branch_Unit (
+    .Branch_Flag(Branch),
+    .ALUOp(ALUOp),
+    .Data1(Final_Branch_ReadData1),// There is a  forwarding on this signal
+    .Data2(Final_Branch_ReadData2),// There is a  forwarding on this signal
+    .Target(IF_ID_addrs),
+    .next_pc(IF_ID_PC_out),
+    .Branch_address(Branch_address),
+    .zero(Branch_Zero_Signal)
+  );
+  
+  // Calculate PC Target Address
+  wire [31:0] pc_branch , JUMP_Target_address;
+
+
+MUX2_1 pc_target(
+.a(IF_ID_PC_out),
+.b(Branch_address),
+.select((Branch & Branch_Zero_Signal)),
+.out(pc_branch)
+);	
+
+
+
+// implement jump here
+
+JUMP Jump_Unit (
+    .JUMP_FLAG(Jump_signal),
+    .jump_offset(IF_ID_jump_offset),
+    .next_pc(IF_ID_PC_out),
+    .JUMP_address(JUMP_Target_address)
+  );
+
+MUX4_1 pc_final_main(
+.a(pc_branch),
+.b(JUMP_Target_address),// I don't know where is he 
+.c(ReadData1),
+.select(Jump_signal),
+.out(pc_final)
+);
+// end branch and Jump implementation	 
+
+// Hazard dediction Unit 
+wire ID_EX_FLUSH , ID_EX_MemRead, EX_MEM_MemRead;
+
+wire [4:0]  ID_EX_rt;
+//wire IF_ID_write; we must put it in before the IF_ID Register
+Hazard_Unit Hazard_unit (
+    .D_rs(IF_ID_rs),
+    .D_rt(IF_ID_rt),
+    .EX_rt(ID_EX_rt),
+    .EX_MemRead(ID_EX_MemRead),
+	 .ID_EX_FLUSH(ID_EX_FLUSH), 
+	 .IF_ID_write(IF_ID_write),// we use it as enable to IF_ID REG
+    .PC_write(PC_write), 
+    .ID_Branch(Branch),
+    .MEM_rt(EX_MEM_rd),// we must implement it in EX/MEM REG
+    .MEM_MemRead(EX_MEM_MemRead)
+    
+  );
+	 
+// End of hazard detection Unit
+
+
+	 
+	 ////////////////////////////////////////second edition////////////////////////////////////////////////////////////////
 
     // ID_EX_Register
 	 // Signals
@@ -193,8 +308,8 @@ ControlUnit control_inst (
  // reg [3:0] In_ALUOp;
   //reg [1:0] In_MemtoReg, In_RegDst;
   wire [31:0] ID_EX_Reg_File_Data1, ID_EX_Reg_File_Data2;
-  wire [4:0] ID_EX_rs, ID_EX_rt, ID_EX_rd;
-  wire ID_EX_ALUSrc, ID_EX_MemWrite, ID_EX_MemRead, ID_EX_RegWrite;
+  wire [4:0] ID_EX_rs;
+  wire ID_EX_ALUSrc, ID_EX_MemWrite;
   wire [3:0] ID_EX_ALUOp;
   wire [1:0]ID_EX_MemtoReg, ID_EX_RegDst;
   wire [5:0] ID_EX_func;
@@ -203,7 +318,7 @@ ControlUnit control_inst (
   // Instantiate the module
   ID_EX_Register ID_EX_R (
     .clk(clk),
-    .reset(reset),
+    .reset(ID_EX_FLUSH),
     .In_Reg_File_Data1(ReadData1),
     .In_Reg_File_Data2(ReadData2),
     .In_offset(immediate_value),
@@ -279,14 +394,57 @@ wire [31:0] alu_second_input;
     );
 
 //end of MUX2_1 alu_sec_input
+
+
+/////////////////////////////////// second edition /////////////////////////////
+
+//ALU Forwarding Unit 
+
+	// wire [4:0] EX_MEM_rd; // we need to use the rd in branch forwarding;
+	// wire ID_EX_RegWrite , EX_MEM_RegWrite;
+	 wire [1:0] ALU_Select_Forward_A ,ALU_Select_Forward_B;
+	// wire [31:0] EX_MEM_ALU_Result ;
+	// wire [31:0] MEM_WB_RAM_Data;
+	  
+	 wire [31:0] Final_ALU_ReadData1;
+    wire [31:0] Final_ALU_ReadData2;// the output of forwarding MUXES
+	 
+	  ForwardingUnit Forwarding_ALU (
+        .rs1_ID_EX(ID_EX_rs),
+        .rs2_ID_EX(ID_EX_rt),
+        .rd_EX_MEM(EX_MEM_rd),
+        .rd_MEM_WB(MEM_WB_rd),
+        .RegWrite_EX_MEM(EX_MEM_RegWrite),
+        .RegWrite_MEM_WB(MEM_WB_RegWrite),
+        .forwardA(ALU_Select_Forward_A),
+        .forwardB(ALU_Select_Forward_B)
+    );
+	 ///// we are here 
+MUX4_1 ALU_Forwarding_A_MUX(
+.a(ID_EX_Reg_File_Data1),
+.b(MEM_WB_RAM_Data),// MEM_WB 
+.c(EX_MEM_ALU_Result),// EX_MEM
+.select(ALU_Select_Forward_A),
+.out(Final_ALU_ReadData1)
+);
+
+MUX4_1 ALU_Forwarding_B_MUX(
+.a(alu_second_input),
+.b(MEM_WB_RAM_Data),
+.c(EX_MEM_ALU_Result),
+.select(ALU_Select_Forward_A),
+.out(Final_ALU_ReadData2)
+);
+
+////////////////////////////////// second edition /////////////////////////////
 //ALU
 wire [31:0] alu_output;
 wire zero ;
 
 ALU alu (
 	 .clk(clk),
-    .A(ID_EX_Reg_File_Data1),
-    .B(alu_second_input),
+    .A(Final_ALU_ReadData1),
+    .B(Final_ALU_ReadData2),
     .ALUControl(Operation),
     .ShiftAmount(ID_EX_shamt),
 	 .branch_type(branch_type),
@@ -306,9 +464,9 @@ ALU alu (
  // reg [4:0] In_Rd;
   //reg In_MemWrite, In_MemRead, In_RegWrite;
  // reg [1:0] In_MemtoReg;
-  wire [31:0] EX_MEM_ALU_Result, EX_MEM_Write_Data;
-  wire [4:0] EX_MEM_rd;
-  wire EX_MEM_MemWrite, EX_MEM_MemRead, EX_MEM_RegWrite;
+  wire [31:0] EX_MEM_Write_Data;
+  //wire [4:0] EX_MEM_rd;
+  wire EX_MEM_MemWrite;
   wire [1:0] EX_MEM_MemtoReg;
 
   // Instantiate the module
@@ -366,7 +524,7 @@ RAM #(
   //reg [4:0] In_Rd;
   //reg In_RegWrite;
   //reg [1:0] In_MemtoReg;
-  wire [31:0] MEM_WB_RAM_Data, MEM_WB_ALU_Data;
+  wire [31:0] MEM_WB_ALU_Data;
  // wire [4:0] MEM_WB_rd; we must declare it before register file 
   //wire MEM_WB_RegWrite; 
   wire [1:0] MEM_WB_MemtoReg;

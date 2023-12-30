@@ -27,7 +27,7 @@ reg reg_ID_EX_FLUSH ,reg_IF_ID_write , reg_PC_write ;
 			if((D_rs == EX_rt) || (D_rt == EX_rt))
 				begin
 			
-				reg_ID_EX_FLUSH <= 1; //(Reset for ID_EX_REG) to select zeroes for the control mux that control the flow of ID/EX register
+				reg_ID_EX_FLUSH <= 1; // to select zeroes for the control mux that control the flow of ID/EX register
 				reg_IF_ID_write <= 0; // to disable the the IF/ID register so he can't load new values and keep his old value
 				reg_PC_write <= 0; // to disable the the PC so he can't load new values and keep his old value
 				
