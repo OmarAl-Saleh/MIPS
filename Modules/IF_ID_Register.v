@@ -38,11 +38,11 @@ output reg [31:0] PC_out ; // the pc output to decode stage
 always@(posedge clk)
 	begin
 		
-		if((enable == 1'b0) && (Branch_Control == 1'b0))
+		if((enable == 1'b0) )
 			begin
 	
-				if((reset == 1'b1)  )
-				// when to flush the register in reset status
+				if((reset == 1'b1) || (Branch_Control == 1'b1)  )
+				// case 3 : when to flush the register in reset status or when we catch a branch miss predict
 					begin
 				
 						Instruction_out <=32'b11100000000000000000000000000000; // nop
@@ -79,8 +79,7 @@ always@(posedge clk)
 			
 		//else 
 		// case 1 : when we have a branch miss prediction so we want to output a flush and delete the value that was store in the register
-		// case 2 : when we catch a hazard we want to keep the old value in the register so we do not do anything we remain the values as it 
-      
+		
 			/*begin
 			
 				Instruction_out <=32'b11100000000000000000000000000000; // nop

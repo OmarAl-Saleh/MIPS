@@ -22,6 +22,11 @@ reg reg_ID_EX_FLUSH ,reg_IF_ID_write , reg_PC_write ;
  always@(*)
  begin
  // first type of hazard is load-use hazard that occure when we find a depandancy between load instruction and its followed instruction
+ 
+ reg_ID_EX_FLUSH <= 0; // to solve test case 5 bug
+ reg_IF_ID_write <= 1; 
+ reg_PC_write <= 1; 
+				
 	if((EX_MemRead == 1'b1) && (ID_Branch == 1'b0))
 		begin
 			if((D_rs == EX_rt) || (D_rt == EX_rt))

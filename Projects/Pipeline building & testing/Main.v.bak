@@ -1,0 +1,53 @@
+module Main (
+input clk,
+input reset
+//output wire [31:0] ReadData1,
+//output wire [31:0] ReadData2,
+//output wire [31:0] Writedata
+);
+
+//PC
+ wire [31:0] pc_final;//input
+ wire [31:0] pc_out;//output
+ wire [31:0] next_pc;//pc+4
+ wire [31:0] pc_inc;//4
+ assign pc_inc = 32'b00000000000000000000000000000100;
+ wire pc_load;//control
+ 
+ PC #(.first_address(0),  .pc_inc(4) )
+ pc_inst (
+    .clk(clk),
+    .reset(reset),
+	 .target(pc_final),
+	 .pc_load(pc_load),
+//	 .branch_condition(Branch&zero),
+    .pc(pc_out)
+  );
+//end of PC
+//------------------------------------
+
+
+
+
+
+wire [31:0] pc_branch;
+
+
+MUX2_1 pc_target(
+.a(next_pc),
+.b(branch),
+//.select((Branch & zero)), second edition
+.select(0),
+.out(pc_branch)
+);	
+
+MUX4_1 pc_final_main(
+.a(pc_branch),
+.b(jump_target),
+.c(ReadData1),
+.select(Jump_signal),
+.select(2'b00),
+.out(pc_final)
+);
+	 
+endmodule 

@@ -1,0 +1,608 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/Pipeline/simulation/modelsim
+vadder
+Z1 !s110 1704112616
+!i10b 1
+!s100 nMj:U?@f@hDmajW^80=c73
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IzUNW3`Lb<o7[2IU3XU>CH3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1700795675
+8E:/Omar/CPU Design/MIPS/Modules/adder.v
+FE:/Omar/CPU Design/MIPS/Modules/adder.v
+!i122 19
+L0 1 7
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1704112616.000000
+!s107 E:/Omar/CPU Design/MIPS/Modules/adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/adder.v|
+!i113 1
+Z7 o-vlog01compat -work work
+Z8 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/MIPS/Modules}
+Z9 tCvgOpt 0
+vALU
+R1
+!i10b 1
+!s100 JfSd2`lO5`1HFAIjHf25d2
+R2
+IMiLcPZlMnl088ON92mZT<1
+R3
+R0
+R4
+8E:/Omar/CPU Design/MIPS/Modules/ALU.v
+FE:/Omar/CPU Design/MIPS/Modules/ALU.v
+!i122 18
+L0 1 95
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/ALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/ALU.v|
+!i113 1
+R7
+R8
+R9
+n@a@l@u
+valu_control
+R1
+!i10b 1
+!s100 FmB7E8a?9^g^U=1j@8oa_1
+R2
+I6OCU?h1zSEamoi;?^Sa8:3
+R3
+R0
+R4
+8E:/Omar/CPU Design/MIPS/Modules/alu_control.v
+FE:/Omar/CPU Design/MIPS/Modules/alu_control.v
+!i122 17
+L0 1 81
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/alu_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/alu_control.v|
+!i113 1
+R7
+R8
+R9
+vBranch
+Z10 !s110 1704112615
+!i10b 1
+!s100 YoYKIzzDm_?M2KKoKW9M00
+R2
+IAWeWKi0Y>jD_;z<XQe`d^3
+R3
+R0
+w1703132342
+8E:/Omar/CPU Design/MIPS/Modules/Branch.v
+FE:/Omar/CPU Design/MIPS/Modules/Branch.v
+!i122 2
+L0 1 72
+R5
+r1
+!s85 0
+31
+Z11 !s108 1704112615.000000
+!s107 E:/Omar/CPU Design/MIPS/Modules/Branch.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/Branch.v|
+!i113 1
+R7
+R8
+R9
+n@branch
+vControlUnit
+R1
+!i10b 1
+!s100 gRUaiJQIOX:N96XRi_9nd0
+R2
+I1b?jL6Eca?[Z2G=G9JW@b3
+R3
+R0
+w1702110769
+8E:/Omar/CPU Design/MIPS/Modules/ControlUnit.v
+FE:/Omar/CPU Design/MIPS/Modules/ControlUnit.v
+!i122 16
+L0 1 338
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/ControlUnit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/ControlUnit.v|
+!i113 1
+R7
+R8
+R9
+n@control@unit
+vEX_MEM_Register
+R1
+!i10b 1
+!s100 ^_X?NE7WaF9beMgCf41n_3
+R2
+I]BJ4]0d]iBzd92ibdHeG72
+R3
+R0
+w1701092484
+8E:/Omar/CPU Design/MIPS/Modules/EX_MEM_Register.v
+FE:/Omar/CPU Design/MIPS/Modules/EX_MEM_Register.v
+!i122 15
+L0 1 69
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/EX_MEM_Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/EX_MEM_Register.v|
+!i113 1
+R7
+R8
+R9
+n@e@x_@m@e@m_@register
+vForwardingUnit
+!s110 1704112614
+!i10b 1
+!s100 ;GmR1Dmhd^K>OhU=K=FjV0
+R2
+I<AUXkNM^ed1V85Ve3i;_G1
+R3
+R0
+w1703130578
+8E:/Omar/CPU Design/MIPS/Modules/ForwardingUnit.v
+FE:/Omar/CPU Design/MIPS/Modules/ForwardingUnit.v
+!i122 0
+L0 1 34
+R5
+r1
+!s85 0
+31
+Z12 !s108 1704112614.000000
+!s107 E:/Omar/CPU Design/MIPS/Modules/ForwardingUnit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/ForwardingUnit.v|
+!i113 1
+R7
+R8
+R9
+n@forwarding@unit
+vHazard_Unit
+R1
+!i10b 1
+!s100 Z_PiiDn<;6E9ik`R90Sbb2
+R2
+I4iWMca9Ug;]ThKD63W@S@1
+R3
+R0
+w1704112176
+8E:/Omar/CPU Design/MIPS/Modules/Hazard_Unit.v
+FE:/Omar/CPU Design/MIPS/Modules/Hazard_Unit.v
+!i122 14
+L0 1 87
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/Hazard_Unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/Hazard_Unit.v|
+!i113 1
+R7
+R8
+R9
+n@hazard_@unit
+vID_EX_Register
+R1
+!i10b 1
+!s100 X0Yg]AiI_k4jzPFWJEMPM2
+R2
+IfGZFDLV3[IS02@Gj`R?h81
+R3
+R0
+w1702127120
+8E:/Omar/CPU Design/MIPS/Modules/ID_EX_Register.v
+FE:/Omar/CPU Design/MIPS/Modules/ID_EX_Register.v
+!i122 13
+L0 1 123
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/MIPS/Modules/ID_EX_Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/ID_EX_Register.v|
+!i113 1
+R7
+R8
+R9
+n@i@d_@e@x_@register
+vIF_ID_Register
+R1
+!i10b 1
+!s100 LKfXk1TH0RS`Zzm_T:NOF0
+R2
+I=lQlmjbAlDHFS:A6bQUa60
+R3
+R0
+w1704108567
+8E:/Omar/CPU Design/MIPS/Modules/IF_ID_Register.v
+FE:/Omar/CPU Design/MIPS/Modules/IF_ID_Register.v
+!i122 12
+L0 1 104
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/IF_ID_Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/IF_ID_Register.v|
+!i113 1
+R7
+R8
+R9
+n@i@f_@i@d_@register
+vINST_MEM
+R10
+!i10b 1
+!s100 o>0V<;kI_?ZQFR^cm1_1b1
+R2
+IC<7:oXnWB>:V5XzjlX`<;3
+R3
+R0
+w1704112576
+8E:/Omar/CPU Design/MIPS/Modules/INST_MEM.v
+FE:/Omar/CPU Design/MIPS/Modules/INST_MEM.v
+!i122 11
+L0 1 341
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/INST_MEM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/INST_MEM.v|
+!i113 1
+R7
+R8
+R9
+n@i@n@s@t_@m@e@m
+vJUMP
+R10
+!i10b 1
+!s100 ZeFI=CNJ<CZ^7FlEQfA1?1
+R2
+I=KabCZWmYgWk]6S2KT>=l0
+R3
+R0
+w1703129372
+8E:/Omar/CPU Design/MIPS/Modules/JUMP.v
+FE:/Omar/CPU Design/MIPS/Modules/JUMP.v
+!i122 1
+L0 1 23
+R5
+r1
+!s85 0
+31
+R12
+!s107 E:/Omar/CPU Design/MIPS/Modules/JUMP.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/JUMP.v|
+!i113 1
+R7
+R8
+R9
+n@j@u@m@p
+vMain
+R1
+!i10b 1
+!s100 SMlMPka>aalc13n2K:2^<1
+R2
+I92?eZ2MUY6c:9XR0A41dU2
+R3
+R0
+w1704108773
+8E:/Omar/CPU Design/Pipeline/Main.v
+FE:/Omar/CPU Design/Pipeline/Main.v
+!i122 20
+L0 1 654
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Omar/CPU Design/Pipeline/Main.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Pipeline|E:/Omar/CPU Design/Pipeline/Main.v|
+!i113 1
+R7
+Z13 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/Pipeline}
+R9
+n@main
+vMain_tb
+!s110 1704112617
+!i10b 1
+!s100 X`1aPU<ni;@XKcTz?E<0V0
+R2
+I:3oUJAjl=UONMmCJC_a1e1
+R3
+R0
+w1704112582
+8E:/Omar/CPU Design/Pipeline/Main_tb.v
+FE:/Omar/CPU Design/Pipeline/Main_tb.v
+!i122 22
+L0 2 36
+R5
+r1
+!s85 0
+31
+!s108 1704112617.000000
+!s107 E:/Omar/CPU Design/Pipeline/Main_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Pipeline|E:/Omar/CPU Design/Pipeline/Main_tb.v|
+!i113 1
+R7
+R13
+R9
+n@main_tb
+vMEM_WB_Register
+R10
+!i10b 1
+!s100 2:jU]lCf]`0EYaZXQW42h3
+R2
+I7hKDL_SG4fzMLX?mO>XaU1
+R3
+R0
+w1701093286
+8E:/Omar/CPU Design/MIPS/Modules/MEM_WB_Register.v
+FE:/Omar/CPU Design/MIPS/Modules/MEM_WB_Register.v
+!i122 10
+L0 1 58
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/MEM_WB_Register.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/MEM_WB_Register.v|
+!i113 1
+R7
+R8
+R9
+n@m@e@m_@w@b_@register
+vMUX2_1
+R10
+!i10b 1
+!s100 3elYcW;]R_0459HTJ`g@Z1
+R2
+I`eS85^kWLT5l6C5UQ9?H12
+R3
+R0
+w1698120216
+8E:/Omar/CPU Design/MIPS/Modules/MUX2_1.v
+FE:/Omar/CPU Design/MIPS/Modules/MUX2_1.v
+!i122 9
+L0 1 8
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/MUX2_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/MUX2_1.v|
+!i113 1
+R7
+R8
+R9
+n@m@u@x2_1
+vMUX4_1
+R10
+!i10b 1
+!s100 Ao2;bM`nmRWKN[9IB_VcZ2
+R2
+I0L4M^?CAgfn7gC>B;_30^1
+R3
+R0
+R4
+8E:/Omar/CPU Design/MIPS/Modules/MUX4_1.v
+FE:/Omar/CPU Design/MIPS/Modules/MUX4_1.v
+!i122 8
+L0 1 12
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/MUX4_1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/MUX4_1.v|
+!i113 1
+R7
+R8
+R9
+n@m@u@x4_1
+vMUX5bit
+R10
+!i10b 1
+!s100 ]4M;mV?SdMZ2bh1HgCcMo1
+R2
+I38Sf`jdGG_E46^JFQ2H281
+R3
+R0
+R4
+8E:/Omar/CPU Design/MIPS/Modules/MUX5bit.v
+FE:/Omar/CPU Design/MIPS/Modules/MUX5bit.v
+!i122 7
+L0 1 13
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/MUX5bit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/MUX5bit.v|
+!i113 1
+R7
+R8
+R9
+n@m@u@x5bit
+vPC
+R10
+!i10b 1
+!s100 MH5FRY115OIj^]3bKBOj10
+R2
+IORMbIG7z7U076ZW1iQ=KM0
+R3
+R0
+R4
+8E:/Omar/CPU Design/MIPS/Modules/PC.v
+FE:/Omar/CPU Design/MIPS/Modules/PC.v
+!i122 6
+L0 1 39
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/PC.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/PC.v|
+!i113 1
+R7
+R8
+R9
+n@p@c
+vRAM
+R10
+!i10b 1
+!s100 F:d]fJBZ[Ddj26_BLBg9a2
+R2
+IfDXmzS44^4@gMk8P9Ib3m0
+R3
+R0
+w1704098275
+8E:/Omar/CPU Design/MIPS/Modules/RAM.v
+FE:/Omar/CPU Design/MIPS/Modules/RAM.v
+!i122 5
+L0 1 121
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/RAM.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/RAM.v|
+!i113 1
+R7
+R8
+R9
+n@r@a@m
+vRegFile_decoder
+R10
+!i10b 1
+!s100 ;fL=0C?5RI]X5F?Rbf^iN3
+R2
+IcSZ4]gfSEB5ALPiD@]FAg1
+R3
+R0
+Z14 w1702132079
+Z15 8E:/Omar/CPU Design/MIPS/Modules/RegisterFile.v
+Z16 FE:/Omar/CPU Design/MIPS/Modules/RegisterFile.v
+!i122 4
+L0 86 54
+R5
+r1
+!s85 0
+31
+R11
+Z17 !s107 E:/Omar/CPU Design/MIPS/Modules/RegisterFile.v|
+Z18 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/RegisterFile.v|
+!i113 1
+R7
+R8
+R9
+n@reg@file_decoder
+vRegFile_regn
+R10
+!i10b 1
+!s100 eNeXV?M]OUa_gXCP_7YKe0
+R2
+I`lFI9oidK==b3<dPn3nd[1
+R3
+R0
+R14
+R15
+R16
+!i122 4
+L0 146 13
+R5
+r1
+!s85 0
+31
+R11
+R17
+R18
+!i113 1
+R7
+R8
+R9
+n@reg@file_regn
+vRegisterFile
+R10
+!i10b 1
+!s100 WXCcY=?V47CP:Pb:::9U`3
+R2
+IT[`i`@4;XG:XmeL`mS07k3
+R3
+R0
+R14
+R15
+R16
+!i122 4
+L0 1 71
+R5
+r1
+!s85 0
+31
+R11
+R17
+R18
+!i113 1
+R7
+R8
+R9
+n@register@file
+vsign_extend
+R10
+!i10b 1
+!s100 mV<4E:2L@gdWd8zFWihXh1
+R2
+IS7moWljkFG6^l0b^20_MO2
+R3
+R0
+w1698118299
+8E:/Omar/CPU Design/MIPS/Modules/sign_extend.v
+FE:/Omar/CPU Design/MIPS/Modules/sign_extend.v
+!i122 3
+L0 1 9
+R5
+r1
+!s85 0
+31
+R11
+!s107 E:/Omar/CPU Design/MIPS/Modules/sign_extend.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/MIPS/Modules|E:/Omar/CPU Design/MIPS/Modules/sign_extend.v|
+!i113 1
+R7
+R8
+R9
