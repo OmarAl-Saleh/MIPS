@@ -1,0 +1,78 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2020  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details, at
+# https://fpgasoftware.intel.com/eula.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+# Date created = 19:58:12  January 01, 2024
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		Main_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name TOP_LEVEL_ENTITY Main
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:58:12  JANUARY 01, 2024"
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/sign_extend.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/RegisterFile.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/RAM.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/PC.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/MUX5bit.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/MUX4_1.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/MUX2_1.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/MEM_WB_Register.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/Main.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/JUMP.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/INST_MEM.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/IF_ID_Register.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/ID_EX_Register.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/Hazard_Unit.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/ForwardingUnit.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/EX_MEM_Register.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/ControlUnit.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/branch_control.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/Branch.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/alu_control.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/ALU.v
+set_global_assignment -name VERILOG_FILE ../MIPS/Modules/adder.v
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name SDC_FILE time.sdc
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
