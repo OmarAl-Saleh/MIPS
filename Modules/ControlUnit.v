@@ -66,7 +66,7 @@ end
 	
 	6'b000000:begin 
 		if(funct == 6'b001000)begin 
-		//Jump Register instruction
+		//Jump Register (JS) instruction
 		 reg_ALUSrc   = 1'bx;
 		 reg_RegWrite = 1'b0;
        reg_MemtoReg = 2'bxx;
