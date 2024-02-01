@@ -29,6 +29,7 @@ output wire pc_load;
 //     RegWrite     // Control signal for register write
 //     reset_reg    // will handle the default value if the reset is on 
 //		 pc_load (0->stall),(1->load)
+//     pc_Store // to enable REG 31 to store the return address when using JAL Instruction 
 
 
 always @(*)
@@ -69,7 +70,7 @@ end
 		//Jump Register (JS) instruction
 		 reg_ALUSrc   = 1'bx;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 2'bxx;
+       reg_MemtoReg = 2'bxx; // for JAL 
        reg_MemWrite = 1'b0;
        reg_MemRead  = 1'bx;
        reg_ALUOp    = 4'bxxxx;
@@ -194,13 +195,13 @@ end
 		//Jump and link instruction (jal)
 		 reg_ALUSrc 	= 1'bx;
 		 reg_RegWrite 	= 1'b1;
-       reg_MemtoReg 	= 2'b10;
+       reg_MemtoReg 	= 2'b10;// for JAL instruction
        reg_MemWrite 	= 1'b0;
        reg_MemRead 	= 1'bx;
        reg_ALUOp		= 4'bxxxx;
        reg_RegDst		= 2'b10;
 		 reg_Branch		= 1'bx;
-		 reg_Jump 		= 2'b01;
+		 reg_Jump 		= 2'b01;// for JS Instruction
 		 reg_pc_load   = 1'b1;
 		 reg_PC_Store = 1'b1;
 		 

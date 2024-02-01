@@ -24,13 +24,15 @@ module ID_EX_Register (
 	Out_MemWrite,Out_MemRead,
 	
 	// WB signals
-	Out_RegWrite, Out_MemtoReg 
+	Out_RegWrite, Out_MemtoReg, 
+	// JAL PC WB Value 
+	In_PC,Out_PC
 ); 
 
 
 input clk , reset ; // reset is active when we catch a hazard in decode we use it instead of a mux to make all the values equal zeroes
 
-input [31:0] In_Reg_File_Data1,In_Reg_File_Data2,In_offset ; // the data come from the register file and the offset from the sign extend 
+input [31:0] In_Reg_File_Data1,In_Reg_File_Data2,In_offset,In_PC ; // the data come from the register file and the offset from the sign extend 
 
 input [4:0] In_Rs,In_Rt,In_Rd; // the values come from the instruction in ID stage
 
@@ -44,7 +46,7 @@ input [5:0] In_func;
 
 input [4:0] In_shamt;
 
-output reg [31:0]  Out_Reg_File_Data1, Out_Reg_File_Data2, Out_offset ;
+output reg [31:0]  Out_Reg_File_Data1, Out_Reg_File_Data2, Out_offset,Out_PC ;
 
 output reg [4:0]   Out_Rs , Out_Rt  , Out_Rd; 
 
@@ -84,6 +86,8 @@ always @(posedge clk)
 			
 			Out_func<=6'b000000;
 			Out_shamt<=5'b00000;
+			Out_PC<=32'b0;
+			
 			
 			
 			end
@@ -110,6 +114,8 @@ always @(posedge clk)
 			
 			Out_func<=In_func;
 			Out_shamt<=In_shamt;
+			
+			Out_PC<=In_PC;
 			
 			end
 			

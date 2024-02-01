@@ -123,12 +123,13 @@ module INST_MEM #(
 	
 	// THIS TEST FOR JS & JAL INSTRUCTIONS
     // the goal is to make a infinite loop
-//	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
-//	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it) ** should not work**
-//	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
-//	/*Address 12 */inst_mem[3] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
-//	/*Address 16 */inst_mem[4] = 32'b00000011111001000010000000001000;// JS jump to address store in REG 31 so jump to address 4 
-//	/*Address 20 */inst_mem[5] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
+	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it) ** should not work**
+	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+	/*Address 12 */inst_mem[3] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+	/*Address 16 */inst_mem[4] = 32'b00000011111001000010000000001000;// JS jump to address store in REG 31 so jump to address 4 (here we want forwarding to let this instruction wrok correclty )
+	/*Address 20 */inst_mem[5] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
+	//inst_mem[5] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
 	
 	
 	//THIS TEST FOR BLT not working

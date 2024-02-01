@@ -141,6 +141,7 @@ sign_extend extender (
 
   wire PC_Store;
 
+  // we don't need pc_load and pc_store signal anymore (useless) (clear phase)
 
 ControlUnit control_inst (
     .Clock(clk),
@@ -157,7 +158,7 @@ ControlUnit control_inst (
 	 .Jump(Jump_signal),
 	 .funct(IF_ID_funct),
 	 .pc_load(pc_load), // in second edition we must delete it from control unit and put it in hazard unit
-	 .PC_Store(PC_Store)
+	 .PC_Store(PC_Store)// must be cleaned
   );
 //end of ControlUnit
 //------------------------------------
@@ -172,11 +173,13 @@ ControlUnit control_inst (
 	 
 	 wire [31:0] ReadData1;
     wire [31:0] ReadData2;
+	 
+	 wire [1:0] MEM_WB_MemtoReg;// we use it in implementation of JAL Instruction as enable to register 31
 	
 	
 	
 
-	  RegisterFile reg_file_inst (
+	    RegisterFile reg_file_inst (
         .Clock(clk),// we make the the register file write on the negative edge so we can write on a register and read his data in same clock
         .Reset(reset),
         .ReadReg1(IF_ID_rs),
@@ -186,10 +189,12 @@ ControlUnit control_inst (
         .WriteData(WB_Writedata), 
         .ReadData1(ReadData1),
         .ReadData2(ReadData2),
-		  .PC_Store(PC_Store),
-		  .PC_WriteData(IF_ID_PC_out)
+		  //.PC_Store(PC_Store)// we dont use it in this edition(must clean)
+		  .PC_Store(MEM_WB_MemtoReg[1])// it the control signal that use in selection mux in wb stage if MSB one that's mean that the instruction is JAL
       
     );
+	 
+	 
 	 wire [31:0] Branch_address;
 	 /////////////////////////////////////////second edition/////////////////////////////////////////////////////////////
 	 
@@ -247,8 +252,45 @@ MUX4_1 Branch_Forwarding_B_MUX(
     .zero(Branch_Zero_Signal)
   );
   
+  
+ // JUMP (JS) Forwarding Unit
+ 
+ 
+ // implement the branch forwarding Unit
+	 
+	// wire [4:0] EX_MEM_rd,ID_EX_rd; // we need to use the rd in branch forwarding;
+	// wire ID_EX_RegWrite , EX_MEM_RegWrite;
+	 wire JUMP_Select_Forward_A;
+	 //wire [31:0] EX_MEM_ALU_Result ;
+	// wire [31:0] MEM_WB_RAM_Data;
+	 wire [1:0] EX_MEM_MemtoReg;
+	 wire [31:0] Final_JUMP_ReadData;
+	 wire [31:0] EX_MEM_PC_out;
+   // wire [31:0] Final_Branch_ReadData2;// the output of forwarding MUXES 
+
+ ForwardingUnit_JUMP JUMP_Forwarding (
+    .JS_JUMP(Jump_signal),
+    .EX_MEM_MemtoReg(EX_MEM_MemtoReg),
+    . forwardA(JUMP_Select_Forward_A)
+    
+);
+	 
+MUX2_1 JUMP_Forwarding_MUX(
+.a(ReadData1),
+.b(EX_MEM_PC_out),
+.select(JUMP_Select_Forward_A),
+.out(Final_JUMP_ReadData)
+);	
+
+  
+  
+  
+  
   // Calculate PC Target Address
   wire [31:0] pc_branch , JUMP_Target_address;
+  
+  
+
 
 
 MUX2_1 pc_target(
@@ -274,7 +316,7 @@ JUMP Jump_Unit (
 MUX4_1 pc_final_main(
 .a(pc_branch),
 .b(JUMP_Target_address),// I don't know where is he 
-.c(ReadData1),
+.c(Final_JUMP_ReadData),// must be the output from JS Instruction Forwarding MUX
 .select(Jump_signal),
 .out(pc_final)
 );
@@ -313,7 +355,7 @@ Hazard_Unit Hazard_unit (
   //reg In_ALUSrc, In_MemWrite, In_MemRead, In_RegWrite;
  // reg [3:0] In_ALUOp;
   //reg [1:0] In_MemtoReg, In_RegDst;
-  wire [31:0] ID_EX_Reg_File_Data1, ID_EX_Reg_File_Data2;
+  wire [31:0] ID_EX_Reg_File_Data1, ID_EX_Reg_File_Data2,ID_EX_PC_out;
   wire [4:0] ID_EX_rs;
   wire ID_EX_ALUSrc, ID_EX_MemWrite;
   wire [3:0] ID_EX_ALUOp;
@@ -324,10 +366,12 @@ Hazard_Unit Hazard_unit (
   // Instantiate the module
   ID_EX_Register ID_EX_R (
     .clk(clk),
-    .reset(ID_EX_FLUSH|Jump_signal[0]|Jump_signal[1]),
+    //.reset(ID_EX_FLUSH || Jump_signal[0] || Jump_signal[1]),
+	 .reset(ID_EX_FLUSH),
     .In_Reg_File_Data1(ReadData1),
     .In_Reg_File_Data2(ReadData2),
     .In_offset(immediate_value),
+	 .In_PC(IF_ID_PC_out),
     .In_Rs(IF_ID_rs),
     .In_Rt(IF_ID_rt),
     .In_Rd(IF_ID_rd),
@@ -343,6 +387,7 @@ Hazard_Unit Hazard_unit (
     .Out_Reg_File_Data1(ID_EX_Reg_File_Data1),
     .Out_Reg_File_Data2(ID_EX_Reg_File_Data2),
     .Out_offset(ID_EX_immediate_value),
+	 .Out_PC(ID_EX_PC_out),
     .Out_Rs(ID_EX_rs),
     .Out_Rt(ID_EX_rt),
     .Out_Rd(ID_EX_rd),
@@ -488,25 +533,27 @@ ALU alu (
  // reg [4:0] In_Rd;
   //reg In_MemWrite, In_MemRead, In_RegWrite;
  // reg [1:0] In_MemtoReg;
+  //wire [31:0] EX_MEM_Write_Data,EX_MEM_PC_out;
   wire [31:0] EX_MEM_Write_Data;
   //wire [4:0] EX_MEM_rd;
   wire EX_MEM_MemWrite;
-  wire [1:0] EX_MEM_MemtoReg;
-
+ // wire [1:0] EX_MEM_MemtoReg;
+//ID_EX_PC_out
   // Instantiate the module
   EX_MEM_Register EX_MEM_R (
     .clk(clk),
     .In_Address(alu_output),
     .In_Write_Data(Final_ALU_ReadData2),
+	 .In_PC(ID_EX_PC_out),
     .In_Rd(write_reg_input),
-	 // for debuug
-	 //.In_Rd(ID_EX_rt),
+	 
     .In_MemWrite(ID_EX_MemWrite),
     .In_MemRead(ID_EX_MemRead),
     .In_RegWrite(ID_EX_RegWrite),
     .In_MemtoReg(ID_EX_MemtoReg),
     .Out_Address(EX_MEM_ALU_Result),
     .Out_Write_Data(EX_MEM_Write_Data),
+	 .Out_PC(EX_MEM_PC_out),
     .Out_Rd(EX_MEM_rd),
     .Out_MemWrite(EX_MEM_MemWrite),
     .Out_MemRead(EX_MEM_MemRead),
@@ -550,21 +597,23 @@ RAM #(
   //reg [4:0] In_Rd;
   //reg In_RegWrite;
   //reg [1:0] In_MemtoReg;
-  wire [31:0] MEM_WB_ALU_Data;
+  wire [31:0] MEM_WB_ALU_Data,MEM_WB_PC_out;
  // wire [4:0] MEM_WB_rd; we must declare it before register file 
   //wire MEM_WB_RegWrite; 
-  wire [1:0] MEM_WB_MemtoReg;
+
 
   // Instantiate the module
   MEM_WB_Register MEM_WB_R (
     .clk(clk),
     .In_RAM_Data(Read_data),
     .In_Immediate_Data(EX_MEM_ALU_Result),
+	 .In_PC(EX_MEM_PC_out),
     .In_Rd(EX_MEM_rd),
     .In_RegWrite(EX_MEM_RegWrite),
     .In_MemtoReg(EX_MEM_MemtoReg),
     .Out_RAM_Data(MEM_WB_RAM_Data),
     .Out_Immediate_Data(MEM_WB_ALU_Data),
+	 .Out_PC(MEM_WB_PC_out),
     .Out_Rd(MEM_WB_rd),
     .Out_RegWrite(MEM_WB_RegWrite),
     .Out_MemtoReg(MEM_WB_MemtoReg)
@@ -581,7 +630,7 @@ MUX4_1 Write_back (
         .a(MEM_WB_ALU_Data),        
         .b(MEM_WB_RAM_Data),
 		  //.c(next_pc), second edition move to id stage 
-		  .c(32'b0),// we will implement it in ID Stage so we need update the mem to reg control unit and invent a new signal for it 
+		  .c(MEM_WB_PC_out),// we will implement it in ID Stage so we need update the mem to reg control unit and invent a new signal for it 
         .select(MEM_WB_MemtoReg), 
         .out(WB_Writedata)   
     );

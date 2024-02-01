@@ -5,5 +5,4 @@ module MUX2_1 (
     output wire [31:0] out
 );
     assign out = (select) ? b : a;
-
-endmodule 
+endmodule
