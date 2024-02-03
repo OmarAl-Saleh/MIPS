@@ -47,9 +47,13 @@ RegFile_regn Reg_25(WriteData, Reset, Reg_Enable[25], Clock,Registers_Read[25]);
 RegFile_regn Reg_26(WriteData, Reset, Reg_Enable[26], Clock,Registers_Read[26]);
 RegFile_regn Reg_27(WriteData, Reset, Reg_Enable[27], Clock,Registers_Read[27]);
 RegFile_regn Reg_28(WriteData, Reset, Reg_Enable[28], Clock,Registers_Read[28]);
-RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);
+
+RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);// Stack pointer Register 
+// I think we must call it inside the stack module to give him the WriteData value 
+
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
-RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);
+
+RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);// Return address Register
 
 
 
