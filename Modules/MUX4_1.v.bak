@@ -9,4 +9,4 @@ module MUX4_1(
                  (select == 2'b01) ? b :
                  (select == 2'b10) ? c :
                  5'b0;
-endmodule 
+endmodule

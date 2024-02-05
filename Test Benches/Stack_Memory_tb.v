@@ -8,16 +8,16 @@ module Stack_Memory_tb;
 
   // Outputs
   wire [31:0] Top_Stack_new;
-  wire Load_RAM_signal, Store_RAM_signal;
+  //wire Load_RAM_signal, Store_RAM_signal;
 
   // Instantiate the Stack_Memory module
   Stack_Memory uut (
     .JAL_signal(JAL_signal),
     .JS_signal(JS_signal),
     .Top_Stack_old(Top_Stack_old),
-    .Top_Stack_new(Top_Stack_new),
-    .Load_RAM_signal(Load_RAM_signal),
-    .Store_RAM_signal(Store_RAM_signal)
+    .Top_Stack_new(Top_Stack_new)
+    //.Load_RAM_signal(Load_RAM_signal),
+    //.Store_RAM_signal(Store_RAM_signal)
   );
 
   // Initial stimulus
@@ -35,19 +35,19 @@ module Stack_Memory_tb;
     // Test JS_POP operation
     JAL_signal = 0;
     JS_signal = 1;
-    Top_Stack_old = 32'hFFFFFFFF;
+    Top_Stack_old = 32'h00000019;
 
     #10; // Wait for a few simulation cycles
 	 
 	 JAL_signal = 1;
     JS_signal = 0;
-    Top_Stack_old = 32'hFFFFFFFF;
+    Top_Stack_old = 32'h0000004F;
 
     #10; // Wait for a few simulation cycles
 	 
 	 JAL_signal = 0;
     JS_signal = 1;
-    Top_Stack_old = 32'h00000000;
+    Top_Stack_old = 32'h0000005A;
 
     #10; // Wait for a few simulation cycles
 

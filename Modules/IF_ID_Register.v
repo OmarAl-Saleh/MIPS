@@ -48,14 +48,24 @@ always@(posedge clk)
 						Instruction_out <=32'b11100000000000000000000000000000; // nop
 						opcode <= 6'b111000;
 						// rubish values do not care because of that I use Instruction Out
-						rs <= Instruction_out [25:21];
-						rt <= Instruction_out [20:16];
-						rd <= Instruction_out [15:11];
-						shamt <= Instruction_out [10:6];
-						funct <= Instruction_out [5:0];
-						addr <= Instruction_out [15:0];
-						jump <= Instruction_out [25:0];
+//						rs <= Instruction_out [25:21];
+//						rt <= Instruction_out [20:16];
+//						rd <= Instruction_out [15:11];
+//						shamt <= Instruction_out [10:6];
+//						funct <= Instruction_out [5:0];
+//						addr <= Instruction_out [15:0];
+//						jump <= Instruction_out [25:0];
+//						PC_out <= PC_in;
+                  rs <= 5'bx;
+						rt <= 5'bx;
+						rd <= 5'bx;
+						shamt <= 5'bx;
+						funct <= 6'bx;
+						addr <= 16'bx;
+						jump <= 26'bx;
 						PC_out <= PC_in;
+
+
 		
 					end
 					

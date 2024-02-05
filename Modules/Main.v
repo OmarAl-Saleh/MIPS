@@ -190,8 +190,10 @@ ControlUnit control_inst (
         .ReadData1(ReadData1),
         .ReadData2(ReadData2),
 		  //.PC_Store(PC_Store)// we dont use it in this edition(must clean)
-		  .PC_Store(MEM_WB_MemtoReg[1])// it the control signal that use in selection mux in wb stage if MSB one that's mean that the instruction is JAL
-      
+		  .PC_Store(MEM_WB_MemtoReg[1]),// to indicate JAL OR JS Instruction in WB Stage to store the Return address that come from RAM 
+		  // must update in pull operation
+		  .PUSH_Stack(MemtoReg[1] && ~MemtoReg[0]),// to indicate JAL Instruction with Stack
+        .PULL_Stack(Jump_signal[1]) // to indicate JS Instruction with Stack
     );
 	 
 	 
@@ -384,7 +386,7 @@ Hazard_Unit Hazard_unit (
     .In_RegDst(RegDst),
 	 .In_func(IF_ID_funct),
 	 .In_shamt(IF_ID_shamt),
-    .Out_Reg_File_Data1(ID_EX_Reg_File_Data1),
+    .Out_Reg_File_Data1(ID_EX_Reg_File_Data1),// may be the address of top of stack to store or load from Memory in JS or JAL Instructions
     .Out_Reg_File_Data2(ID_EX_Reg_File_Data2),
     .Out_offset(ID_EX_immediate_value),
 	 .Out_PC(ID_EX_PC_out),
@@ -507,7 +509,7 @@ wire [31:0] alu_second_input;
 
 ////////////////////////////////// second edition /////////////////////////////
 //ALU
-wire [31:0] alu_output;
+wire [31:0] alu_output , Address;
 wire zero ;
 
 ALU alu (
@@ -521,6 +523,14 @@ ALU alu (
     .Zero(zero)
 );
 
+// Determin the Final address From ALU or From Register file (Stack)
+MUX2_1 Address_MUX (
+        .a(alu_output),        
+       // .b(Final_ALU_ReadData1),
+        .b(ID_EX_Reg_File_Data2),		 
+        .select(ID_EX_MemtoReg[1]), // we want the second choice(ReadData1) in stack operations JAL --> Store or JS---->Load
+        .out(Address)   
+    );
 
 
 //end of ALU
@@ -542,7 +552,8 @@ ALU alu (
   // Instantiate the module
   EX_MEM_Register EX_MEM_R (
     .clk(clk),
-    .In_Address(alu_output),
+    //.In_Address(alu_output), for stack implementation
+	 .In_Address(Address),
     .In_Write_Data(Final_ALU_ReadData2),
 	 .In_PC(ID_EX_PC_out),
     .In_Rd(write_reg_input),
@@ -568,6 +579,16 @@ ALU alu (
 
 //************************************************ Memory Stage ***********************************************************************
 
+wire [31:0] Final_Data;
+// Determin the Final Data From Normal operations or From PC (Stack)
+MUX2_1 RAM_Data_MUX (
+        .a(EX_MEM_Write_Data),        
+        .b(EX_MEM_PC_out),         
+        .select(EX_MEM_MemtoReg[1]), // we want the second choice(ReadData1) in stack operations JAL --> Store or JS---->Load
+        .out(Final_Data)   
+    );
+
+
 // DATA MAM
 wire [31:0] Read_data;
 
@@ -579,7 +600,7 @@ RAM #(
     .clk(clk),// I think we must edit it maybe we do it like register file  
     .reset(reset),
     .address(EX_MEM_ALU_Result),
-    .data_write(EX_MEM_Write_Data),
+    .data_write(Final_Data),
     .write_en(EX_MEM_MemWrite),
     .read_en(EX_MEM_MemRead),
     .data_out(Read_data)
@@ -626,11 +647,12 @@ RAM #(
 
 
 //Write back
-MUX4_1 Write_back (
+WB_MUX4_1 Write_back (
         .a(MEM_WB_ALU_Data),        
         .b(MEM_WB_RAM_Data),
 		  //.c(next_pc), second edition move to id stage 
 		  .c(MEM_WB_PC_out),// we will implement it in ID Stage so we need update the mem to reg control unit and invent a new signal for it 
+		  .d(MEM_WB_RAM_Data),// for JS instruction to write the previous subroutine on REG 31
         .select(MEM_WB_MemtoReg), 
         .out(WB_Writedata)   
     );

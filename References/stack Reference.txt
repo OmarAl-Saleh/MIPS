@@ -1,0 +1,34 @@
+JAL : 
+ push the stack increase the top of stack (increament Reg 27)
+ value PC+4 on reg 31
+ store the value of ID PC+4 in topOFStack+1
+ Control signal : MemToReg[1]
+JS : 
+ Pop the stack decrease the top of stack (REG 31)
+ value of reg 31 loaded into PC
+ load the new top of stack (last one -1) to REG 31 (the value that came from RAM in WB MUX)
+Control Signal : JUMP[1]
+
+module to update : 
+
+ Register file
+ control unit
+ RAM
+
+module to generate: 
+
+ stack_Memory
+
+Stack Info (may change later) : 
+
+the stack size is 10 entry
+its begin from address 88 with entry 22 in RAM
+its end in address  124 with entry 31 in RAM 
+
+Control Unit :
+ 
+Store signal when JAL In RAM
+
+load signal when JS  In RAM 
+
+the Address of Starch pointer will be held on Register file Read Data 2 because in Read Data 1 we face structural hazard

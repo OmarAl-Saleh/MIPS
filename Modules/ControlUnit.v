@@ -18,19 +18,25 @@ output wire pc_load;
  reg reg_pc_load;
  
 	reg [5:0] reset_opcode ;
+	
+//************************** Singnal classification ********************************
+	
 //	    opcode,  // 6-bit opcode from the instruction
 //     RegDst,      // Control signal for selecting the destination register
 //     ALUSrc,      // Control signal for ALU source selection (0 for register, 1 for immediate)
-//     MemtoReg,    // Control signal for selecting the source for register write data
 //     MemWrite,    // Control signal for memory write
 //     MemRead,     // Control signal for memory read
 //     Branch,      // Control signal for branching
 //     ALUOp,       // Control signal for ALU operation
 //     RegWrite     // Control signal for register write
 //     reset_reg    // will handle the default value if the reset is on 
-//		 pc_load (0->stall),(1->load)
-//     pc_Store // to enable REG 31 to store the return address when using JAL Instruction 
+//		 pc_load (    0->stall),(1->load)
+//     pc_Store     // to enable REG 31 to store the return address when using JAL Instruction 
+//     JUMP[1:0]    // (MSB) --> is to indicate JS Instruction with Pull the stack (LSB) --> indicate jump instruction
+//     MemToReg[1:0] // MSB) --> is to indicate JAL Instruction with Push the stack 
+//                      (LSB) --> Control signal for selecting the source for register write data
 
+//*********************************************************************************************************************
 
 always @(*)
 begin
@@ -68,14 +74,14 @@ end
 	6'b000000:begin 
 		if(funct == 6'b001000)begin 
 		//Jump Register (JS) instruction
-		 reg_ALUSrc   = 1'bx;
-		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 2'bxx; // for JAL 
+		 reg_ALUSrc   = 1'b0;
+		 reg_RegWrite = 1'b1;// for Stack Implementation
+       reg_MemtoReg = 2'b11; // for Stack implementation (customize only for JS function to be MemToReg[1]=1 same as JAL Instruction)
        reg_MemWrite = 1'b0;
-       reg_MemRead  = 1'bx;
-       reg_ALUOp    = 4'bxxxx;
-       reg_RegDst   = 2'bxx;
-		 reg_Branch   = 1'bx;
+       reg_MemRead  = 1'b1;// for Stack Implementation
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
+		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b10;
 		 reg_pc_load  = 1'b1;//load
 		 reg_PC_Store = 1'b0;
@@ -177,13 +183,13 @@ end
 	
 			6'b000010:begin
 		//Jump instruction (j)
-		 reg_ALUSrc   = 1'bx;
+		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 2'bxx;
+       reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
-       reg_MemRead  = 1'bx;
-       reg_ALUOp    = 4'bxxxx;
-       reg_RegDst   = 2'bxx;
+       reg_MemRead  = 1'b0;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b01;
 		 reg_pc_load  = 1'b1;
@@ -193,14 +199,14 @@ end
 	
 		6'b000011:begin
 		//Jump and link instruction (jal)
-		 reg_ALUSrc 	= 1'bx;
+		 reg_ALUSrc 	= 1'b0;
 		 reg_RegWrite 	= 1'b1;
        reg_MemtoReg 	= 2'b10;// for JAL instruction
-       reg_MemWrite 	= 1'b0;
-       reg_MemRead 	= 1'bx;
-       reg_ALUOp		= 4'bxxxx;
+       reg_MemWrite 	= 1'b1; // for Stack implemntation
+       reg_MemRead 	= 1'b0;
+       reg_ALUOp		= 4'b0000;
        reg_RegDst		= 2'b10;
-		 reg_Branch		= 1'bx;
+		 reg_Branch		= 1'b0;
 		 reg_Jump 		= 2'b01;// for JS Instruction
 		 reg_pc_load   = 1'b1;
 		 reg_PC_Store = 1'b1;
@@ -211,11 +217,11 @@ end
 		//branch equal
 		 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b0100;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;
@@ -228,11 +234,11 @@ end
 		//branch not equal
 		 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b0101;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;
@@ -244,11 +250,11 @@ end
 		//branch greater than
 		 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b0110;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;
@@ -260,11 +266,11 @@ end
 		//branch less than
 	 	 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b0111;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;
@@ -276,11 +282,11 @@ end
 		//branch greater or equal
 		 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b1000;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;
@@ -292,11 +298,11 @@ end
 		//branch less or equal
 		 reg_ALUSrc		= 1'b0;
 		 reg_RegWrite	= 1'b0;
-       reg_MemtoReg	= 2'bxx;
+       reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
-       reg_MemRead	= 1'bx;
+       reg_MemRead	= 1'b0;
        reg_ALUOp		= 4'b1001;
-       reg_RegDst		= 2'bxx;
+       reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
 		 reg_pc_load   = 1'b1;

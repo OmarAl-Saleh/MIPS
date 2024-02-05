@@ -34,7 +34,7 @@ module INST_MEM #(
 	
 	//testcase 5 
 	
-//	//a=2
+	//a=2
 //	/*Address 0 */  inst_mem[0] = 32'b00100000000000010000000000000010; //ADDI R1, R0, 2 (a)
 //	/*Address 4 */  inst_mem[1] = 32'b00100000000000100000000000000010; //ADDI R2, R0, 2 (b)
 //	/*Address 8 */  inst_mem[2] = 32'b00100000010000110000000000000011; //ADDI R3, R2, 3 (b+3)
@@ -45,7 +45,7 @@ module INST_MEM #(
 //	/*Address 28 */ inst_mem[7] = 32'b00000000010000010001000000100000; //ADD R2, R2, R1 //END
 	
 	//a=6
-	
+//	
 //	/*Address 0 */  inst_mem[0] = 32'b00100000000000010000000000000110; //ADDI R1, R0, 6 (a)
 //	/*Address 4 */  inst_mem[1] = 32'b00100000000000100000000000000010; //ADDI R2, R0, 2 (b)
 //	/*Address 8 */  inst_mem[2] = 32'b00100000010000110000000000000011; //ADDI R3, R2, 3 (b+3)
@@ -54,7 +54,7 @@ module INST_MEM #(
 //	/*Address 20 */ inst_mem[5] = 32'b00001000000000000000000000000111; //JUMP END
 //	/*Address 24 */ inst_mem[6] = 32'b00100000001000010000000000000010; //ADDI R1, R1, 2 //THEN 
 //	/*Address 28 */ inst_mem[7] = 32'b00000000010000010001000000100000; //ADD R2, R2, R1 //END
-	
+//	
 	
 	//-------------------------------------------------------------
 	//testcase 4
@@ -123,13 +123,45 @@ module INST_MEM #(
 	
 	// THIS TEST FOR JS & JAL INSTRUCTIONS
     // the goal is to make a infinite loop
-	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
-	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it) ** should not work**
-	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
-	/*Address 12 */inst_mem[3] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
-	/*Address 16 */inst_mem[4] = 32'b00000011111001000010000000001000;// JS jump to address store in REG 31 so jump to address 4 (here we want forwarding to let this instruction wrok correclty )
-	/*Address 20 */inst_mem[5] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
+//	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
+//	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it) ** should not work**
+//	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+//	/*Address 12 */inst_mem[3] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+//	/*Address 16 */inst_mem[4] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 4 (here we want forwarding to let this instruction wrok correclty )
+//	/*Address 20 */inst_mem[5] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
 	//inst_mem[5] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+	
+	
+	
+	// THIS TEST FOR STACK TESTING USING JAL & JS INSTRUCTIONS (Nested Subroutine) 3 push 3 pull 
+	// the goal is test the stack functionality 
+	
+//	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
+//	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it) ** should not work**
+//	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+//	
+//	/*Address 16 */inst_mem[4] = 32'b00001100000000000000000000000111;//JAL Jump to address 28 and save R31 = 20
+//
+//	   
+//   /*Address 20 */inst_mem[5] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 4 (here we want forwarding to let this instruction wrok correclty )
+//	
+//	
+//	/*Address 28 */inst_mem[7] = 32'b00001100000000000000000000001111;//JAL Jump to address 60 and save R31 = 32
+//		
+//	/*Address 32 */inst_mem[8] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 20 (here we want forwarding to let this instruction wrok correclty )
+//		
+//	/*Address 60 */inst_mem[15] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  ** should not work**
+//		
+//    /*Address 64 */inst_mem[16] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 32 (here we want forwarding to let this instruction wrok correclty )
+	 
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//THIS TEST FOR BLT not working

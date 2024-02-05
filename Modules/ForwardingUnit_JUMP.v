@@ -12,7 +12,7 @@ begin
    // forwardB = 2'b00;
 
     // Forwarding for rs1
-    if (JS_JUMP[1]==1'b1 && EX_MEM_MemtoReg[1]==1'b1 ) 
+    if (JS_JUMP[1]==1'b1 && EX_MEM_MemtoReg==2'b10 ) 
 	 begin
         forwardA = 1'b1 ; // Forward from EX/MEM
     end 
