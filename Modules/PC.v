@@ -11,6 +11,8 @@ module PC #(
 
 reg state = 1'b0;
 
+
+//FSM Style
 always @(posedge clk or posedge reset) begin
 
     if (reset) begin

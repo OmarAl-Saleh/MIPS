@@ -1,0 +1,101 @@
+# Reading pref.tcl
+# do Stack_Memory_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Stack\ implementation {E:/Omar/CPU Design/Stack implementation/Stack_Memory.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:16:18 on Feb 04,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Stack implementation" E:/Omar/CPU Design/Stack implementation/Stack_Memory.v 
+# -- Compiling module Stack_Memory
+# 
+# Top level modules:
+# 	Stack_Memory
+# End time: 12:16:18 on Feb 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Stack\ implementation {E:/Omar/CPU Design/Stack implementation/RegisterFile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:16:18 on Feb 04,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Stack implementation" E:/Omar/CPU Design/Stack implementation/RegisterFile.v 
+# -- Compiling module RegisterFile
+# -- Compiling module RegFile_decoder
+# -- Compiling module RegFile_regn
+# -- Compiling module Stack_regn
+# 
+# Top level modules:
+# 	RegisterFile
+# End time: 12:16:18 on Feb 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Stack\ implementation {E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:16:18 on Feb 04,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Stack implementation" E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v 
+# -- Compiling module RegisterFile_tb
+# 
+# Top level modules:
+# 	RegisterFile_tb
+# End time: 12:16:18 on Feb 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+E:/Omar/CPU\ Design/Stack\ implementation {E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 12:16:18 on Feb 04,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+E:/Omar/CPU Design/Stack implementation" E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v 
+# -- Compiling module RegisterFile_tb
+# 
+# Top level modules:
+# 	RegisterFile_tb
+# End time: 12:16:19 on Feb 04,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  RegisterFile_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" RegisterFile_tb 
+# Start time: 12:16:19 on Feb 04,2024
+# Loading work.RegisterFile_tb
+# Loading work.RegisterFile
+# Loading work.RegFile_decoder
+# Loading work.RegFile_regn
+# Loading work.Stack_regn
+# Loading work.Stack_Memory
+# Trace back: Error QStructure::sort: invalid command name ""
+#   <6:C:/mtitcl/vsim/qstructure.tc_:2478: ::QStructure::sort .main_pane.structure 0 descending
+#   <5:eval:1: ::QStructure::structsort .main_pane.structure 0 descending
+#   <4:eval:1: ::namespace inscope ::QStructure {structsort .main_pane.structure} 0 descending
+#   >3:proc:26: ::.main_pane.structure.interior.cs.body.struct sort 0 descending
+#   >2:proc:10: ::.main_pane.structure.interior.cs.body.struct _initializeSortColumn
+#   <1:eval:1: ::namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _initializeSortColumn}
+add add -r /*
+# ** Error: bad option "add": should be one of...
+#   add atv ?options? ?arg arg ...?
+#   add button text action ?disable? ?options? ?help?
+#   add dataflow ?options? ?arg arg ...?
+#   add lists ?options? ?arg arg ...?
+#   add log ?options? ?arg arg ...?
+#   add memory options ?arg arg ...?
+#   add message ?options? ?arg arg ...?
+#   add monitor ?options? ?arg arg ...?
+#   add schematic ?options? ?arg arg ...?
+#   add testbrowser ?options? ?arg arg ...?
+#   add virtual ?options? ?arg arg ...?
+#   add watch ?options? ?arg arg ...?
+#   add wave ?options? ?arg arg ...?
+add wave -r /*
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v(169)
+#    Time: 150 ns  Iteration: 0  Instance: /RegisterFile_tb
+# Break in Module RegisterFile_tb at E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v line 169
+# End time: 12:38:48 on Feb 04,2024, Elapsed time: 0:22:29
+# Errors: 0, Warnings: 0

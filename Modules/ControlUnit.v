@@ -1,23 +1,21 @@
-module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct,pc_load,PC_Store);
+module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct);
 input wire [5:0] opcode; 
 input Clock , Reset ;  // Reset : 1 --> on | 0--> off
 input wire [5:0] funct;
 // wires
-output wire ALUSrc,MemWrite,MemRead,RegWrite,Branch,PC_Store;
+output wire ALUSrc,MemWrite,MemRead,RegWrite,Branch;
 output wire [3:0] ALUOp;
 output wire [1:0] Jump;
 output wire [1:0] MemtoReg;
 output wire [1:0] RegDst;
-output wire pc_load;
 // reg type
- reg reg_ALUSrc,reg_MemWrite,reg_MemRead,reg_RegWrite,reg_Branch,reg_PC_Store;
+ reg reg_ALUSrc,reg_MemWrite,reg_MemRead,reg_RegWrite,reg_Branch;
  reg [3:0] reg_ALUOp;
  reg [1:0] reg_Jump;
  reg [1:0] reg_MemtoReg;
- reg [1:0] reg_RegDst;
- reg reg_pc_load;
- 
-	reg [5:0] reset_opcode ;
+ reg [1:0] reg_RegDst; 
+ reg [5:0] reset_opcode ;
+	
 	
 //************************** Singnal classification ********************************
 	
@@ -63,8 +61,7 @@ always @(*)
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b0;
-		 reg_PC_Store = 1'b0;
+		 
 end
 	
 	
@@ -83,8 +80,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b10;
-		 reg_pc_load  = 1'b1;//load
-		 reg_PC_Store = 1'b0;
+		 
 		end
 		else begin
 		// R-type instruction 
@@ -97,8 +93,7 @@ end
        reg_RegDst   = 2'b01;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 	end
 	end
 	
@@ -113,8 +108,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 	
 	end
 	
@@ -122,15 +116,14 @@ end
 		// store instruction 
        reg_ALUSrc   = 1'b1;
 		 reg_RegWrite = 1'b0;
-       reg_MemtoReg = 2'b00; //error (should be 0 ) i am an idiot ...*****
+       reg_MemtoReg = 2'b00; 
        reg_MemWrite = 1'b1;
        reg_MemRead  = 1'b0;
        reg_ALUOp    = 4'b0000;
-       reg_RegDst   = 2'b00;  //don't care
+       reg_RegDst   = 2'b00;  
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -145,8 +138,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -161,8 +153,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 			6'b001101:begin
@@ -176,8 +167,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -192,8 +182,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b01;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -208,9 +197,7 @@ end
        reg_RegDst		= 2'b10;
 		 reg_Branch		= 1'b0;
 		 reg_Jump 		= 2'b01;// for JS Instruction
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b1;
-		 
+		
 	end
 	
 		6'b000100:begin
@@ -224,8 +211,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -241,8 +227,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -257,8 +242,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -273,8 +257,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 		 
 	end
 	
@@ -289,8 +272,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		
 		 
 	end
 	
@@ -305,8 +287,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
-		 reg_pc_load   = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 	end
 	
 	
@@ -321,8 +302,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_pc_load  = 1'b1;
-		 reg_PC_Store = 1'b0;
+		 
 	end
 	
 
@@ -339,7 +319,6 @@ assign RegWrite = reg_RegWrite;
 assign ALUOp = reg_ALUOp;
 assign Branch= reg_Branch;
 assign Jump = reg_Jump;
-assign pc_load = reg_pc_load;
-assign PC_Store = reg_PC_Store;
+
 
 endmodule 

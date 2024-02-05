@@ -11,9 +11,6 @@ output [31:0] ReadData2;
 wire [31:0] Reg_Enable , StackData;
 wire [31:0] Registers_Read [31:0];
 
-//wire Stack_load,Stack_Store; // stack signals to Control the RAM (Must implement in Control Unit )
-
-//assign StackData = 32'h00000058;
 
 // to get the register enable we want to write on 
 RegFile_decoder dex(WriteReg,Reg_write_Control,Reg_Enable);
@@ -53,26 +50,20 @@ RegFile_regn Reg_26(WriteData, Reset, Reg_Enable[26], Clock,Registers_Read[26]);
 RegFile_regn Reg_27(WriteData, Reset, Reg_Enable[27], Clock,Registers_Read[27]);
 RegFile_regn Reg_28(WriteData, Reset, Reg_Enable[28], Clock,Registers_Read[28]);
 
-//RegFile_regn Reg_29(WriteData, Reset, Reg_Enable[29], Clock,Registers_Read[29]);// Stack pointer Register 
-// I think we must call it inside the stack module to give him the WriteData value 
-//
-//RegFile_regn Reg_29(StackData, Reset, PUSH_Stack || PULL_Stack , Clock,Registers_Read[29]); // Stack pointer Register
-
-//*********module Stack_regn (R, Resetn, Rin, Clock, Q);
-
+// customize register for hold stack pointer 
 Stack_regn Reg_29(StackData, Reset, PUSH_Stack || PULL_Stack , Clock,Registers_Read[29]);
 
 
 
 RegFile_regn Reg_30(WriteData, Reset, Reg_Enable[30], Clock,Registers_Read[30]);
 
+
+// customize register for hold the value of top of stack (Return address Register)
 RegFile_regn Reg_31(WriteData, Reset, PC_Store, Clock,Registers_Read[31]);// Return address Register
 
-//module Stack_Memory(JAL_signal,JS_signal,Top_Stack_old,Top_Stack_new,Load_RAM_signal,Store_RAM_signal);
-// Stack Memory
+
 
 Stack_Memory MIPS_Stack (PUSH_Stack,PULL_Stack,Registers_Read[29],StackData);
-  //Stack_Memory MIPS_Stack (Clock,PUSH_Stack,PULL_Stack,32'h00000000,StackData);
         	   
 // Read from Register file 
 
@@ -83,7 +74,10 @@ assign ReadData1= Registers_Read[ReadReg1];
 
 
 //end
+
+
 // MUX2: Read second operand
+// in Stack Instructions we use it to carry the address of SP
 
 assign ReadData2= (PUSH_Stack == 1'b1 || PULL_Stack == 1'b1 )? Registers_Read[29] : Registers_Read[ReadReg2];// the address that will go to RAM in JS or JAL 
 
@@ -161,7 +155,7 @@ endmodule
 
 
 /////***************************************** 3 - register 32-bit *************************************//////
-// don't forget to change the parameter when you do not 32 bit  register 
+// we use parameter of  32 bit  register but we can customize it  
 module RegFile_regn(R, Resetn, Rin, Clock, Q);
     parameter n = 32;
     input [n-1:0] R;
@@ -176,8 +170,9 @@ module RegFile_regn(R, Resetn, Rin, Clock, Q);
             Q <= R;
 endmodule 
 
-//Customize register for Reg 29
 
+//Customize register for Reg 29
+// hold a initial value that is the previous address to first address in stack  
 
 module Stack_regn (R, Resetn, Rin, Clock, Q);
     parameter n = 32;

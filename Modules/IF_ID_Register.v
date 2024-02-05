@@ -33,7 +33,6 @@ output reg [31:0] Instruction_out; // the instruction output to decode stage
 output reg [31:0] PC_out ; // the pc output to decode stage
 
 
-//32'b000000 00000000000000000000000000;
 
 always@(posedge clk)
 	begin
@@ -47,15 +46,6 @@ always@(posedge clk)
 				
 						Instruction_out <=32'b11100000000000000000000000000000; // nop
 						opcode <= 6'b111000;
-						// rubish values do not care because of that I use Instruction Out
-//						rs <= Instruction_out [25:21];
-//						rt <= Instruction_out [20:16];
-//						rd <= Instruction_out [15:11];
-//						shamt <= Instruction_out [10:6];
-//						funct <= Instruction_out [5:0];
-//						addr <= Instruction_out [15:0];
-//						jump <= Instruction_out [25:0];
-//						PC_out <= PC_in;
                   rs <= 5'bx;
 						rt <= 5'bx;
 						rd <= 5'bx;
@@ -87,23 +77,6 @@ always@(posedge clk)
 				
 			end
 			
-		//else 
-		// case 1 : when we have a branch miss prediction so we want to output a flush and delete the value that was store in the register
-		
-			/*begin
-			
-				Instruction_out <=32'b11100000000000000000000000000000; // nop
-				opcode <= Instruction_in [31:26];
-				rs <= Instruction_in [25:21];
-				rt <= Instruction_in [20:16];
-				rd <= Instruction_in [15:11];
-				shamt <= Instruction_in [10:6];
-				funct <= Instruction_in [5:0];
-				addr <= Instruction_in [15:0];
-				jump <= Instruction_in	 [25:0];
-				PC_out <= PC_in;
-			
-			end*/
 			
 			
 			

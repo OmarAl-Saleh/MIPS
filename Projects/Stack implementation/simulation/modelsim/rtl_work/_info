@@ -1,0 +1,161 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Omar/CPU Design/Stack implementation/simulation/modelsim
+vRegFile_decoder
+Z1 !s110 1707038178
+!i10b 1
+!s100 P66K]mcaU3m]PNlXOP<A@1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I5JgmKPCk5RU<l:35MZ:j<1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1707037629
+Z5 8E:/Omar/CPU Design/Stack implementation/RegisterFile.v
+Z6 FE:/Omar/CPU Design/Stack implementation/RegisterFile.v
+!i122 1
+L0 106 54
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1707038178.000000
+Z9 !s107 E:/Omar/CPU Design/Stack implementation/RegisterFile.v|
+Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Stack implementation|E:/Omar/CPU Design/Stack implementation/RegisterFile.v|
+!i113 1
+Z11 o-vlog01compat -work work
+Z12 !s92 -vlog01compat -work work {+incdir+E:/Omar/CPU Design/Stack implementation}
+Z13 tCvgOpt 0
+n@reg@file_decoder
+vRegFile_regn
+R1
+!i10b 1
+!s100 Sn:d@W2AK<nYJcIZl7PM50
+R2
+Ihzce0d57DOkWQGhKh^nI90
+R3
+R0
+R4
+R5
+R6
+!i122 1
+L0 165 13
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@reg@file_regn
+vRegisterFile
+R1
+!i10b 1
+!s100 _B`a>Ll:fHU90bWMQPQLm2
+R2
+IHh<5aciNi8::^5RHH_KE?2
+R3
+R0
+R4
+R5
+R6
+!i122 1
+L0 1 91
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@register@file
+vRegisterFile_tb
+!s110 1707038179
+!i10b 1
+!s100 BcfT1okznEbj_1BYgA8zI0
+R2
+I>RDRTiZ6=^P0NUKmBe8L<2
+R3
+R0
+w1707038163
+8E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v
+FE:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v
+!i122 3
+L0 3 170
+R7
+r1
+!s85 0
+31
+R8
+!s107 E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Stack implementation|E:/Omar/CPU Design/Stack implementation/RegisterFile_tb.v|
+!i113 1
+R11
+R12
+R13
+n@register@file_tb
+vStack_Memory
+R1
+!i10b 1
+!s100 VW_o^BaFL<2<nm;L1`;jS0
+R2
+IF4ZWanl1h4d0io_IdDDO@0
+R3
+R0
+w1706980025
+8E:/Omar/CPU Design/Stack implementation/Stack_Memory.v
+FE:/Omar/CPU Design/Stack implementation/Stack_Memory.v
+!i122 0
+L0 1 86
+R7
+r1
+!s85 0
+31
+R8
+!s107 E:/Omar/CPU Design/Stack implementation/Stack_Memory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/Omar/CPU Design/Stack implementation|E:/Omar/CPU Design/Stack implementation/Stack_Memory.v|
+!i113 1
+R11
+R12
+R13
+n@stack_@memory
+vStack_regn
+R1
+!i10b 1
+!s100 IDB_i34TBY8mA:mJbCb5f1
+R2
+I[3=Z7f`4bKgAf[[i60Ij00
+R3
+R0
+R4
+R5
+R6
+!i122 1
+L0 182 32
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 1
+R11
+R12
+R13
+n@stack_regn

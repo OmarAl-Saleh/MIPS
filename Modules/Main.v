@@ -1,32 +1,30 @@
 module Main (
 input clk,
 input reset
-//output wire [31:0] ReadData1,
-//output wire [31:0] ReadData2,
-//output wire [31:0] Writedata
 );
 
 // **************************************** Fetch Stage **************************************************************************
 
  wire Branch_Zero_Signal ; // we will use it in pc load
+ 
+ 
 //PC
  wire [31:0] pc_final;//input
  wire [31:0] pc_out;//output
  wire [31:0] next_pc;//pc+4
  wire [31:0] pc_inc;//4
- assign pc_inc = 32'b00000000000000000000000000000100;
+ assign pc_inc = 32'b00000000000000000000000000000100;// constant value(4)
  wire PC_write;//control
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
     .clk(clk),
     .reset(reset),
-	// .target(next_pc),
 	.target(pc_final),
 	 .pc_load(PC_write), //second edition come from hazard detection unit
-	// .pc_load(1),
     .pc(pc_out)
   );
+  
 //end of PC
 //------------------------------------
 
@@ -42,46 +40,24 @@ adder add(
 //////********************we can update the Instruction memory and delete all output signals except the inst_out;
 //inst_mem
 wire[31:0] inst_out;
-wire [5:0] opcode;
-wire [4:0] rs;
-wire [4:0] rt;
-wire [4:0] rd;
-wire [4:0] shamt;
-wire [5:0] funct;
-wire [15:0] addrs;
-wire [25:0] jump_offset;
 
 INST_MEM #(.size(32),.data_width(32) )
 inst_mem (
-	// .clk(clk),
     .reset(reset),
     .address(pc_out),
-    .inst_out(inst_out),
-    .opcode(opcode),
-    .rs(rs),
-    .rt(rt),
-    .rd(rd),
-    .shamt(shamt),
-    .funct(funct),
-    .addr(addrs),
-	 .jump(jump_offset)
+    .inst_out(inst_out)
   );
+  
+ // End of Instruction Memory ---------------------------------------
 	
 // IF_ID_Register	
 
-// Inputs
- // reg clk;
-  //reg reset;
- // reg enable;
-  //reg [31:0] Instruction_in;
-  //reg [31:0] PC_in;
-  //reg Branch_Control;
 
   // Outputs
   wire [31:0] IF_ID_Instruction_out;
   wire [31:0] IF_ID_PC_out;
 // to split it from Instruction memory signal  
-//wire[31:0] IF_ID_inst_out;
+
 wire [5:0] IF_ID_opcode;
 wire [4:0] IF_ID_rs;
 wire [4:0] IF_ID_rt;
@@ -96,10 +72,9 @@ wire IF_ID_write ,Branch ; // the enable signal that come from hazard unit and b
 IF_ID_Register IF_ID_R (
     .clk(clk),
     .reset(reset),
-    .enable(~(IF_ID_write)),// I make it negative because the case of first instruction when no instruction is in ID stage 
+    .enable(~(IF_ID_write)),//  it designed to be negative because the case of first instruction when no instruction is in ID stage 
     .Instruction_in(inst_out), // the output instruction from Instruction Memory
     .PC_in(next_pc),
-//    .Branch_Control(Branch_Control), second edition
     .Branch_Control((Branch & Branch_Zero_Signal)|(Jump_signal[0] | Jump_signal[1]) ), // if we catch branch depandancy
       //or we find jump or jump and link instructions or JS --> Jump Register
     .Instruction_out(IF_ID_Instruction_out),
@@ -114,7 +89,7 @@ IF_ID_Register IF_ID_R (
 	 .jump(IF_ID_jump_offset)
   );
 	
-
+// End of 
 
 //************************************************** Decode Stage **********************************************************************
 
@@ -139,8 +114,6 @@ sign_extend extender (
   wire [1:0] RegDst;
   wire [1:0] MemtoReg;
 
-  wire PC_Store;
-
   // we don't need pc_load and pc_store signal anymore (useless) (clear phase)
 
 ControlUnit control_inst (
@@ -156,9 +129,8 @@ ControlUnit control_inst (
     .ALUOp(ALUOp),
 	 .Branch(Branch),
 	 .Jump(Jump_signal),
-	 .funct(IF_ID_funct),
-	 .pc_load(pc_load), // in second edition we must delete it from control unit and put it in hazard unit
-	 .PC_Store(PC_Store)// must be cleaned
+	 .funct(IF_ID_funct)
+	
   );
 //end of ControlUnit
 //------------------------------------
@@ -189,18 +161,19 @@ ControlUnit control_inst (
         .WriteData(WB_Writedata), 
         .ReadData1(ReadData1),
         .ReadData2(ReadData2),
-		  //.PC_Store(PC_Store)// we dont use it in this edition(must clean)
 		  .PC_Store(MEM_WB_MemtoReg[1]),// to indicate JAL OR JS Instruction in WB Stage to store the Return address that come from RAM 
-		  // must update in pull operation
+		                               // must update in pull operation
 		  .PUSH_Stack(MemtoReg[1] && ~MemtoReg[0]),// to indicate JAL Instruction with Stack
         .PULL_Stack(Jump_signal[1]) // to indicate JS Instruction with Stack
     );
 	 
 	 
 	 wire [31:0] Branch_address;
-	 /////////////////////////////////////////second edition/////////////////////////////////////////////////////////////
+
+
+// End of Register File ------------------------------------------------------
 	 
-	 // implement the branch forwarding Unit
+// implement the branch forwarding Unit
 	 
 	 wire [4:0] EX_MEM_rd,ID_EX_rd; // we need to use the rd in branch forwarding;
 	 wire ID_EX_RegWrite , EX_MEM_RegWrite;
@@ -224,7 +197,6 @@ ControlUnit control_inst (
 	 
 MUX4_1 Branch_Forwarding_A_MUX(
 .a(ReadData1),
-//.b(MEM_WB_RAM_Data),// MEM_WB wrong to put it
 .b(WB_Writedata),
 .c(EX_MEM_ALU_Result),// EX_MEM
 .select(Branch_Select_Forward_A),
@@ -233,7 +205,6 @@ MUX4_1 Branch_Forwarding_A_MUX(
 
 MUX4_1 Branch_Forwarding_B_MUX(
 .a(ReadData2),
-//.b(MEM_WB_RAM_Data),// I don't know where is he wrong to put it
 .b(WB_Writedata), 
 .c(EX_MEM_ALU_Result),
 .select(Branch_Select_Forward_B),
@@ -260,15 +231,10 @@ MUX4_1 Branch_Forwarding_B_MUX(
  
  // implement the branch forwarding Unit
 	 
-	// wire [4:0] EX_MEM_rd,ID_EX_rd; // we need to use the rd in branch forwarding;
-	// wire ID_EX_RegWrite , EX_MEM_RegWrite;
 	 wire JUMP_Select_Forward_A;
-	 //wire [31:0] EX_MEM_ALU_Result ;
-	// wire [31:0] MEM_WB_RAM_Data;
 	 wire [1:0] EX_MEM_MemtoReg;
 	 wire [31:0] Final_JUMP_ReadData;
 	 wire [31:0] EX_MEM_PC_out;
-   // wire [31:0] Final_Branch_ReadData2;// the output of forwarding MUXES 
 
  ForwardingUnit_JUMP JUMP_Forwarding (
     .JS_JUMP(Jump_signal),
@@ -296,7 +262,6 @@ MUX2_1 JUMP_Forwarding_MUX(
 
 
 MUX2_1 pc_target(
-//.a(IF_ID_PC_out),
 .a(next_pc),
 .b(Branch_address),
 .select((Branch & Branch_Zero_Signal)),
@@ -310,7 +275,6 @@ MUX2_1 pc_target(
 JUMP Jump_Unit (
     .JUMP_FLAG(Jump_signal[0]),
     .jump_offset(IF_ID_jump_offset),
-   // .next_pc(IF_ID_PC_out),
 	 .next_pc(next_pc),
     .JUMP_address(JUMP_Target_address)
   );
@@ -328,7 +292,6 @@ MUX4_1 pc_final_main(
 wire ID_EX_FLUSH , ID_EX_MemRead, EX_MEM_MemRead;
 
 wire [4:0]  ID_EX_rt;
-//wire IF_ID_write; we must put it in before the IF_ID Register
 Hazard_Unit Hazard_unit (
     .D_rs(IF_ID_rs),
     .D_rt(IF_ID_rt),
@@ -345,18 +308,8 @@ Hazard_Unit Hazard_unit (
 	 
 // End of hazard detection Unit
 
+// ID_EX_Pipeline_Register ----------------------------------------------
 
-	 
-	 ////////////////////////////////////////second edition////////////////////////////////////////////////////////////////
-
-    // ID_EX_Register
-	 // Signals
- // reg clk, reset;
-  //reg [31:0] In_Reg_File_Data1, In_Reg_File_Data2, In_offset;
-  //reg [4:0] In_Rs, In_Rt, In_Rd;
-  //reg In_ALUSrc, In_MemWrite, In_MemRead, In_RegWrite;
- // reg [3:0] In_ALUOp;
-  //reg [1:0] In_MemtoReg, In_RegDst;
   wire [31:0] ID_EX_Reg_File_Data1, ID_EX_Reg_File_Data2,ID_EX_PC_out;
   wire [4:0] ID_EX_rs;
   wire ID_EX_ALUSrc, ID_EX_MemWrite;
@@ -368,7 +321,6 @@ Hazard_Unit Hazard_unit (
   // Instantiate the module
   ID_EX_Register ID_EX_R (
     .clk(clk),
-    //.reset(ID_EX_FLUSH || Jump_signal[0] || Jump_signal[1]),
 	 .reset(ID_EX_FLUSH),
     .In_Reg_File_Data1(ReadData1),
     .In_Reg_File_Data2(ReadData2),
@@ -406,9 +358,11 @@ Hazard_Unit Hazard_unit (
 	
 // End of ID_EX_Register
 
+
+
+
 //************************************************ Execution Stage ********************************************************************
 
-//alu_cntrl
 
 wire [3:0] Operation;
 wire [2:0] branch_type;
@@ -418,7 +372,7 @@ alu_control alu_ctrl (
     .FuncField(ID_EX_func),
     .ALUOp(ID_EX_ALUOp),
     .Operation(Operation),
-	 .branch_type(branch_type) // will delete it in second edition
+	 .branch_type(branch_type) 
 );
 
 //end of alu_cntrl
@@ -434,31 +388,15 @@ MUX5bit mux_inst (
 
 // END of Determine RD Register
 
-// I but in after the forwarding because it was case error 
-
-////------------------------------------
-//// MUX2_1 alu_sec_input
-//
-//wire [31:0] alu_second_input;
-// MUX2_1 alu_sec_input (
-//        .a(ID_EX_Reg_File_Data2),        
-//        .b(ID_EX_immediate_value),         
-//        .select(ID_EX_ALUSrc), 
-//        .out(alu_second_input)   
-//    );
-//
-////end of MUX2_1 alu_sec_input
 
 
-/////////////////////////////////// second edition /////////////////////////////
+
 
 //ALU Forwarding Unit 
 
-	// wire [4:0] EX_MEM_rd; // we need to use the rd in branch forwarding;
-	// wire ID_EX_RegWrite , EX_MEM_RegWrite;
+
 	 wire [1:0] ALU_Select_Forward_A ,ALU_Select_Forward_B;
-	// wire [31:0] EX_MEM_ALU_Result ;
-	// wire [31:0] MEM_WB_RAM_Data;
+	
 	  
 	 wire [31:0] Final_ALU_ReadData1;
     wire [31:0] Final_ALU_ReadData2;// the output of forwarding MUXES
@@ -476,7 +414,6 @@ MUX5bit mux_inst (
 	 ///// we are here 
 MUX4_1 ALU_Forwarding_A_MUX(
 .a(ID_EX_Reg_File_Data1),
-//.b(MEM_WB_RAM_Data),// MEM_WB wrong to put it 
 .b(WB_Writedata),
 .c(EX_MEM_ALU_Result),// EX_MEM
 .select(ALU_Select_Forward_A),
@@ -485,7 +422,6 @@ MUX4_1 ALU_Forwarding_A_MUX(
 
 MUX4_1 ALU_Forwarding_B_MUX(
 .a(ID_EX_Reg_File_Data2),
-//.b(MEM_WB_RAM_Data), wrong to put it
 .b(WB_Writedata),
 .c(EX_MEM_ALU_Result),
 .select(ALU_Select_Forward_B),
@@ -507,8 +443,8 @@ wire [31:0] alu_second_input;
 
 
 
-////////////////////////////////// second edition /////////////////////////////
-//ALU
+//ALU --------------------------------------------------
+
 wire [31:0] alu_output , Address;
 wire zero ;
 
@@ -526,7 +462,6 @@ ALU alu (
 // Determin the Final address From ALU or From Register file (Stack)
 MUX2_1 Address_MUX (
         .a(alu_output),        
-       // .b(Final_ALU_ReadData1),
         .b(ID_EX_Reg_File_Data2),		 
         .select(ID_EX_MemtoReg[1]), // we want the second choice(ReadData1) in stack operations JAL --> Store or JS---->Load
         .out(Address)   
@@ -538,21 +473,12 @@ MUX2_1 Address_MUX (
 // EX_MEM_Register
 
 // Signals
-  //reg clk;
- // reg [31:0] In_Address, In_Write_Data;
- // reg [4:0] In_Rd;
-  //reg In_MemWrite, In_MemRead, In_RegWrite;
- // reg [1:0] In_MemtoReg;
-  //wire [31:0] EX_MEM_Write_Data,EX_MEM_PC_out;
   wire [31:0] EX_MEM_Write_Data;
-  //wire [4:0] EX_MEM_rd;
   wire EX_MEM_MemWrite;
- // wire [1:0] EX_MEM_MemtoReg;
 //ID_EX_PC_out
   // Instantiate the module
   EX_MEM_Register EX_MEM_R (
     .clk(clk),
-    //.In_Address(alu_output), for stack implementation
 	 .In_Address(Address),
     .In_Write_Data(Final_ALU_ReadData2),
 	 .In_PC(ID_EX_PC_out),
@@ -613,15 +539,9 @@ RAM #(
 //MEM_WB_Register
 
 // Signals
- // reg clk;
-  //reg [31:0] In_RAM_Data, In_Immediate_Data;
-  //reg [4:0] In_Rd;
-  //reg In_RegWrite;
-  //reg [1:0] In_MemtoReg;
+ 
   wire [31:0] MEM_WB_ALU_Data,MEM_WB_PC_out;
- // wire [4:0] MEM_WB_rd; we must declare it before register file 
-  //wire MEM_WB_RegWrite; 
-
+ 
 
   // Instantiate the module
   MEM_WB_Register MEM_WB_R (
@@ -650,77 +570,24 @@ RAM #(
 WB_MUX4_1 Write_back (
         .a(MEM_WB_ALU_Data),        
         .b(MEM_WB_RAM_Data),
-		  //.c(next_pc), second edition move to id stage 
 		  .c(MEM_WB_PC_out),// we will implement it in ID Stage so we need update the mem to reg control unit and invent a new signal for it 
 		  .d(MEM_WB_RAM_Data),// for JS instruction to write the previous subroutine on REG 31
         .select(MEM_WB_MemtoReg), 
         .out(WB_Writedata)   
     );
 	 
-//------------------------------------
+//------------------------------------------------------------------------------
+
+
+
+
+
+//************************************************* END MAIN ***********************************************
 
 
 
 
 
 
-
-
-
-
-
-//********************************************** will be Adding in second edition ******************************************************
-
-// ********** IF Stage ***************//
-
-
-//**********ID stage *****************//
-//------------------------------------
-//handling jump instruction
-
-
-//	
-//	adder add(
-//	.a(pc_inc),
-//	.b(pc_out),
-//	.c(next_pc)
-//	);
-//	
-//	wire [31:0] jump_target;
-//assign jump_target = {next_pc[31:28], jump_offset, 2'b00};
-////---------------------------------
-//	//branch
-//	wire [31:0] branch;
-//	
-//	branch_control branch_main(
-//	.extended_address(immediate_value),
-//	.next_pc(next_pc),
-//	.branch(branch)
-//	);
-//	
-////--------------------------------
-//wire [31:0] pc_branch;
-//
-//
-//MUX2_1 pc_target(
-//.a(next_pc),
-//.b(branch),
-//.select((Branch & zero)),
-//.out(pc_branch)
-//);	
-//
-//MUX4_1 pc_final_main(
-//.a(pc_branch),
-//.b(jump_target),
-//.c(ReadData1),
-//.select(Jump_signal),
-//.out(pc_final)
-//);
-
-// Branch Unit
-
-//*************************************** Modules to update ***********************************************
-// alu control 
-// Control Unit (for JAL we will not store the pc value in write back anymore we will do it in Decode stage )
 	 
 endmodule 

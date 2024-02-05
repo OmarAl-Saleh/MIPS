@@ -9,7 +9,7 @@ output reg [31:0] Branch_address,
 output reg zero
 );
 always @(*) begin
-   // omar edit when a branch occure I will make the zero signal equal one (not zero like moyyad defualt)
+
 	zero = 0 ;
 	Branch_address [15:0] = Target [15:0] ;
 	Branch_address [31:16] = {16{Target[15]}};

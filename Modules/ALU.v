@@ -7,8 +7,7 @@ module ALU(
     input [2:0] branch_type,
 	 output reg [31:0] ALUOut, // 32-bit output
     output reg Zero // Zero flag
-   // output reg Overflow, // Overflow flag
-   // output reg CarryOut // Carry-out flag
+   
 );
 reg Overflow;
 reg CarryOut;
@@ -38,7 +37,6 @@ always @(*) begin
 		  4'b1110: ALUOut <= (A > B) ? 32'b1 : 32'b0; // greater than
 
 
-   //   4'b1111: ALUOut <= (A == B) ? 32'b1 : 32'b0; // Equal comparison ERROR 
 
 
         default: ALUOut <= 32'b0; // Default operation
@@ -67,15 +65,7 @@ always @(*) begin
     end
 end
 
-/*
-always @* begin
-		  if (Overflow && (ALUControl != 0110) && (ALUControl != 0111)) begin //signed overflow check
-        ALUOut = 32'bx; 
 
-		  end else if(CarryOut && ((ALUControl == 4'b0110) || (ALUControl == 4'b0111))) begin //unsigned overflow check 
-		  ALUOut = 32'bx;
-end
-end*/
 
 
 always @(*) begin

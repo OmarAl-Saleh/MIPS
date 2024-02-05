@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at RegisterFile.v(191): always construct contains both blocking and non-blocking assignments File: E:/Omar/CPU Design/Stack implementation/RegisterFile.v Line: 191
