@@ -1,0 +1,11 @@
+Warning (10268): Verilog HDL information at RegisterFile.v(248): always construct contains both blocking and non-blocking assignments File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/RegisterFile.v Line: 248
+Warning (10268): Verilog HDL information at PC.v(16): always construct contains both blocking and non-blocking assignments File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/PC.v Line: 16
+Warning (10273): Verilog HDL warning at JUMP.v(18): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/JUMP.v Line: 18
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(49): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 49
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(50): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 50
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(51): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 51
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(52): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 52
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(53): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 53
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(54): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 54
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(55): extended using "x" or "z" File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/IF_ID_Register.v Line: 55
+Warning (10268): Verilog HDL information at alu_control.v(11): always construct contains both blocking and non-blocking assignments File: D:/CPU/Phase3_FBGA/MIPS-pipeline-full-mips-datapath/Modules/alu_control.v Line: 11

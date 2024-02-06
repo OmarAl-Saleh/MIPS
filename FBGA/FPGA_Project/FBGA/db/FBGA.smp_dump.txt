@@ -1,0 +1,6 @@
+
+State Machine - |FBGA|Main:m_dut|PC:pc_inst|state
+Name state.00 state.10 state.01 
+state.00 0 0 0 
+state.01 1 0 1 
+state.10 1 1 0 

@@ -1,0 +1,18 @@
+Fitter Status : Successful - Wed Feb 07 00:49:06 2024
+Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+Revision Name : FBGA
+Top-level Entity Name : FBGA
+Family : MAX 10
+Device : 10M50DAF484C7G
+Timing Models : Final
+Total logic elements : 3,564 / 49,760 ( 7 % )
+    Total combinational functions : 3,432 / 49,760 ( 7 % )
+    Dedicated logic registers : 997 / 49,760 ( 2 % )
+Total registers : 997
+Total pins : 51 / 360 ( 14 % )
+Total virtual pins : 0
+Total memory bits : 1,024 / 1,677,312 ( < 1 % )
+Embedded Multiplier 9-bit elements : 6 / 288 ( 2 % )
+Total PLLs : 0 / 4 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )
