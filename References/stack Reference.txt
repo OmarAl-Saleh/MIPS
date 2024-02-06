@@ -32,3 +32,4 @@ Store signal when JAL In RAM
 load signal when JS  In RAM 
 
 the Address of Starch pointer will be held on Register file Read Data 2 because in Read Data 1 we face structural hazard
+
