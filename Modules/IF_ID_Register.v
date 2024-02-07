@@ -1,4 +1,4 @@
-module IF_ID_Register (clk,reset,enable,Instruction_in,PC_in,Branch_Control,Instruction_out,PC_out, opcode,rs,rt,rd,shamt,funct,addr,jump);
+module IF_ID_Register (clk,reset,enable,Instruction_in,PC_in,Branch_Control,Instruction_out,PC_out, opcode,rs,rt,rd,shamt,funct,addr,jump,halt);
 
 input clk ;
 input reset; // 0-->1 to delete the previous instruction and store a nop instruction (flush) with opcode 111000 according to our control unit default value
@@ -6,6 +6,8 @@ input reset; // 0-->1 to delete the previous instruction and store a nop instruc
 
 input enable; // 0-->1 to enable the register to received new instruction we use 
 //it in hazard detection to make flush and the output opcode is 111000 it comes only from  the hazard detection unit
+
+input halt ; // 0 ---> stop pc and regenerate halt instruction to control unit
 
 input [31:0] Instruction_in; // the instruction come from fetch stage
 
@@ -74,6 +76,24 @@ always@(posedge clk)
 						PC_out <= PC_in;
 		
 					end
+					
+					
+				
+				 if((halt == 1'b1))
+						begin
+				  // to stop the pc 
+						Instruction_out <=32'b10110100000000000000000000000000; // nop
+						opcode <= 6'b101101;
+                  rs <= 5'bx;
+						rt <= 5'bx;
+						rd <= 5'bx;
+						shamt <= 5'bx;
+						funct <= 6'bx;
+						addr <= 16'bx;
+						jump <= 26'bx;
+						PC_out <= PC_in;
+				  
+						end
 				
 			end
 			
@@ -83,8 +103,6 @@ always@(posedge clk)
 	
 	end
 	
-	
 endmodule
-
 
 

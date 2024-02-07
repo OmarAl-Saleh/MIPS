@@ -3,8 +3,12 @@ input clk,
 input reset
 );
 
-// **************************************** Fetch Stage **************************************************************************
 
+
+
+//**********************************************************************************************************************
+// **************************************** Fetch Stage **************************************************************************
+// ******************************************************************************************************************
  wire Branch_Zero_Signal ; // we will use it in pc load
  
  
@@ -15,13 +19,15 @@ input reset
  wire [31:0] pc_inc;//4
  assign pc_inc = 32'b00000000000000000000000000000100;// constant value(4)
  wire PC_write;//control
+ // for halt instruction implementation
+ wire halt; // to end the program last instruction in every program 
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
     .clk(clk),
     .reset(reset),
 	.target(pc_final),
-	 .pc_load(PC_write), //second edition come from hazard detection unit
+	 .pc_load(PC_write && ~halt), //second edition come from hazard detection unit
     .pc(pc_out)
   );
   
@@ -37,7 +43,6 @@ adder add(
 
 	
 //------------------------------------
-//////********************we can update the Instruction memory and delete all output signals except the inst_out;
 //inst_mem
 wire[31:0] inst_out;
 
@@ -75,7 +80,7 @@ IF_ID_Register IF_ID_R (
     .enable(~(IF_ID_write)),//  it designed to be negative because the case of first instruction when no instruction is in ID stage 
     .Instruction_in(inst_out), // the output instruction from Instruction Memory
     .PC_in(next_pc),
-    .Branch_Control((Branch & Branch_Zero_Signal)|(Jump_signal[0] | Jump_signal[1]) ), // if we catch branch depandancy
+    .Branch_Control((Branch && Branch_Zero_Signal)||(Jump_signal[0] || Jump_signal[1])), // if we catch branch depandancy
       //or we find jump or jump and link instructions or JS --> Jump Register
     .Instruction_out(IF_ID_Instruction_out),
     .PC_out(IF_ID_PC_out),// Maybe I must implement the pc in every register but know I will not do it 
@@ -86,13 +91,14 @@ IF_ID_Register IF_ID_R (
     .shamt(IF_ID_shamt),
     .funct(IF_ID_funct),
     .addr(IF_ID_addrs),// use for calculate the branch target address
-	 .jump(IF_ID_jump_offset)
+	 .jump(IF_ID_jump_offset),
+	 .halt(halt)
   );
 	
 // End of 
-
+//**************************************************************************************************************************************
 //************************************************** Decode Stage **********************************************************************
-
+//**************************************************************************************************************************************
 	
 //sign extend
 wire [31:0] immediate_value;
@@ -113,6 +119,7 @@ sign_extend extender (
   wire [3:0] ALUOp;
   wire [1:0] RegDst;
   wire [1:0] MemtoReg;
+  //wire halt;
 
   // we don't need pc_load and pc_store signal anymore (useless) (clear phase)
 
@@ -129,7 +136,8 @@ ControlUnit control_inst (
     .ALUOp(ALUOp),
 	 .Branch(Branch),
 	 .Jump(Jump_signal),
-	 .funct(IF_ID_funct)
+	 .funct(IF_ID_funct),
+	 .halt(halt)
 	
   );
 //end of ControlUnit
@@ -360,9 +368,9 @@ Hazard_Unit Hazard_unit (
 
 
 
-
-//************************************************ Execution Stage ********************************************************************
-
+//**************************************************************************************************************************************
+//************************************************ Execution Stage *********************************************************************
+//**************************************************************************************************************************************
 
 wire [3:0] Operation;
 wire [2:0] branch_type;
@@ -502,8 +510,10 @@ MUX2_1 Address_MUX (
 
 // End of EX_MEM_Register
 //------------------------------------
+//**************************************************************************************************************************************
+//************************************************ Memory Stage ************************************************************************
+//**************************************************************************************************************************************
 
-//************************************************ Memory Stage ***********************************************************************
 
 wire [31:0] Final_Data;
 // Determin the Final Data From Normal operations or From PC (Stack)
@@ -563,8 +573,9 @@ RAM #(
 
 // End of MEM_WB_Register
 
+//**********************************************************************************************************************************************
 //**************************************************** Write Back Stage ************************************************************************
-
+//**********************************************************************************************************************************************
 
 //Write back
 WB_MUX4_1 Write_back (
@@ -581,9 +592,9 @@ WB_MUX4_1 Write_back (
 
 
 
-
-//************************************************* END MAIN ***********************************************
-
+//**************************************************************************************************************************************
+//************************************************* END MAIN ***************************************************************************
+//**************************************************************************************************************************************
 
 
 
