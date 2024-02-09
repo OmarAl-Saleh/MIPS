@@ -45,20 +45,40 @@ reg state = 1'b0;
             1'b0: begin
                 state <= 1'b1;
 					 // Enter here the Instructions of the program 
-	/*Address 0 */  inst_mem[0] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
-	/*Address 4 */  inst_mem[1] = 32'b00100000000010010000000000001010; //ADDI R9, R9, 10
-	/*Address 8 */  inst_mem[2] = 32'b00000001000010010101000000100010; //SUB R10, R8, R9 //Loop Forwarding 
-	/*Address 12 */ inst_mem[3] = 32'b00100000000011000000000000000001; //ADDI R12, R0, 1
-	/*Address 16 */ inst_mem[4] = 32'b00011001000010010000000000000010; //BGT R8, R9, DONE
-	/*Address 20 */ inst_mem[5] = 32'b00100001000010000000000000000001; //ADDI R8, R8, 1
-	/*Address 24 */ inst_mem[6] = 32'b00001000000000000000000000000010; //JUMP LOOP
-	/*Address 28 */ inst_mem[7] = 32'b00000001001000000110100000100000; //ADD R13, R9, R0 //DONE
-	/*Address 32 */ inst_mem[8] = 32'b00100000000011100000000000011011; //ADDI R14, R0, 1B(27)
-	/*Address 36 */ inst_mem[9] = 32'b00110001110011100000000000010111; //ANDI R14, R14, 17(23) Forwarding
+	
+    
+	// THIS TEST FOR STACK TESTING USING JAL & JS INSTRUCTIONS (Nested Subroutine) 3 push 3 pull 
+	// the goal is test the stack functionality 
+	
+	/*Address 0 */inst_mem[0] = 32'b00001100000000000000000000000100;//JAL Jump to address 16 and save R31 = 4
+	/*Address 4 */inst_mem[1] = 32'b10001100000000010000000000000100;//lw reg1=3 (the jump will skip it and return later) 
+	/*Address 8 */inst_mem[2] = 32'b00000000000000001110000000000000; //ADD R28,R0,R0 (R28=0)  
+	
+   /* Address 12 */ inst_mem[3] = 32'b10110100001000100001100000100000; //Halt (stop PC & End the Program)
+	
+	// the PC final value will be 16
+	
+	/*Address 16 */inst_mem[4] = 32'b00001100000000000000000000000111;//JAL Jump to address 28 and save R31 = 20
+
+	   
+   /*Address 20 */inst_mem[5] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 4 
 	
 	
-	/* LAST ADDRESS */ inst_mem[10] = 32'b10110100001000100001100000100000; //Halt 
-	// every program should end with halt signal 
+	/*Address 28 */inst_mem[7] = 32'b00001100000000000000000000001111;//JAL Jump to address 60 and save R31 = 32
+		
+	/*Address 32 */inst_mem[8] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 20 
+		
+		
+    /*Address 60 */inst_mem[15] = 32'b00000011111001010010000000001000;// JS jump to address store in REG 31 so jump to address 32 
+	 
+	  // In this instruction we need JUMP Forwarding Unit between JAL MEM Stage instruction and JS ID Stage Instruction
+	
+//-------------------------------------------------------------
+
+//
+
+///* LAST ADDRESS */ inst_mem[3] = 32'b10110100001000100001100000100000; //Halt 
+// every program should end with halt signal 
 
 	
 

@@ -80,7 +80,7 @@ always @(posedge clk)
 			Out_MemRead <= 1'b0;
 			Out_RegWrite <= 1'b0;
 			
-			Out_ALUOp<=4'b0;
+			Out_ALUOp<=4'b0000;
 			Out_MemtoReg<=2'b0;
 			Out_RegDst<=2'b0;
 			

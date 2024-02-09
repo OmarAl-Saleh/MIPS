@@ -1,4 +1,5 @@
 module alu_control(
+input clk,
 input [5:0] FuncField,
 input [3:0] ALUOp,
 output reg [3:0] Operation,
@@ -77,4 +78,4 @@ output reg [2:0] branch_type
 	 else begin Operation = 4'b1111;
 	 end
 	 end
-endmodule 
+endmodule

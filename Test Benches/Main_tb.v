@@ -27,8 +27,8 @@ module Main_tb;
 
     // Wait for a few clock cycles
     //#55000; for test case 4 & 6
-	 #55000
-	 //#550
+	   //#55000
+     #550
 
     // Stop simulation
     $stop;
