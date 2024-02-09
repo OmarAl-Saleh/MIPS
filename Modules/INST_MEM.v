@@ -13,20 +13,7 @@ module INST_MEM #(
   
  
  integer i;
-//  
-//  always @(*) begin
-//    if (reset) begin
-//     
-//      for (i = 0; i < size; i = i + 1) begin
-//        inst_mem[i] <= 32'b0;
-//      end
-//    end 
-//	 else begin
-//    inst_out <= inst_mem[address >> 2];
-//  end
-//  end
-//  
-//  
+
 //  endmodule 
 
 reg state = 1'b0;

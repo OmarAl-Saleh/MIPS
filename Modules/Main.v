@@ -80,7 +80,7 @@ IF_ID_Register IF_ID_R (
     .enable(~(IF_ID_write)),//  it designed to be negative because the case of first instruction when no instruction is in ID stage 
     .Instruction_in(inst_out), // the output instruction from Instruction Memory
     .PC_in(next_pc),
-    .Branch_Control((Branch && Branch_Zero_Signal)||(Jump_signal[0] || Jump_signal[1])), // if we catch branch depandancy
+    .Branch_Control((Branch & Branch_Zero_Signal)|(Jump_signal[0] | Jump_signal[1]) ), // if we catch branch depandancy
       //or we find jump or jump and link instructions or JS --> Jump Register
     .Instruction_out(IF_ID_Instruction_out),
     .PC_out(IF_ID_PC_out),// Maybe I must implement the pc in every register but know I will not do it 
