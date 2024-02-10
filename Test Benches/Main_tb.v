@@ -3,6 +3,7 @@ module Main_tb;
 
   reg clk;      // Clock signal
   reg reset;    // Reset signal
+  integer clk_count = 0; // Clock counter
 
   // Instantiate the Main module
   Main main_inst (
@@ -13,7 +14,9 @@ module Main_tb;
 
   // Clock generation
   always begin
-    #10 clk = ~clk; // Toggle the clock every 5 time units
+    #1 clk = ~clk; // Toggle the clock every 5 time units
+	 clk_count = clk_count + 1; // Increment clock counter
+
   end
 
   initial begin
@@ -27,8 +30,10 @@ module Main_tb;
 
     // Wait for a few clock cycles
     //#55000; for test case 4 & 6
-	   //#55000
-     #550
+    //#550
+     #100
+	 //#1500
+   
 
     // Stop simulation
     $stop;

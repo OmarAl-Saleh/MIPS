@@ -298,8 +298,8 @@ end
        reg_MemtoReg = 2'b00;
        reg_MemWrite = 1'b0;
        reg_MemRead  = 1'b0;
-       reg_ALUOp    = 2'b00;
-       reg_RegDst   = 4'b0000;
+       reg_ALUOp    = 4'b0000;
+       reg_RegDst   = 1'b0;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
 		 
