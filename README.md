@@ -1,4 +1,4 @@
-# MIPS
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/8907b6d3-c25b-4cd8-ae2c-0c06cf77ed79)# MIPS
 ## Single-Cycle CPU -phase one
 This repository contains a Verilog implementation of a single-cycle CPU based on the MIPS instruction set architecture.
 ## (working) pipeline Cpu -phase two 
@@ -17,7 +17,7 @@ testbench/: Contains Verilog testbenches to simulate and validate the CPU.
 
 
 
-![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/ad0dab46-0e71-499a-8bd0-64a50b3d34bd)
+![image](![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/7f6dadaa-07cc-4f34-8c46-61be5c959e8a))
 
 
 
