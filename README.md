@@ -9,11 +9,11 @@ The single-cycle CPU implemented here is designed to execute a subset of the MIP
 Supports basic arithmetic and logic operations such as ADD, SUB, AND, OR, etc.
 Load and Store operations for memory access.
 will add other soon 
+## timeline project
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/b045ef7e-cae5-4798-80ff-670a4d039cc9)
 
 ## Directory Structure
 Modules/: Contains the Verilog source files for the CPU and its components.
-
-testbench/: Contains Verilog testbenches to simulate and validate the CPU.
 
 
 
