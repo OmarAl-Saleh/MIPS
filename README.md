@@ -7,8 +7,9 @@ we add stack ,forwarding, harzard unit and register between stages.
 ## Overview
 The pipeline CPU implemented here is designed to execute a subset of the MIPS instruction set. It fetches and executes one instruction every clock cycle, making it a straightforward design for educational purposes.
 
-##Instruction Set Architecture]
-![image]([https://github.com/OmarAl-Saleh/MIPS/assets/76126298/b7175e81-9c5f-4517-b006-a928c0f9aba9](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/phase%20two%20instruction%20set.png?raw=true))
+## Instruction Set Architecture
+![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/phase%20two%20instruction%20set.png?raw=true)
+
 
 ## Project Modules
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Modules%20definition.png?raw=true)
