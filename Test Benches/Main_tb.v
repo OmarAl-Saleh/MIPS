@@ -3,6 +3,7 @@ module Main_tb;
 
   reg clk;      // Clock signal
   reg reset;    // Reset signal
+ // reg halt;
   integer clk_count = 0; // Clock counter
 
   // Instantiate the Main module
@@ -15,7 +16,9 @@ module Main_tb;
   // Clock generation
   always begin
     #1 clk = ~clk; // Toggle the clock every 5 time units
+		
 	 clk_count = clk_count + 1; // Increment clock counter
+	  
 
   end
 
@@ -29,9 +32,9 @@ module Main_tb;
    // #20 reset = 0;  // De-assert reset after 20 time units
 
     // Wait for a few clock cycles
-    //#55000; for test case 4 & 6
+    #55000; //for test case 4 & 6
     //#550
-     #100
+     //#100
 	 //#1500
    
 

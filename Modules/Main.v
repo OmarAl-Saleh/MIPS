@@ -1,10 +1,20 @@
 module Main (
 input clk,
 input reset
+
 );
 
+reg [31:0] cycles_count = 32'b00000000000000000000000000000000;
+wire halt; // to end the program last instruction in every program 
+wire EX_MEM_halt;
 
 
+
+
+always@(posedge clk)begin
+if(EX_MEM_halt==1'b0 || halt==1'b0)
+cycles_count <= cycles_count+1;
+end
 
 //**********************************************************************************************************************
 // **************************************** Fetch Stage **************************************************************************
@@ -20,7 +30,7 @@ input reset
  assign pc_inc = 32'b00000000000000000000000000000100;// constant value(4)
  wire PC_write;//control
  // for halt instruction implementation
- wire halt; // to end the program last instruction in every program 
+ //wire halt; // to end the program last instruction in every program 
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
@@ -140,6 +150,7 @@ ControlUnit control_inst (
 	 .halt(halt)
 	
   );
+  
 //end of ControlUnit
 //------------------------------------
 
@@ -325,6 +336,7 @@ Hazard_Unit Hazard_unit (
   wire [1:0]ID_EX_MemtoReg, ID_EX_RegDst;
   wire [5:0] ID_EX_func;
   wire [4:0] ID_EX_shamt;
+  wire ID_EX_halt;
 
   // Instantiate the module
   ID_EX_Register ID_EX_R (
@@ -346,6 +358,7 @@ Hazard_Unit Hazard_unit (
     .In_RegDst(RegDst),
 	 .In_func(IF_ID_funct),
 	 .In_shamt(IF_ID_shamt),
+	 .In_halt(halt),
     .Out_Reg_File_Data1(ID_EX_Reg_File_Data1),// may be the address of top of stack to store or load from Memory in JS or JAL Instructions
     .Out_Reg_File_Data2(ID_EX_Reg_File_Data2),
     .Out_offset(ID_EX_immediate_value),
@@ -361,7 +374,8 @@ Hazard_Unit Hazard_unit (
     .Out_MemtoReg(ID_EX_MemtoReg),
     .Out_RegDst(ID_EX_RegDst),
 	 .Out_func(ID_EX_func),
-	 .Out_shamt(ID_EX_shamt)
+	 .Out_shamt(ID_EX_shamt),
+	 .Out_halt(ID_EX_halt)
   );
 	
 // End of ID_EX_Register
@@ -483,6 +497,7 @@ MUX2_1 Address_MUX (
 // Signals
   wire [31:0] EX_MEM_Write_Data;
   wire EX_MEM_MemWrite;
+ // wire EX_MEM_halt;
 //ID_EX_PC_out
   // Instantiate the module
   EX_MEM_Register EX_MEM_R (
@@ -491,11 +506,11 @@ MUX2_1 Address_MUX (
     .In_Write_Data(Final_ALU_ReadData2),
 	 .In_PC(ID_EX_PC_out),
     .In_Rd(write_reg_input),
-	 
     .In_MemWrite(ID_EX_MemWrite),
     .In_MemRead(ID_EX_MemRead),
     .In_RegWrite(ID_EX_RegWrite),
     .In_MemtoReg(ID_EX_MemtoReg),
+	 .In_halt(ID_EX_halt),
     .Out_Address(EX_MEM_ALU_Result),
     .Out_Write_Data(EX_MEM_Write_Data),
 	 .Out_PC(EX_MEM_PC_out),
@@ -503,7 +518,8 @@ MUX2_1 Address_MUX (
     .Out_MemWrite(EX_MEM_MemWrite),
     .Out_MemRead(EX_MEM_MemRead),
     .Out_RegWrite(EX_MEM_RegWrite),
-    .Out_MemtoReg(EX_MEM_MemtoReg)
+    .Out_MemtoReg(EX_MEM_MemtoReg),
+	 .Out_halt(EX_MEM_halt)
   );
 
 
@@ -551,7 +567,7 @@ RAM #(
 // Signals
  
   wire [31:0] MEM_WB_ALU_Data,MEM_WB_PC_out;
- 
+  wire MEM_WB_halt;
 
   // Instantiate the module
   MEM_WB_Register MEM_WB_R (
@@ -562,12 +578,14 @@ RAM #(
     .In_Rd(EX_MEM_rd),
     .In_RegWrite(EX_MEM_RegWrite),
     .In_MemtoReg(EX_MEM_MemtoReg),
+	 .In_halt(EX_MEM_halt),
     .Out_RAM_Data(MEM_WB_RAM_Data),
     .Out_Immediate_Data(MEM_WB_ALU_Data),
 	 .Out_PC(MEM_WB_PC_out),
     .Out_Rd(MEM_WB_rd),
     .Out_RegWrite(MEM_WB_RegWrite),
-    .Out_MemtoReg(MEM_WB_MemtoReg)
+    .Out_MemtoReg(MEM_WB_MemtoReg),
+	 .Out_halt(MEM_WB_halt)
   );
 
 

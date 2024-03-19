@@ -15,7 +15,10 @@ module MEM_WB_Register (
 	
 	// WB signals
 	Out_RegWrite, Out_MemtoReg,
-	In_PC,Out_PC
+	In_PC,Out_PC,
+	
+	//halt signal
+	In_halt,Out_halt
 	
 ); 
 
@@ -30,6 +33,8 @@ input In_RegWrite;
 
 input [1:0] In_MemtoReg;
 
+input In_halt;
+
 
 output reg [31:0]  Out_RAM_Data,Out_Immediate_Data,Out_PC ;
 
@@ -40,6 +45,7 @@ output reg Out_RegWrite;
 
 output reg [1:0] Out_MemtoReg;
 
+output reg Out_halt;
 						 
 						 
 always @(posedge clk)
@@ -55,6 +61,8 @@ always @(posedge clk)
 			Out_MemtoReg<=In_MemtoReg;
 			
 			Out_PC<=In_PC;
+			
+			Out_halt<=In_halt;
 			
 	
 	end

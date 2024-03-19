@@ -150,17 +150,17 @@ module INST_MEM #(
 	//testcase 4
 	
 
-
-	/*Address 0 */  inst_mem[0] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
-	/*Address 4 */  inst_mem[1] = 32'b00100000000010010000000000001010; //ADDI R9, R9, 10
-	/*Address 8 */  inst_mem[2] = 32'b00000001000010010101000000100010; //SUB R10, R8, R9 //Loop Forwarding 
-	/*Address 12 */ inst_mem[3] = 32'b00100000000011000000000000000001; //ADDI R12, R0, 1
-	/*Address 16 */ inst_mem[4] = 32'b00011001000010010000000000000010; //BGT R8, R9, DONE
-	/*Address 20 */ inst_mem[5] = 32'b00100001000010000000000000000001; //ADDI R8, R8, 1
-	/*Address 24 */ inst_mem[6] = 32'b00001000000000000000000000000010; //JUMP LOOP
-	/*Address 28 */ inst_mem[7] = 32'b00000001001000000110100000100000; //ADD R13, R9, R0 //DONE
-	/*Address 32 */ inst_mem[8] = 32'b00100000000011100000000000011011; //ADDI R14, R0, 1B(27)
-	/*Address 36 */ inst_mem[9] = 32'b00110001110011100000000000010111; //ANDI R14, R14, 17(23) Forwarding
+//
+//	/*Address 0 */  inst_mem[0] = 32'b00000000000000000100000000100000; //ADD R8, R0, R0
+//	/*Address 4 */  inst_mem[1] = 32'b00100000000010010000000000001010; //ADDI R9, R9, 10
+//	/*Address 8 */  inst_mem[2] = 32'b00000001000010010101000000100010; //SUB R10, R8, R9 //Loop Forwarding 
+//	/*Address 12 */ inst_mem[3] = 32'b00100000000011000000000000000001; //ADDI R12, R0, 1
+//	/*Address 16 */ inst_mem[4] = 32'b00011001000010010000000000000010; //BGT R8, R9, DONE
+//	/*Address 20 */ inst_mem[5] = 32'b00100001000010000000000000000001; //ADDI R8, R8, 1
+//	/*Address 24 */ inst_mem[6] = 32'b00001000000000000000000000000010; //JUMP LOOP
+//	/*Address 28 */ inst_mem[7] = 32'b00000001001000000110100000100000; //ADD R13, R9, R0 //DONE
+//	/*Address 32 */ inst_mem[8] = 32'b00100000000011100000000000011011; //ADDI R14, R0, 1B(27)
+//	/*Address 36 */ inst_mem[9] = 32'b00110001110011100000000000010111; //ANDI R14, R14, 17(23) Forwarding
 
 	// do not forget to put a high cycle such as 50000 cycle
 	//-------------------------------------------------------------
@@ -183,7 +183,7 @@ module INST_MEM #(
 	
 	//testcase 2	
 
-   /*inst_mem[0] = 32'b10001100000000010000000000001000; //LW R1, 8(R0)
+   inst_mem[0] = 32'b10001100000000010000000000001000; //LW R1, 8(R0)
 	inst_mem[1] = 32'b00000000001000000000100010000000; //SLL R1, R1, 2 
 	inst_mem[2] = 32'b10101100000000010000000000000100; //SW R1, 4(R0) 
 	inst_mem[3] = 32'b10001100000000100000000000010000; //LW R2, 16(R0)
@@ -191,7 +191,7 @@ module INST_MEM #(
 	inst_mem[5] = 32'b00000000010000000001100001000000; //SLL R3, R2, 1 (There is a problem wee need Forwarding to solve it and hazard detection )
 	inst_mem[6] = 32'b10101100000000110000000000001100; //SW R3, 12(R0)
 	inst_mem[7] = 32'b10001100000001000000000000001100; //LW R4, 12(R0)
-	*/
+	
 	
 	
 	//testcase 1
