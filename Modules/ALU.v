@@ -23,8 +23,14 @@ always @(*) begin
         4'b0001: ALUOut <= A - B; // Subtraction (signed)
         4'b0010: ALUOut <= A * B; // Multiplication (signed)
         4'b0011: ALUOut <= A / B; // Division (signed/unsigned)
-        4'b0100: ALUOut <= A << ShiftAmount; // Logical shift left
-        4'b0101: ALUOut <= A >> ShiftAmount; // Logical shift right
+		  
+       // 4'b0100: ALUOut <= A << ShiftAmount; // Logical shift left
+        //4'b0101: ALUOut <= A >> ShiftAmount; // Logical shift right
+//		  4'b0100: ALUOut <= A << B; // Logical shift left
+//        4'b0101: ALUOut <= A >> B; // Logical shift right
+        4'b0100: ALUOut <= ((A << B) << ShiftAmount); // Logical shift left  //edited for BM1
+        4'b0101: ALUOut <= ((A >> B) >> ShiftAmount); // Logical shift right //edited for BM1
+		  
         4'b0110: ALUOut <= A + B; // addu
 		  4'b0111: ALUOut <= A - B; // subu
         4'b1000: ALUOut <= A & B; // Logical AND

@@ -33,9 +33,10 @@ module Main_tb;
 
     // Wait for a few clock cycles
    // #55000; //for test case 4 & 6
+	// # 6000000 // for B.2 loop
     //#550
      //#100
-	 #1500
+	 //#1500
    
 
     // Stop simulation
