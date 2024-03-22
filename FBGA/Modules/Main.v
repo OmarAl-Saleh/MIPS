@@ -130,14 +130,14 @@ IF_ID_Register IF_ID_R (
       //or we find jump or jump and link instructions or JS --> Jump Register
     .Instruction_out(IF_ID_Instruction_out),
     .PC_out(IF_ID_PC_out),// Maybe I must implement the pc in every register but know I will not do it 
-//	 .opcode(IF_ID_opcode),
-//    .rs(IF_ID_rs),
-//    .rt(IF_ID_rt),
-//    .rd(IF_ID_rd),
-//    .shamt(IF_ID_shamt),
-//    .funct(IF_ID_funct),
-//    .addr(IF_ID_addrs),// use for calculate the branch target address
-//	 .jump(IF_ID_jump_offset),
+	 .opcode(IF_ID_opcode),
+    .rs(IF_ID_rs),
+    .rt(IF_ID_rt),
+    .rd(IF_ID_rd),
+    .shamt(IF_ID_shamt),
+    .funct(IF_ID_funct),
+    .addr(IF_ID_addrs),// use for calculate the branch target address
+	 .jump(IF_ID_jump_offset),
 	 .halt(halt)
   );
 	
@@ -145,33 +145,6 @@ IF_ID_Register IF_ID_R (
 //**************************************************************************************************************************************
 //************************************************** Decode Stage **********************************************************************
 //**************************************************************************************************************************************
-
-//				assign		IF_ID_opcode = IF_ID_Instruction_out [31:26];
-//				assign		IF_ID_rs = IF_ID_Instruction_out [25:21];
-//				assign		IF_ID_rt = IF_ID_Instruction_out [20:16];
-//				assign		IF_ID_rd = IF_ID_Instruction_out [15:11];
-//				assign		IF_ID_shamt = IF_ID_Instruction_out [10:6];
-//				assign		IF_ID_funct = IF_ID_Instruction_out [5:0];
-//				assign		IF_ID_addr = IF_ID_Instruction_out [15:0];
-//				assign		IF_ID_jump = IF_ID_Instruction_out [25:0];
-
-Instruction_Decoder instruction_decoder_inst (
-    .Instruction_in(IF_ID_Instruction_out),
-    .opcode(IF_ID_opcode),
-    .rs(IF_ID_rs),
-    .rt(IF_ID_rt),
-    .rd(IF_ID_rd),
-    .shamt(IF_ID_shamt),
-    .funct(IF_ID_funct),
-    .addr(IF_ID_addr),
-    .jump(IF_ID_jump)
-);
-
-
-
-
-
-//*****************************************************************************************************************************************
 	
 //sign extend
 wire [31:0] immediate_value;

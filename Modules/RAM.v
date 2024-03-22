@@ -1,5 +1,5 @@
 module RAM #(
-  parameter size = 32,
+  parameter size = 64,
   parameter data_width = 32
 )(
   input clk,
@@ -28,24 +28,15 @@ integer i;
 //  
   always @(*) begin
 
-    if (reset) begin
-      for (i = 0; i < size; i = i + 1) begin
-         mem[i] <= 32'b0;
-      end
-		  
-    end
-	 else if (write_en || state==1'b0) begin
+ if (write_en || state==1'b0) begin
         case (state)
             1'b0: begin
                 state <= 1'b1;
 				// Enter RAM Data here 	
 				
-						//testcase 3
-	
-  mem[0] = 32'h00000023; // 0x23 (35)
-  mem[1] = 32'h0000002F; // 0x2F (47)
-  mem[2] = 32'h0000001A; // 0x1A (26)
-	       
+				mem[0]=32'b00000000000000001111000111100000;
+	         mem[1]=32'b00000000000000000000000000011110;
+			
                 
             end
             1'b1: begin

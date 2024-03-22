@@ -1,4 +1,27 @@
-  // Declare a memory array with parameterized size and data width.
+
+*****Benchmark One *************************
+
+*************HEX*******************
+
+0000f1e0
+0000001e
+
+************Binary***************** 
+
+
+mem[0]=00000000000000001111000111100000;
+mem[1]=00000000000000000000000000011110;
+
+
+***************Benchmark Two ***************************
+
+
+
+
+
+
+
+ // Declare a memory array with parameterized size and data width.
  // reg [data_width-1:0] mem [0:size - 1];
   
 //initial begin

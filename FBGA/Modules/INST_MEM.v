@@ -25,7 +25,7 @@ reg state = 1'b0;
 //*******************************************************************************************************
 
 
-    $readmemh("input files/ROM_Data.txt", inst_mem);
+    $readmemh("ROM_Data.txt", inst_mem);
 
 
 
@@ -315,4 +315,4 @@ B4221820
     end
 //end
 
-endmodule
+endmodule 

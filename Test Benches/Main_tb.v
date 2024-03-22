@@ -32,10 +32,10 @@ module Main_tb;
    // #20 reset = 0;  // De-assert reset after 20 time units
 
     // Wait for a few clock cycles
-    #55000; //for test case 4 & 6
+   // #55000; //for test case 4 & 6
     //#550
      //#100
-	 //#1500
+	 #1500
    
 
     // Stop simulation

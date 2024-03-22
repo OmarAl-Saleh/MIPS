@@ -35,6 +35,21 @@ always @(*) begin
                 (branch_type == 3'b110) ? (A <= B) ? 32'b1 : 32'b0 : 32'b0;
         4'b1101: ALUOut <= (A < B) ? 32'b1 : 32'b0; // less than
 		  4'b1110: ALUOut <= (A > B) ? 32'b1 : 32'b0; // greater than
+		  
+	/*	  4'b1101: begin
+    if (A[31] != B[31]) // Signs are different
+        ALUOut <= (A[31] > B[31]) ? 32'b1 : 32'b0; // Compare signs
+    else // Signs are the same
+        ALUOut <= (A < B) ? 32'b1 : 32'b0; // Compare magnitudes
+end
+		  
+		  4'b1110: begin
+    if (A[31] != B[31]) // Signs are different
+        ALUOut <= (A[31] < B[31]) ? 32'b1 : 32'b0; // Compare signs
+    else // Signs are the same
+        ALUOut <= (A > B) ? 32'b1 : 32'b0; // Compare magnitudes
+end
+		*/  
 
 
 

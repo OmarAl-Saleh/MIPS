@@ -135,7 +135,7 @@ reg state = 1'b0;
             1'b0: begin
                 state <= 1'b1;
 					 
-			 $readmemh("input files/RAM_Data.txt", mem);
+			 $readmemh("RAM_Data.txt", mem);
 					 
 					 
 	       /*  //testcase 1
