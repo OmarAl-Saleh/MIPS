@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at RegisterFile.v(248): always construct contains both blocking and non-blocking assignments File: C:/Users/NTC/OneDrive/Desktop/Modules/RegisterFile.v Line: 248
+Warning (10268): Verilog HDL information at PC.v(15): always construct contains both blocking and non-blocking assignments File: C:/Users/NTC/OneDrive/Desktop/Modules/PC.v Line: 15
+Warning (10273): Verilog HDL warning at JUMP.v(18): extended using "x" or "z" File: C:/Users/NTC/OneDrive/Desktop/Modules/JUMP.v Line: 18
+Warning (10268): Verilog HDL information at alu_control.v(11): always construct contains both blocking and non-blocking assignments File: C:/Users/NTC/OneDrive/Desktop/Modules/alu_control.v Line: 11

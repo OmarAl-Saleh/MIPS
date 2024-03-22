@@ -1,0 +1,261 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "digit_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_5[6]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[1]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[5]",
+					"strict" : false
+				},
+				{
+					"name" : "digit_6[6]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[0]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[1]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[2]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[3]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[4]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[5]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[6]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[7]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[8]",
+					"strict" : false
+				},
+				{
+					"name" : "leds[9]",
+					"strict" : false
+				},
+				{
+					"name" : "clk2",
+					"strict" : false
+				},
+				{
+					"name" : "selector",
+					"strict" : false
+				},
+				{
+					"name" : "en",
+					"strict" : false
+				},
+				{
+					"name" : "num_of_cycles",
+					"strict" : false
+				},
+				{
+					"name" : "mux32[0]",
+					"strict" : false
+				},
+				{
+					"name" : "mux32[1]",
+					"strict" : false
+				},
+				{
+					"name" : "mux32[2]",
+					"strict" : false
+				},
+				{
+					"name" : "mux32[3]",
+					"strict" : false
+				},
+				{
+					"name" : "mux32[4]",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

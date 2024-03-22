@@ -94,14 +94,6 @@ IF_ID_Register IF_ID_R (
       //or we find jump or jump and link instructions or JS --> Jump Register
     .Instruction_out(IF_ID_Instruction_out),
     .PC_out(IF_ID_PC_out),// Maybe I must implement the pc in every register but know I will not do it 
-	 .opcode(IF_ID_opcode),
-    .rs(IF_ID_rs),
-    .rt(IF_ID_rt),
-    .rd(IF_ID_rd),
-    .shamt(IF_ID_shamt),
-    .funct(IF_ID_funct),
-    .addr(IF_ID_addrs),// use for calculate the branch target address
-	 .jump(IF_ID_jump_offset),
 	 .halt(halt)
   );
 	
@@ -109,6 +101,26 @@ IF_ID_Register IF_ID_R (
 //**************************************************************************************************************************************
 //************************************************** Decode Stage **********************************************************************
 //**************************************************************************************************************************************
+
+
+
+Instruction_Decoder instruction_decoder_inst (
+    .Instruction_in(IF_ID_Instruction_out),
+    .opcode(IF_ID_opcode),
+    .rs(IF_ID_rs),
+    .rt(IF_ID_rt),
+    .rd(IF_ID_rd),
+    .shamt(IF_ID_shamt),
+    .funct(IF_ID_funct),
+    .addr(IF_ID_addrs),
+    .jump(IF_ID_jump_offset)
+);
+
+
+
+
+
+//*****************************************************************************************************************************************
 	
 //sign extend
 wire [31:0] immediate_value;

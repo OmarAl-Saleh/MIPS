@@ -317,14 +317,14 @@ end
        reg_MemtoReg	= 2'b00;
        reg_MemWrite	= 1'b0;
        reg_MemRead	= 1'b0;
-       reg_ALUOp		= 1'b0;
+       reg_ALUOp		= 4'b0000;
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b0;
 		 reg_Jump		= 2'b00;
 		 reg_halt     = 1'b1;
 		 
 	end
-	
+//	
 //	6'b111000:begin
 //		//branch less or equal
 //		 reg_ALUSrc		= 1'b0;
@@ -336,7 +336,7 @@ end
 //       reg_RegDst		= 2'b00;
 //		 reg_Branch		= 1'b0;
 //		 reg_Jump		= 2'b00;
-//		 reg_halt     = 1'b1;
+//		 reg_halt     = 1'b0;
 //		 
 //	end
 //	

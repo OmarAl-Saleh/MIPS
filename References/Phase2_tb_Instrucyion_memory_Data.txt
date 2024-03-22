@@ -1,5 +1,20 @@
 
-  // initial begin // this should be removed because it is NOT synthesizable
+**********************************Evaluation Sheet B.1 and B.2  HEX Instructions
+
+
+
+
+
+
+**********************************Evaluation Sheet B.1 and B.2  Binary Instructions 
+
+
+
+
+
+
+
+ // initial begin // this should be removed because it is NOT synthesizable
 	
 	//-------------------------------------------------------------
 	

@@ -135,7 +135,7 @@ reg state = 1'b0;
             1'b0: begin
                 state <= 1'b1;
 					 
-					 $readmemh("data_mem_input.txt", mem);
+			 $readmemh("input files/RAM_Data.txt", mem);
 					 
 					 
 	       /*  //testcase 1
@@ -182,7 +182,7 @@ end
 endmodule
 
 /*
-
+Benchmark 2
 00007D00
 00003A01
 00001683
@@ -204,5 +204,10 @@ FFFFDC72
 FFFFB069
 FFFF86E8
 */
+
+//RAM Benchmark 1
+//
+//0000f1e0
+//0000001e
 
 

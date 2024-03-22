@@ -40,16 +40,11 @@ integer i;
                 state <= 1'b1;
 				// Enter RAM Data here 	
 				
-						//testcase 1
-
-  
-
+						//testcase 3
 	
-
-	
-
-//	
-  
+  mem[0] = 32'h00000023; // 0x23 (35)
+  mem[1] = 32'h0000002F; // 0x2F (47)
+  mem[2] = 32'h0000001A; // 0x1A (26)
 	       
                 
             end
