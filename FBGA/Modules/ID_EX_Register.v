@@ -26,7 +26,9 @@ module ID_EX_Register (
 	// WB signals
 	Out_RegWrite, Out_MemtoReg, 
 	// JAL PC WB Value 
-	In_PC,Out_PC
+	In_PC,Out_PC,
+	//Halt signal
+	In_halt, Out_halt
 ); 
 
 
@@ -46,6 +48,8 @@ input [5:0] In_func;
 
 input [4:0] In_shamt;
 
+input In_halt;
+
 output reg [31:0]  Out_Reg_File_Data1, Out_Reg_File_Data2, Out_offset,Out_PC ;
 
 output reg [4:0]   Out_Rs , Out_Rt  , Out_Rd; 
@@ -59,6 +63,8 @@ output reg [1:0] Out_RegDst;
 output reg [5:0] Out_func;
 
 output reg [5:0] Out_shamt;
+
+output reg Out_halt;
 						 
 						 
 always @(posedge clk)
@@ -80,13 +86,14 @@ always @(posedge clk)
 			Out_MemRead <= 1'b0;
 			Out_RegWrite <= 1'b0;
 			
-			Out_ALUOp<=4'b0000;
+			Out_ALUOp<=4'b0;
 			Out_MemtoReg<=2'b0;
 			Out_RegDst<=2'b0;
 			
 			Out_func<=6'b000000;
 			Out_shamt<=5'b00000;
 			Out_PC<=32'b0;
+			Out_halt<=1'b0;
 			
 			
 			
@@ -116,6 +123,8 @@ always @(posedge clk)
 			Out_shamt<=In_shamt;
 			
 			Out_PC<=In_PC;
+			
+			Out_halt<=In_halt;
 			
 			end
 			

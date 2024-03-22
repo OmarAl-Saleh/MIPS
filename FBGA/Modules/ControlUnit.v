@@ -1,4 +1,4 @@
-module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct);
+module ControlUnit(Clock,Reset,opcode,RegDst,ALUSrc,MemtoReg,MemWrite,MemRead,ALUOp,RegWrite,Branch,Jump,funct,halt);
 input wire [5:0] opcode; 
 input Clock , Reset ;  // Reset : 1 --> on | 0--> off
 input wire [5:0] funct;
@@ -8,6 +8,7 @@ output wire [3:0] ALUOp;
 output wire [1:0] Jump;
 output wire [1:0] MemtoReg;
 output wire [1:0] RegDst;
+output wire halt;
 // reg type
  reg reg_ALUSrc,reg_MemWrite,reg_MemRead,reg_RegWrite,reg_Branch;
  reg [3:0] reg_ALUOp;
@@ -15,6 +16,7 @@ output wire [1:0] RegDst;
  reg [1:0] reg_MemtoReg;
  reg [1:0] reg_RegDst; 
  reg [5:0] reset_opcode ;
+ reg reg_halt;
 	
 	
 //************************** Singnal classification ********************************
@@ -46,7 +48,7 @@ begin
 end 
 
 
-
+//101101 halt opcode 
 
 always @(*) 
 
@@ -61,7 +63,7 @@ always @(*)
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 
+		 reg_halt     = 1'b0;//plan B reset	 
 end
 	
 	
@@ -70,6 +72,7 @@ end
 	
 	6'b000000:begin 
 		if(funct == 6'b001000)begin 
+	
 		//Jump Register (JS) instruction
 		 reg_ALUSrc   = 1'b0;
 		 reg_RegWrite = 1'b1;// for Stack Implementation
@@ -80,6 +83,8 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b10;
+		 reg_halt     = 1'b0;
+
 		 
 		end
 		else begin
@@ -93,6 +98,7 @@ end
        reg_RegDst   = 2'b01;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 	end
 	end
@@ -108,6 +114,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 	
 	end
@@ -123,6 +130,7 @@ end
        reg_RegDst   = 2'b00;  
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -138,6 +146,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -153,6 +162,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -167,6 +177,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -182,6 +193,7 @@ end
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b01;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -197,6 +209,7 @@ end
        reg_RegDst		= 2'b10;
 		 reg_Branch		= 1'b0;
 		 reg_Jump 		= 2'b01;// for JS Instruction
+		 reg_halt     = 1'b0;
 		
 	end
 	
@@ -211,6 +224,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -227,6 +241,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -242,6 +257,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -257,6 +273,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		 
 		 
 	end
@@ -272,6 +289,7 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		
 		 
 	end
@@ -287,8 +305,42 @@ end
        reg_RegDst		= 2'b00;
 		 reg_Branch		= 1'b1;
 		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b0;
 		 
 	end
+	
+	// halt instruction 
+	
+	6'b101101:begin
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'b00;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'b0;
+       reg_ALUOp		= 1'b0;
+       reg_RegDst		= 2'b00;
+		 reg_Branch		= 1'b0;
+		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b1;
+		 
+	end
+	
+	/*6'b111000:begin
+		//branch less or equal
+		 reg_ALUSrc		= 1'b0;
+		 reg_RegWrite	= 1'b0;
+       reg_MemtoReg	= 2'b00;
+       reg_MemWrite	= 1'b0;
+       reg_MemRead	= 1'b0;
+       reg_ALUOp		= 4'b0000;
+       reg_RegDst		= 2'b00;
+		 reg_Branch		= 1'b0;
+		 reg_Jump		= 2'b00;
+		 reg_halt     = 1'b1;
+		 
+	end*/
+//	
+	
 	
 	
 	default : begin 
@@ -299,9 +351,10 @@ end
        reg_MemWrite = 1'b0;
        reg_MemRead  = 1'b0;
        reg_ALUOp    = 4'b0000;
-       reg_RegDst   = 1'b0;
+       reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
+		 reg_halt     = 1'b0;
 		 
 	end
 	
@@ -319,6 +372,7 @@ assign RegWrite = reg_RegWrite;
 assign ALUOp = reg_ALUOp;
 assign Branch= reg_Branch;
 assign Jump = reg_Jump;
+assign halt = reg_halt;
 
 
 endmodule 

@@ -32,11 +32,29 @@ output   [31:0] reg27,
 output   [31:0] reg28,
 output   [31:0] reg29,
 output   [31:0] reg30,
-output   [31:0] reg31
+output   [31:0] reg31,
+output   reg [31:0] cycles_count
 );
+//-------------------------------------------------------------------------------------------------------------------
+initial cycles_count = 32'b00000000000000000000000000000000;
+wire halt; // to end the program last instruction in every program 
+wire EX_MEM_halt;
 
+
+
+
+always@(posedge clk)begin
+if(EX_MEM_halt==1'b0 || halt==1'b0)
+cycles_count <= cycles_count+1;
+end
+
+
+
+//-------------------------------------------------------------------------------------------------------------------
+
+//**********************************************************************************************************************
 // **************************************** Fetch Stage **************************************************************************
-
+// ******************************************************************************************************************
  wire Branch_Zero_Signal ; // we will use it in pc load
  
  
@@ -47,13 +65,15 @@ output   [31:0] reg31
  wire [31:0] pc_inc;//4
  assign pc_inc = 32'b00000000000000000000000000000100;// constant value(4)
  wire PC_write;//control
+ // for halt instruction implementation
+ //wire halt; // to end the program last instruction in every program 
  
  PC #(.first_address(0),  .pc_inc(4) )
  pc_inst (
     .clk(clk),
     .reset(reset),
 	.target(pc_final),
-	 .pc_load(PC_write), //second edition come from hazard detection unit
+	 .pc_load(PC_write && ~halt), //second edition come from hazard detection unit
     .pc(pc_out)
   );
   
@@ -69,11 +89,10 @@ adder add(
 
 	
 //------------------------------------
-//////********************we can update the Instruction memory and delete all output signals except the inst_out;
 //inst_mem
 wire[31:0] inst_out;
 
-INST_MEM #(.size(32),.data_width(32) )
+INST_MEM #(.size(64),.data_width(32) )
 inst_mem (
     .reset(reset),
     .address(pc_out),
@@ -118,13 +137,14 @@ IF_ID_Register IF_ID_R (
     .shamt(IF_ID_shamt),
     .funct(IF_ID_funct),
     .addr(IF_ID_addrs),// use for calculate the branch target address
-	 .jump(IF_ID_jump_offset)
+	 .jump(IF_ID_jump_offset),
+	 .halt(halt)
   );
 	
 // End of 
-
+//**************************************************************************************************************************************
 //************************************************** Decode Stage **********************************************************************
-
+//**************************************************************************************************************************************
 	
 //sign extend
 wire [31:0] immediate_value;
@@ -145,6 +165,7 @@ sign_extend extender (
   wire [3:0] ALUOp;
   wire [1:0] RegDst;
   wire [1:0] MemtoReg;
+  //wire halt;
 
   // we don't need pc_load and pc_store signal anymore (useless) (clear phase)
 
@@ -161,11 +182,13 @@ ControlUnit control_inst (
     .ALUOp(ALUOp),
 	 .Branch(Branch),
 	 .Jump(Jump_signal),
-	 .funct(IF_ID_funct)
+	 .funct(IF_ID_funct),
+	 .halt(halt)
 	
   );
 //end of ControlUnit
 //------------------------------------
+
 
 // Reg_File
 
@@ -383,7 +406,7 @@ Hazard_Unit Hazard_unit (
   wire [1:0]ID_EX_MemtoReg, ID_EX_RegDst;
   wire [5:0] ID_EX_func;
   wire [4:0] ID_EX_shamt;
-
+  wire ID_EX_halt;
   // Instantiate the module
   ID_EX_Register ID_EX_R (
     .clk(clk),
@@ -404,6 +427,7 @@ Hazard_Unit Hazard_unit (
     .In_RegDst(RegDst),
 	 .In_func(IF_ID_funct),
 	 .In_shamt(IF_ID_shamt),
+	 .In_halt(halt),
     .Out_Reg_File_Data1(ID_EX_Reg_File_Data1),// may be the address of top of stack to store or load from Memory in JS or JAL Instructions
     .Out_Reg_File_Data2(ID_EX_Reg_File_Data2),
     .Out_offset(ID_EX_immediate_value),
@@ -419,16 +443,17 @@ Hazard_Unit Hazard_unit (
     .Out_MemtoReg(ID_EX_MemtoReg),
     .Out_RegDst(ID_EX_RegDst),
 	 .Out_func(ID_EX_func),
-	 .Out_shamt(ID_EX_shamt)
+	 .Out_shamt(ID_EX_shamt),
+	 .Out_halt(ID_EX_halt)
   );
 	
 // End of ID_EX_Register
 
 
 
-
-//************************************************ Execution Stage ********************************************************************
-
+//**************************************************************************************************************************************
+//************************************************ Execution Stage *********************************************************************
+//**************************************************************************************************************************************
 
 wire [3:0] Operation;
 wire [2:0] branch_type;
@@ -554,6 +579,7 @@ MUX2_1 Address_MUX (
     .In_MemRead(ID_EX_MemRead),
     .In_RegWrite(ID_EX_RegWrite),
     .In_MemtoReg(ID_EX_MemtoReg),
+	 .In_halt(ID_EX_halt),
     .Out_Address(EX_MEM_ALU_Result),
     .Out_Write_Data(EX_MEM_Write_Data),
 	 .Out_PC(EX_MEM_PC_out),
@@ -561,15 +587,18 @@ MUX2_1 Address_MUX (
     .Out_MemWrite(EX_MEM_MemWrite),
     .Out_MemRead(EX_MEM_MemRead),
     .Out_RegWrite(EX_MEM_RegWrite),
-    .Out_MemtoReg(EX_MEM_MemtoReg)
+    .Out_MemtoReg(EX_MEM_MemtoReg),
+	 .Out_halt(EX_MEM_halt)
   );
 
 
 
 // End of EX_MEM_Register
 //------------------------------------
+//**************************************************************************************************************************************
+//************************************************ Memory Stage ************************************************************************
+//**************************************************************************************************************************************
 
-//************************************************ Memory Stage ***********************************************************************
 
 wire [31:0] Final_Data;
 // Determin the Final Data From Normal operations or From PC (Stack)
@@ -585,7 +614,7 @@ MUX2_1 RAM_Data_MUX (
 wire [31:0] Read_data;
 
 RAM #(
-    .size(32),             
+    .size(64),             
     .data_width(32)
 
 ) ram (
@@ -607,7 +636,7 @@ RAM #(
 // Signals
  
   wire [31:0] MEM_WB_ALU_Data,MEM_WB_PC_out;
- 
+  wire MEM_WB_halt;
 
   // Instantiate the module
   MEM_WB_Register MEM_WB_R (
@@ -618,19 +647,22 @@ RAM #(
     .In_Rd(EX_MEM_rd),
     .In_RegWrite(EX_MEM_RegWrite),
     .In_MemtoReg(EX_MEM_MemtoReg),
+	  .In_halt(EX_MEM_halt),
     .Out_RAM_Data(MEM_WB_RAM_Data),
     .Out_Immediate_Data(MEM_WB_ALU_Data),
 	 .Out_PC(MEM_WB_PC_out),
     .Out_Rd(MEM_WB_rd),
     .Out_RegWrite(MEM_WB_RegWrite),
-    .Out_MemtoReg(MEM_WB_MemtoReg)
+    .Out_MemtoReg(MEM_WB_MemtoReg),
+	  .Out_halt(MEM_WB_halt)
   );
 
 
 // End of MEM_WB_Register
 
+//**********************************************************************************************************************************************
 //**************************************************** Write Back Stage ************************************************************************
-
+//**********************************************************************************************************************************************
 
 //Write back
 WB_MUX4_1 Write_back (
@@ -647,9 +679,9 @@ WB_MUX4_1 Write_back (
 
 
 
-
-//************************************************* END MAIN ***********************************************
-
+//**************************************************************************************************************************************
+//************************************************* END MAIN ***************************************************************************
+//**************************************************************************************************************************************
 
 
 
