@@ -1,0 +1,147 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2018  Intel Corporation. All rights reserved.
+# Your use of Intel Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Intel Program License 
+# Subscription Agreement, the Intel Quartus Prime License Agreement,
+# the Intel FPGA IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Intel and sold by Intel or its authorized distributors.  Please
+# refer to the applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+# Date created = 15:10:47  March 08, 2024
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		FBGA_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "MAX 10"
+set_global_assignment -name DEVICE 10M50DAF484C7G
+set_global_assignment -name TOP_LEVEL_ENTITY FBGA
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:10:47  MARCH 08, 2024"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_N14 -to clk
+set_location_assignment PIN_B14 -to selector
+set_location_assignment PIN_F15 -to en
+set_location_assignment PIN_C10 -to mux32[0]
+set_location_assignment PIN_C11 -to mux32[1]
+set_location_assignment PIN_D12 -to mux32[2]
+set_location_assignment PIN_C12 -to mux32[3]
+set_location_assignment PIN_A12 -to mux32[4]
+set_location_assignment PIN_J20 -to digit_6[0]
+set_location_assignment PIN_K20 -to digit_6[1]
+set_location_assignment PIN_L18 -to digit_6[2]
+set_location_assignment PIN_N18 -to digit_6[3]
+set_location_assignment PIN_M20 -to digit_6[4]
+set_location_assignment PIN_N19 -to digit_6[5]
+set_location_assignment PIN_N20 -to digit_6[6]
+set_location_assignment PIN_F18 -to digit_5[0]
+set_location_assignment PIN_E20 -to digit_5[1]
+set_location_assignment PIN_E19 -to digit_5[2]
+set_location_assignment PIN_J18 -to digit_5[3]
+set_location_assignment PIN_H19 -to digit_5[4]
+set_location_assignment PIN_F19 -to digit_5[5]
+set_location_assignment PIN_F20 -to digit_5[6]
+set_location_assignment PIN_F21 -to digit_4[0]
+set_location_assignment PIN_E22 -to digit_4[1]
+set_location_assignment PIN_E21 -to digit_4[2]
+set_location_assignment PIN_C19 -to digit_4[3]
+set_location_assignment PIN_C20 -to digit_4[4]
+set_location_assignment PIN_D19 -to digit_4[5]
+set_location_assignment PIN_E17 -to digit_4[6]
+set_location_assignment PIN_B20 -to digit_3[0]
+set_location_assignment PIN_A20 -to digit_3[1]
+set_location_assignment PIN_B19 -to digit_3[2]
+set_location_assignment PIN_A21 -to digit_3[3]
+set_location_assignment PIN_B21 -to digit_3[4]
+set_location_assignment PIN_C22 -to digit_3[5]
+set_location_assignment PIN_B22 -to digit_3[6]
+set_location_assignment PIN_C18 -to digit_2[0]
+set_location_assignment PIN_D18 -to digit_2[1]
+set_location_assignment PIN_E18 -to digit_2[2]
+set_location_assignment PIN_B16 -to digit_2[3]
+set_location_assignment PIN_A17 -to digit_2[4]
+set_location_assignment PIN_A18 -to digit_2[5]
+set_location_assignment PIN_B17 -to digit_2[6]
+set_location_assignment PIN_C14 -to digit_1[0]
+set_location_assignment PIN_E15 -to digit_1[1]
+set_location_assignment PIN_C15 -to digit_1[2]
+set_location_assignment PIN_C16 -to digit_1[3]
+set_location_assignment PIN_E16 -to digit_1[4]
+set_location_assignment PIN_D17 -to digit_1[5]
+set_location_assignment PIN_C17 -to digit_1[6]
+set_location_assignment PIN_A8 -to leds[0]
+set_location_assignment PIN_A9 -to leds[1]
+set_location_assignment PIN_A10 -to leds[2]
+set_location_assignment PIN_B10 -to leds[3]
+set_location_assignment PIN_D13 -to leds[4]
+set_location_assignment PIN_C13 -to leds[5]
+set_location_assignment PIN_E14 -to leds[6]
+set_location_assignment PIN_D14 -to leds[7]
+set_location_assignment PIN_A11 -to leds[8]
+set_location_assignment PIN_B11 -to leds[9]
+set_location_assignment PIN_B8 -to reset
+set_location_assignment PIN_A14 -to num_of_cycles
+set_global_assignment -name TEXT_FILE inst_mem_input_BM2.txt
+set_global_assignment -name TEXT_FILE inst_mem_input_BM1.txt
+set_global_assignment -name TEXT_FILE data_mem_input_BM2.txt
+set_global_assignment -name TEXT_FILE data_mem_input_BM1.txt
+set_global_assignment -name VERILOG_FILE Modules/Main.v
+set_global_assignment -name VERILOG_FILE RegisterFile.v
+set_global_assignment -name VERILOG_FILE FBGA.v
+set_global_assignment -name VERILOG_FILE Modules/WB_MUX4_1.v
+set_global_assignment -name VERILOG_FILE Modules/Stack_Memory.v
+set_global_assignment -name VERILOG_FILE Modules/sign_extend.v
+set_global_assignment -name VERILOG_FILE Modules/RAM.v
+set_global_assignment -name VERILOG_FILE Modules/PC.v
+set_global_assignment -name VERILOG_FILE Modules/MUX5bit.v
+set_global_assignment -name VERILOG_FILE Modules/MUX4_1.v
+set_global_assignment -name VERILOG_FILE Modules/MUX2_1.v
+set_global_assignment -name VERILOG_FILE Modules/MEM_WB_Register.v
+set_global_assignment -name VERILOG_FILE Modules/JUMP.v
+set_global_assignment -name VERILOG_FILE Modules/INST_MEM.v
+set_global_assignment -name VERILOG_FILE Modules/IF_ID_Register.v
+set_global_assignment -name VERILOG_FILE Modules/ID_EX_Register.v
+set_global_assignment -name VERILOG_FILE Modules/Hazard_Unit.v
+set_global_assignment -name VERILOG_FILE Modules/ForwardingUnit_JUMP.v
+set_global_assignment -name VERILOG_FILE Modules/ForwardingUnit.v
+set_global_assignment -name VERILOG_FILE Modules/FBGA.v
+set_global_assignment -name VERILOG_FILE Modules/EX_MEM_Register.v
+set_global_assignment -name VERILOG_FILE Modules/ControlUnit.v
+set_global_assignment -name VERILOG_FILE Modules/branch_control.v
+set_global_assignment -name VERILOG_FILE Modules/Branch.v
+set_global_assignment -name VERILOG_FILE Modules/alu_control.v
+set_global_assignment -name VERILOG_FILE Modules/ALU.v
+set_global_assignment -name VERILOG_FILE Modules/adder.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

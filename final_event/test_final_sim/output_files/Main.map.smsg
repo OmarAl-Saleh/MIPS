@@ -1,0 +1,21 @@
+Warning (10268): Verilog HDL information at RegisterFile.v(186): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/RegisterFile.v Line: 186
+Warning (10268): Verilog HDL information at RAM.v(29): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/RAM.v Line: 29
+Warning (10268): Verilog HDL information at PC.v(15): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/PC.v Line: 15
+Warning (10273): Verilog HDL warning at JUMP.v(18): extended using "x" or "z" File: D:/trash/test_final_sim/modules/JUMP.v Line: 18
+Warning (10268): Verilog HDL information at INST_MEM.v(24): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/INST_MEM.v Line: 24
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(51): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 51
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(52): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 52
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(53): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 53
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(54): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 54
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(55): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 55
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(56): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 56
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(57): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 57
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(87): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 87
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(88): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 88
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(89): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 89
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(90): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 90
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(91): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 91
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(92): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 92
+Warning (10273): Verilog HDL warning at IF_ID_Register.v(93): extended using "x" or "z" File: D:/trash/test_final_sim/modules/IF_ID_Register.v Line: 93
+Warning (10268): Verilog HDL information at Branch.v(13): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/Branch.v Line: 13
+Warning (10268): Verilog HDL information at alu_control.v(75): always construct contains both blocking and non-blocking assignments File: D:/trash/test_final_sim/modules/alu_control.v Line: 75

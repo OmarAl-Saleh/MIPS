@@ -1,0 +1,339 @@
+# Reading C:/intelFPGA_lite/18.0/modelsim_ase/tcl/vsim/pref.tcl
+# do Main_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/18.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim {D:/trash/test_final_sim/Main_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim" D:/trash/test_final_sim/Main_tb.v 
+# -- Compiling module Main_tb
+# 
+# Top level modules:
+# 	Main_tb
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/WB_MUX4_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/WB_MUX4_1.v 
+# -- Compiling module WB_MUX4_1
+# 
+# Top level modules:
+# 	WB_MUX4_1
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/Stack_Memory.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/Stack_Memory.v 
+# -- Compiling module Stack_Memory
+# 
+# Top level modules:
+# 	Stack_Memory
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/sign_extend.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/sign_extend.v 
+# -- Compiling module sign_extend
+# 
+# Top level modules:
+# 	sign_extend
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/RegisterFile.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/RegisterFile.v 
+# -- Compiling module RegisterFile
+# -- Compiling module RegFile_decoder
+# -- Compiling module RegFile_regn
+# -- Compiling module Stack_regn
+# 
+# Top level modules:
+# 	RegisterFile
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/RAM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/RAM.v 
+# -- Compiling module RAM
+# 
+# Top level modules:
+# 	RAM
+# End time: 10:37:32 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/PC.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:32 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/PC.v 
+# -- Compiling module PC
+# 
+# Top level modules:
+# 	PC
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/MUX5bit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/MUX5bit.v 
+# -- Compiling module MUX5bit
+# 
+# Top level modules:
+# 	MUX5bit
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/MUX4_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/MUX4_1.v 
+# -- Compiling module MUX4_1
+# 
+# Top level modules:
+# 	MUX4_1
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/MUX2_1.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/MUX2_1.v 
+# -- Compiling module MUX2_1
+# 
+# Top level modules:
+# 	MUX2_1
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/MEM_WB_Register.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/MEM_WB_Register.v 
+# -- Compiling module MEM_WB_Register
+# 
+# Top level modules:
+# 	MEM_WB_Register
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/Main.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/Main.v 
+# -- Compiling module Main
+# 
+# Top level modules:
+# 	Main
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/JUMP.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/JUMP.v 
+# -- Compiling module JUMP
+# 
+# Top level modules:
+# 	JUMP
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/INST_MEM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/INST_MEM.v 
+# -- Compiling module INST_MEM
+# ** Warning: D:/trash/test_final_sim/modules/INST_MEM.v(24): (vlog-2182) 'state' might be read before written in always_comb or always @* block.
+# 
+# Top level modules:
+# 	INST_MEM
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/IF_ID_Register.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/IF_ID_Register.v 
+# -- Compiling module IF_ID_Register
+# 
+# Top level modules:
+# 	IF_ID_Register
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/ID_EX_Register.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:33 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/ID_EX_Register.v 
+# -- Compiling module ID_EX_Register
+# 
+# Top level modules:
+# 	ID_EX_Register
+# End time: 10:37:33 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/Hazard_Unit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/Hazard_Unit.v 
+# -- Compiling module Hazard_Unit
+# 
+# Top level modules:
+# 	Hazard_Unit
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/ForwardingUnit_JUMP.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/ForwardingUnit_JUMP.v 
+# -- Compiling module ForwardingUnit_JUMP
+# 
+# Top level modules:
+# 	ForwardingUnit_JUMP
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/ForwardingUnit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/ForwardingUnit.v 
+# -- Compiling module ForwardingUnit
+# 
+# Top level modules:
+# 	ForwardingUnit
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/EX_MEM_Register.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/EX_MEM_Register.v 
+# -- Compiling module EX_MEM_Register
+# 
+# Top level modules:
+# 	EX_MEM_Register
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/ControlUnit.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/ControlUnit.v 
+# -- Compiling module ControlUnit
+# 
+# Top level modules:
+# 	ControlUnit
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/Branch.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/Branch.v 
+# -- Compiling module Branch
+# 
+# Top level modules:
+# 	Branch
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/alu_control.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/alu_control.v 
+# -- Compiling module alu_control
+# 
+# Top level modules:
+# 	alu_control
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/ALU.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:34 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/ALU.v 
+# -- Compiling module ALU
+# 
+# Top level modules:
+# 	ALU
+# End time: 10:37:34 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim/modules {D:/trash/test_final_sim/modules/adder.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:35 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim/modules" D:/trash/test_final_sim/modules/adder.v 
+# -- Compiling module adder
+# 
+# Top level modules:
+# 	adder
+# End time: 10:37:35 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/trash/test_final_sim {D:/trash/test_final_sim/Main_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:37:35 on Mar 23,2024
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/trash/test_final_sim" D:/trash/test_final_sim/Main_tb.v 
+# -- Compiling module Main_tb
+# 
+# Top level modules:
+# 	Main_tb
+# End time: 10:37:35 on Mar 23,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs="+acc"  Main_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L rtl_work -L work -voptargs=""+acc"" Main_tb 
+# Start time: 10:37:35 on Mar 23,2024
+# Loading work.Main_tb
+# Loading work.Main
+# Loading work.PC
+# Loading work.adder
+# Loading work.INST_MEM
+# Loading work.IF_ID_Register
+# Loading work.sign_extend
+# Loading work.ControlUnit
+# Loading work.RegisterFile
+# Loading work.RegFile_decoder
+# Loading work.RegFile_regn
+# Loading work.Stack_regn
+# Loading work.Stack_Memory
+# Loading work.ForwardingUnit
+# Loading work.MUX4_1
+# Loading work.Branch
+# Loading work.ForwardingUnit_JUMP
+# Loading work.MUX2_1
+# Loading work.JUMP
+# Loading work.Hazard_Unit
+# Loading work.ID_EX_Register
+# Loading work.alu_control
+# Loading work.MUX5bit
+# Loading work.ALU
+# Loading work.EX_MEM_Register
+# Loading work.RAM
+# Loading work.MEM_WB_Register
+# Loading work.WB_MUX4_1
+# ** Warning: (vsim-3015) D:/trash/test_final_sim/modules/Main.v(342): [PCDPC] - Port size (6) does not match connection size (5) for port 'Out_shamt'. The port definition is at: D:/trash/test_final_sim/modules/ID_EX_Register.v(21).
+#    Time: 0 ps  Iteration: 0  Instance: /Main_tb/main_inst/ID_EX_R File: D:/trash/test_final_sim/modules/ID_EX_Register.v
+add add -r /*
+# ** Error: bad option "add": should be one of...
+#   add atv ?options? ?arg arg ...?
+#   add button text action ?disable? ?options? ?help?
+#   add dataflow ?options? ?arg arg ...?
+#   add lists ?options? ?arg arg ...?
+#   add log ?options? ?arg arg ...?
+#   add memory options ?arg arg ...?
+#   add message ?options? ?arg arg ...?
+#   add monitor ?options? ?arg arg ...?
+#   add schematic ?options? ?arg arg ...?
+#   add testbrowser ?options? ?arg arg ...?
+#   add virtual ?options? ?arg arg ...?
+#   add watch ?options? ?arg arg ...?
+#   add wave ?options? ?arg arg ...?
+add wave -r /*
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : D:/trash/test_final_sim/Main_tb.v(42)
+#    Time: 55 us  Iteration: 0  Instance: /Main_tb
+# Break in Module Main_tb at D:/trash/test_final_sim/Main_tb.v line 42
+# End time: 10:38:57 on Mar 23,2024, Elapsed time: 0:01:22
+# Errors: 1, Warnings: 1

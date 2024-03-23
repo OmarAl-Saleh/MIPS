@@ -26,7 +26,7 @@ reg state = 1'b0;
 integer i;
   
 //  
-  always @(*) begin
+  always @(posedge clk) begin
 
  if (write_en || state==1'b0) begin
         case (state)
