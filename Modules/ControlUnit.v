@@ -63,7 +63,7 @@ always @(*)
        reg_RegDst   = 2'b00;
 		 reg_Branch   = 1'b0;
 		 reg_Jump     = 2'b00;
-		 reg_halt     = 1'b0;
+		 reg_halt     = 1'b1;
 		 
 end
 	

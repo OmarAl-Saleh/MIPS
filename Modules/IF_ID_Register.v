@@ -42,7 +42,7 @@ always@(posedge clk)
 		if((enable == 1'b0) )
 			begin
 	
-				if((reset == 1'b1) || (Branch_Control == 1'b1)  )
+				if( (Branch_Control == 1'b1)  )
 				// case 3 : when to flush the register in reset status or when we catch a branch miss predict
 					begin
 				
@@ -79,7 +79,7 @@ always@(posedge clk)
 					
 					
 				
-				 if((halt == 1'b1))
+				 if((reset == 1'b1) || (halt == 1'b1))
 						begin
 				  // to stop the pc 
 						Instruction_out <=32'b10110100000000000000000000000000; // nop
