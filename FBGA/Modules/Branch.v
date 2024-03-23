@@ -36,11 +36,29 @@ always @(*) begin
 			 
 			 else if(ALUOp == 4'b0110)begin // bgt
 			 
-				if (Data1 > Data2)begin
-					zero = 1 ;
-				end
+			 
+			 if (Data1[31] != Data2[31]) begin // Signs are different
+        zero <= (Data1[31] > Data2[31]) ? 1'b0 : 1'b1; // Compare signs
+    end
+    else begin // Signs are the same
+        if (Data1[31] == 1'b1 && Data2[31] == 1'b1) begin
+            zero <= (Data1 > Data2) ? 1'b1 : 1'b0; // Compare magnitudes (treat as unsigned)
+        end
+        else begin
+            zero <= (Data1 > Data2) ? 1'b1 : 1'b0; // Compare magnitudes (treat as unsigned)
+        end
+    end
+end
+			 
+			 
+			 
+			 
+			 
+			 
+//				if (Data1 > Data2)begin
+//					zero = 1 ;
+//				end
 				
-			 end
 			 
 			 else if(ALUOp == 4'b0111)begin // blt
 			 
@@ -69,4 +87,4 @@ always @(*) begin
 
 
 
-endmodule 
+endmodule
