@@ -1,3 +1,6 @@
+![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
+
+
 # MIPS
 ## Single-Cycle CPU -phase one
 This repository contains a Verilog implementation of a single-cycle CPU based on the MIPS instruction set architecture.
