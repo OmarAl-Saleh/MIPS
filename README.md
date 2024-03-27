@@ -2,6 +2,9 @@
 
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
 
+## Directory Structure
+Modules/: Contains the Verilog source files for the CPU and its components.
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/7f6dadaa-07cc-4f34-8c46-61be5c959e8a)
 
 
 ## pipeline Cpu-phase two and three
@@ -26,12 +29,6 @@ this our modules in code :
 ## timeline project
 ![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/b045ef7e-cae5-4798-80ff-670a4d039cc9)
 
-## Directory Structure
-Modules/: Contains the Verilog source files for the CPU and its components.
-
-
-
-![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/7f6dadaa-07cc-4f34-8c46-61be5c959e8a)
 
 
 
