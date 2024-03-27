@@ -33,5 +33,12 @@ this our modules in code :
 ## Contributions
 
 ![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/23a49b25-d37d-4a8c-b4f4-16d4ccbc9ed3)
+## Our Logo
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/79390e4e-cf88-4fdd-b586-8bf10be577f5)
+## the Compeition we joined 
+![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/2a7a90bb-c5e6-4652-9f87-4d4dc9e9129f)
+facebook link : https://web.facebook.com/josdc23
+linkedin link : https://www.linkedin.com/company/josdc23/
+
 
 
