@@ -1,4 +1,4 @@
-#hello , We are team from Jordan University of Science and Technology -this final project 
+# hello , We are team from Jordan University of Science and Technology -this final project 
 
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
 
