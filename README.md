@@ -1,6 +1,8 @@
 # hello , We are team from Jordan University of Science and Technology - this final project in  JoSDC'23 (Jordan national Semiconductors Design Competition )
-
+# Project Title
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
+## Project Description
+The pipeline CPU implemented here is designed to execute a subset of the MIPS instruction set. It fetches and executes one instruction every clock cycle, making it a straightforward design for educational purposes.
 
 ## Directory Structure
 Modules/: Contains the Verilog source files for the CPU and its components.
@@ -8,8 +10,7 @@ Modules/: Contains the Verilog source files for the CPU and its components.
 
 
 
-## Overview
-The pipeline CPU implemented here is designed to execute a subset of the MIPS instruction set. It fetches and executes one instruction every clock cycle, making it a straightforward design for educational purposes.
+
 
 ## Instruction Set Architecture
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/phase%20two%20instruction%20set.png?raw=true)
