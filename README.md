@@ -1,7 +1,9 @@
+#hello , We are team from Jordan University of Science and Technology -this final project 
+
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
 
 
-# MIPS
+
 ## Single-Cycle CPU -phase one
 This repository contains a Verilog implementation of a single-cycle CPU based on the MIPS instruction set architecture.
 ## pipeline Cpu-phase two and three
