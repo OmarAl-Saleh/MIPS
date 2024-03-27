@@ -7,9 +7,7 @@ Modules/: Contains the Verilog source files for the CPU and its components.
 ![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/7f6dadaa-07cc-4f34-8c46-61be5c959e8a)
 
 
-## pipeline Cpu-phase two and three
-![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/9cc0e365-0fd1-4c63-adc4-2d641f76304a)
-we add stack ,forwarding, harzard unit and register between stages.
+
 ## Overview
 The pipeline CPU implemented here is designed to execute a subset of the MIPS instruction set. It fetches and executes one instruction every clock cycle, making it a straightforward design for educational purposes.
 
