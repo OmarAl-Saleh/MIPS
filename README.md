@@ -4,8 +4,6 @@
 
 
 
-## Single-Cycle CPU -phase one
-This repository contains a Verilog implementation of a single-cycle CPU based on the MIPS instruction set architecture.
 ## pipeline Cpu-phase two and three
 ![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/9cc0e365-0fd1-4c63-adc4-2d641f76304a)
 we add stack ,forwarding, harzard unit and register between stages.
@@ -17,6 +15,7 @@ The pipeline CPU implemented here is designed to execute a subset of the MIPS in
 
 
 ## Project Modules
+this our modules in code :
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Modules%20definition.png?raw=true)
 
 ![image](https://github.com/OmarAl-Saleh/MIPS/assets/76126298/b7175e81-9c5f-4517-b006-a928c0f9aba9)
