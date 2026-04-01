@@ -1,4 +1,4 @@
-# hello , We are team from Jordan University of Science and Technology - this final project in  JoSDC'23 (Jordan national Semiconductors Design Competition )
+# Hello, We are team from Jordan University of Science and Technology - this final project in  JoSDC'23 (Jordan national Semiconductors Design Competition )
 # Project Title
 ![image](https://github.com/OmarAl-Saleh/MIPS/blob/pipeline-full-mips-datapath/Simulation/Graphs/Result.png)
 ## Project Description
